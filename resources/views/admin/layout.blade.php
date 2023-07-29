@@ -33,10 +33,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
                 <div class="sidebar-brand-icon mt-3 ml-3">
-                    <img src="{{asset("/images/logo.jpg")}}">
+                    <img src="{{asset("/img/logo.png")}}" width="115" height="81">
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
                 </div>
-                <div class="sidebar-brand-text mx-3">Med Custodian</div>
             </a>
 
             <!-- Divider -->
@@ -326,7 +325,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset("/images/undraw_profile.svg")}}">
+                                    src="{{asset("/img/undraw_profile.svg")}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

@@ -16,13 +16,13 @@ use App\Http\Controllers\PatientController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::controller(PatientController::class)->group(function(){
 
-    Route::get('/','home')->name('home');
+    Route::get('/index','home')->name('home');
     // Route::post('/','add_user2');
     // Route::get('/show','show_user')->name('show');
     // Route::get('/delete/{id}','delete_std');
@@ -46,7 +46,7 @@ Route::controller(DoctorController::class)->group(function(){
 
 Route::controller(AdminController::class)->group(function(){
 
-    Route::get('/','home')->name('home');
+    Route::get('/admin','home')->name('home');
     // Route::post('/','add_user2');
     // Route::get('/show','show_user')->name('show');
     // Route::get('/delete/{id}','delete_std');
