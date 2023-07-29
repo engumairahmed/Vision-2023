@@ -1,0 +1,445 @@
+PS C:\xampp\htdocs\laravel\old> php artisan make:model medical_condition -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/medical_condition.php] created successfully.  
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_23_114407_create_medical_condit
+PS C:\xampp\htdocs\laravel\old> php artisan make:model patient_vitals -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/patient_vitals.php] created successfully.  
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_23_115929_create_patient_vitals
+PS C:\xampp\htdocs\laravel\old> php artisan make:model medical_history -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/medical_history.php] created successfully.  
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_23_181219_create_medical_histor
+PS C:\xampp\htdocs\laravel\old> php artisan make:model medication -m     
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/medication.php] created successfully.
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_24_084742_create_medications_taphp] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model prescriptions -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/prescriptions.php] created successfully.
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_24_084815_create_prescriptions_e.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model medical_history -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/medical_history.php] created successfully.
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_24_084850_create_medical_historphp] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model prescriptions -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/prescriptions.php] created successfully.
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_24_084815_create_prescriptions_e.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model medical_history -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/medical_history.php] created successfully.
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_24_084850_create_medical_histortable.php] created successfully.
+PS C:\xampp\htdocs\laravel\old> php artisan make:model patient -m        
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/patient.php] created successfully.     
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_24_194443_create_patients_table.php] created successfully.  
+PS C:\xampp\htdocs\laravel\old> php artisan make:model roles -m  
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/roles.php] created successfully.       
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_24_201826_create_roles_table.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan serve
+
+   INFO  Server running on [http://127.0.0.1:8000].  
+
+  Press Ctrl+C to stop the server
+
+PS C:\xampp\htdocs\laravel\old> php artisan serve
+
+   INFO  Server running on [http://127.0.0.1:8000].  
+
+PS C:\xampp\htdocs\laravel\old> php artisan serve
+
+   INFO  Server running on [http://127.0.0.1:8000].  
+
+  Press Ctrl+C to stop the server
+
+PS C:\xampp\htdocs\laravel\old> php artisan serve
+
+   INFO  Server running on [http://127.0.0.1:8000].  
+
+  Press Ctrl+C to stop the server
+
+
+
+  Press Ctrl+C to stop the server
+
+  2023-07-26 00:18:38 .............................................................................. ~ 2s
+  2023-07-26 00:18:38 /favicon.ico ................................................................. ~ 3s
+  2023-07-26 00:19:12 .............................................................................. ~ 0s
+  2023-07-26 00:19:12 /jquery.js ................................................................... ~ 0s
+  2023-07-26 00:19:13 /favicon.ico ................................................................. ~ 0s
+  2023-07-26 00:21:22 .............................................................................. ~ 1s
+  2023-07-26 00:21:22 /jquery.js ................................................................... ~ 1s  
+  2023-07-26 00:21:23 /favicon.ico ................................................................. ~ 0s  
+  2023-07-26 00:21:38 .............................................................................. ~ 1s
+  2023-07-26 00:21:38 /jquery.js ................................................................... ~ 1s  
+  2023-07-26 00:21:39 /favicon.ico ................................................................. ~ 0s
+  2023-07-26 00:21:39 .............................................................................. ~ 0s
+  2023-07-26 00:21:39 /jquery.js ................................................................... ~ 0s  
+  2023-07-26 00:21:39 /favicon.ico ................................................................. ~ 0s  
+  2023-07-26 00:21:45 .............................................................................. ~ 0s
+  2023-07-26 00:21:45 /jquery.js ................................................................... ~ 0s
+  2023-07-26 00:21:45 /favicon.ico ................................................................. ~ 0s
+  2023-07-26 00:21:52 .............................................................................. ~ 0s
+  2023-07-26 00:21:52 /jquery.js ................................................................... ~ 0s  
+  2023-07-26 00:21:52 /favicon.ico ................................................................. ~ 0s
+  2023-07-26 00:21:53 .............................................................................. ~ 0s
+  2023-07-26 00:21:53 .............................................................................. ~ 0s  
+  2023-07-26 00:21:53 .............................................................................. ~ 1s
+  2023-07-26 00:21:53 .............................................................................. ~ 1s
+  2023-07-26 00:21:54 /jquery.js ................................................................... ~ 0s
+  2023-07-26 00:21:54 /favicon.ico ................................................................. ~ 0s  
+  2023-07-26 00:21:57 .............................................................................. ~ 0s
+  2023-07-26 00:21:57 /jquery.js ................................................................... ~ 0s  
+  2023-07-26 00:21:57 .............................................................................. ~ 0s
+  2023-07-26 00:21:57 .............................................................................. ~ 1s
+  2023-07-26 00:21:57 /favicon.ico ................................................................. ~ 1s
+  2023-07-26 00:21:58 .............................................................................. ~ 0s
+  2023-07-26 00:21:58 .............................................................................. ~ 0s
+  2023-07-26 00:21:58 /jquery.js ................................................................... ~ 0s
+  2023-07-26 00:21:58 /favicon.ico ................................................................. ~ 0s  
+  2023-07-26 00:22:11 .............................................................................. ~ 1s
+  2023-07-26 00:22:11 /jquery.js ................................................................... ~ 1s  
+  2023-07-26 00:22:12 /favicon.ico ................................................................. ~ 0s
+  2023-07-26 00:22:12 .............................................................................. ~ 0s  
+  2023-07-26 00:22:12 /jquery.js ................................................................... ~ 0s
+  2023-07-26 00:22:12 /favicon.ico ................................................................. ~ 0s  
+  2023-07-26 00:22:12 .............................................................................. ~ 0s
+  2023-07-26 00:22:12 .............................................................................. ~ 0s
+  2023-07-26 00:22:12 /jquery.js ................................................................... ~ 0s
+  2023-07-26 00:22:12 /favicon.ico ................................................................. ~ 0s  
+  2023-07-26 00:22:16 .............................................................................. ~ 0s
+  2023-07-26 00:22:16 .............................................................................. ~ 0s  
+  2023-07-26 00:22:16 /favicon.ico ................................................................. ~ 0s  
+PS C:\xampp\htdocs\laravel\old> php atrisan make:model prescription_medication -m
+Could not open input file: atrisan
+PS C:\xampp\htdocs\laravel\old> php artisan make:model prescription_medication -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/prescription_medication.php] created successfully.  
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_25_203235_create_prescription_medications_table.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model lab_tests -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/lab_tests.php] created successfully.
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_25_203258_create_lab_tests_table.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model prescription_lab_tests -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/prescription_lab_tests.php] created successfully.   
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_25_203311_create_prescription_lab_tests_table.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model surgical_procedures -m   
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/surgical_procedures.php] created successfully.      
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_28_214119_create_surgical_procedures_table.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:model doctor -m
+
+   INFO  Model [C:\xampp\htdocs\laravel\old\app/Models/doctor.php] created successfully.
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_28_215740_create_doctors_table.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> composer require nesbot/carbon  
+./composer.json has been updated
+Running composer update nesbot/carbon
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 0 installs, 1 update, 0 removals
+  - Upgrading nesbot/carbon (2.67.0 => 2.68.1)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 0 installs, 1 update, 0 removals
+  - Upgrading nesbot/carbon (2.67.0 => 2.68.1): Extracting archive
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+
+   INFO  Discovering packages.
+
+  laravel/sail ..................................................................................... DONE  
+  laravel/sanctum .................................................................................. DONE  
+  laravel/tinker ................................................................................... DONE  
+  nesbot/carbon .................................................................................... DONE  
+  nunomaduro/collision ............................................................................. DONE  
+  spatie/laravel-ignition .......................................................................... DONE  
+
+82 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+> @php artisan vendor:publish --tag=laravel-assets --ansi --force
+
+   INFO  No publishable resources for tag [laravel-assets].
+
+No security vulnerability advisories found
+Using version ^2.68 for nesbot/carbon
+PS C:\xampp\htdocs\laravel\old> composer require livewire/livewire
+./composer.json has been updated
+Running composer update livewire/livewire
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 1 install, 0 updates, 0 removals
+  - Locking livewire/livewire (v2.12.4)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 1 install, 0 updates, 0 removals
+  - Installing livewire/livewire (v2.12.4): Extracting archive
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+
+   INFO  Discovering packages.
+
+  laravel/sail ..................................................................................... DONE  
+  laravel/sanctum .................................................................................. DONE  
+  laravel/tinker ................................................................................... DONE  
+  livewire/livewire ................................................................................ DONE  
+  nesbot/carbon .................................................................................... DONE  
+  nunomaduro/collision ............................................................................. DONE  
+  spatie/laravel-ignition .......................................................................... DONE  
+
+83 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+> @php artisan vendor:publish --tag=laravel-assets --ansi --force
+
+   INFO  No publishable resources for tag [laravel-assets].
+
+No security vulnerability advisories found
+Using version ^2.12 for livewire/livewire
+PS C:\xampp\htdocs\laravel\old> php artisan make:livewire counter
+ COMPONENT CREATED  �
+
+CLASS: app/Http/Livewire//Counter.php
+VIEW:  C:\xampp\htdocs\laravel\old\resources\views/livewire/counter.blade.php
+
+/ /o\ \   || ()                ()  __
+|_\ /_|   || || \\// /_\ \\ // || |~~ /_\   
+ |`|`|    || ||  \/  \\_  \^/  || ||  \\_   
+
+
+Congratulations, you've created your first Livewire component! ���🎉🎉🎉
+
+ Would you like to show some love by starring the repo? (yes/no) [no]:
+ > no
+
+PS C:\xampp\htdocs\laravel\old> php artisan serve
+
+   INFO  Server running on [http://127.0.0.1:8000].
+
+  Press Ctrl+C to stop the server
+
+  2023-07-29 15:37:17 .............................................................................. ~ 1s
+  2023-07-29 15:37:17 /favicon.ico ................................................................. ~ 1s
+  2023-07-29 15:40:55 .............................................................................. ~ 3s
+  2023-07-29 15:40:55 .............................................................................. ~ 3s
+  2023-07-29 15:40:59 /favicon.ico ................................................................. ~ 0s
+  2023-07-29 15:42:49 .............................................................................. ~ 1s
+  2023-07-29 15:42:49 /favicon.ico ................................................................. ~ 2s
+  2023-07-29 15:43:08 .............................................................................. ~ 0s
+  2023-07-29 15:43:08 /favicon.ico ................................................................. ~ 1s
+  2023-07-29 15:45:07 .............................................................................. ~ 1s
+  2023-07-29 15:45:07 /favicon.ico ................................................................. ~ 1s
+  2023-07-29 15:49:35 .............................................................................. ~ 0s
+  2023-07-29 15:49:35 /favicon.ico ................................................................. ~ 1s  
+  2023-07-29 15:51:00 .............................................................................. ~ 0s
+  2023-07-29 15:51:00 /favicon.ico ................................................................. ~ 1s
+   WARN  PHP Fatal error: Maximum execution time of 60 seconds exceeded in C:\xampp\htdocs\laravel\old\vendor\livewire\livewire\src\Component.php on line 116.
+
+  2023-07-29 15:51:28 ............................................................................. ~ 62s
+  2023-07-29 15:51:28 ............................................................................. ~ 62s
+   WARN  PHP Fatal error: Maximum execution time of 60 seconds exceeded in C:\xampp\htdocs\laravel\old\vendor\livewire\livewire\src\Component.php on line 181.
+
+  2023-07-29 15:52:30 ............................................................................. ~ 62s
+  2023-07-29 15:52:30 ............................................................................. ~ 62s
+  2023-07-29 15:53:33 /favicon.ico ................................................................. ~ 0s
+  2023-07-29 15:55:10 .............................................................................. ~ 1s
+  2023-07-29 15:55:10 /favicon.ico ................................................................. ~ 1s  
+  2023-07-29 15:56:49 .............................................................................. ~ 0s
+  2023-07-29 15:56:49 /favicon.ico ................................................................. ~ 1s
+  2023-07-29 15:57:36 .............................................................................. ~ 1s
+  2023-07-29 15:57:36 .............................................................................. ~ 1s
+  2023-07-29 15:57:37 /favicon.ico ................................................................. ~ 0s  
+  2023-07-29 15:57:41 .............................................................................. ~ 1s
+  2023-07-29 15:57:41 /favicon.ico ................................................................. ~ 1s
+  2023-07-29 15:58:24 .............................................................................. ~ 0s
+  2023-07-29 15:58:24 /favicon.ico ................................................................. ~ 0s  
+  2023-07-29 16:00:10 .............................................................................. ~ 1s
+  2023-07-29 16:00:10 /favicon.ico ................................................................. ~ 1s  
+  2023-07-29 16:01:01 .............................................................................. ~ 0s
+  2023-07-29 16:01:01 /favicon.ico ................................................................. ~ 1s
+  2023-07-29 16:01:06 .............................................................................. ~ 1s
+  2023-07-29 16:01:06 .............................................................................. ~ 1s
+  2023-07-29 16:01:31 .............................................................................. ~ 1s  
+  2023-07-29 16:01:31 /favicon.ico ................................................................. ~ 1s  
+  2023-07-29 16:05:04 .............................................................................. ~ 1s  
+  2023-07-29 16:05:04 /favicon.ico ................................................................. ~ 1s  
+  2023-07-29 16:05:25 .............................................................................. ~ 0s  
+  2023-07-29 16:05:25 /favicon.ico ................................................................. ~ 1s  
+  2023-07-29 16:05:27 .............................................................................. ~ 1s  
+  2023-07-29 16:05:27 /favicon.ico ................................................................. ~ 1s  
+  2023-07-29 16:08:22 .............................................................................. ~ 0s  
+  2023-07-29 16:08:22 /favicon.ico ................................................................. ~ 1s  
+PS C:\xampp\htdocs\laravel\old> composer require laravel/jetstream
+Info from https://repo.packagist.org: #StandWithUkraine
+./composer.json has been updated
+Running composer update laravel/jetstream
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 9 installs, 0 updates, 0 removals
+  - Locking bacon/bacon-qr-code (2.0.8)
+  - Locking dasprid/enum (1.0.4)
+  - Locking jaybizzle/crawler-detect (v1.2.116)
+  - Locking jenssegers/agent (v2.6.4)
+  - Locking laravel/fortify (v1.17.4)
+  - Locking laravel/jetstream (v3.2.5)
+  - Locking mobiledetect/mobiledetectlib (2.8.41)
+  - Locking paragonie/constant_time_encoding (v2.6.3)
+  - Locking pragmarx/google2fa (v8.0.1)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 9 installs, 0 updates, 0 removals
+  - Downloading dasprid/enum (1.0.4)
+  - Downloading bacon/bacon-qr-code (2.0.8)
+  - Downloading jaybizzle/crawler-detect (v1.2.116)
+  - Downloading paragonie/constant_time_encoding (v2.6.3)
+  - Downloading pragmarx/google2fa (v8.0.1)
+  - Downloading laravel/fortify (v1.17.4)
+  - Downloading mobiledetect/mobiledetectlib (2.8.41)
+  - Downloading jenssegers/agent (v2.6.4)
+  - Downloading laravel/jetstream (v3.2.5)
+  - Installing dasprid/enum (1.0.4): Extracting archive
+  - Installing bacon/bacon-qr-code (2.0.8): Extracting archive
+  - Installing jaybizzle/crawler-detect (v1.2.116): Extracting archive
+  - Installing paragonie/constant_time_encoding (v2.6.3): Extracting archive
+  - Installing pragmarx/google2fa (v8.0.1): Extracting archive
+  - Installing laravel/fortify (v1.17.4): Extracting archive
+  - Installing mobiledetect/mobiledetectlib (2.8.41): Extracting archive
+  - Installing jenssegers/agent (v2.6.4): Extracting archive
+  - Installing laravel/jetstream (v3.2.5): Extracting archive
+1 package suggestions were added by new dependencies, use `composer suggest` to see details.
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+
+   INFO  Discovering packages.
+
+  jenssegers/agent ................................................................................. DONE  
+  laravel/fortify .................................................................................. DONE  
+  laravel/jetstream ................................................................................ DONE  
+  laravel/sail ..................................................................................... DONE  
+  laravel/sanctum .................................................................................. DONE  
+  laravel/tinker ................................................................................... DONE  
+  livewire/livewire ................................................................................ DONE  
+  nesbot/carbon .................................................................................... DONE  
+  nunomaduro/collision ............................................................................. DONE  
+  spatie/laravel-ignition .......................................................................... DONE  
+
+84 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+> @php artisan vendor:publish --tag=laravel-assets --ansi --force
+
+   INFO  No publishable resources for tag [laravel-assets].
+
+No security vulnerability advisories found
+Using version ^3.2 for laravel/jetstream
+PS C:\xampp\htdocs\laravel\old> composer require laravel/socialite
+Info from https://repo.packagist.org: #StandWithUkraine
+./composer.json has been updated
+Running composer update laravel/socialite
+Loading composer repositories with package information
+Updating dependencies
+Lock file operations: 2 installs, 0 updates, 0 removals
+  - Locking laravel/socialite (v5.8.0)
+  - Locking league/oauth1-client (v1.10.1)
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Package operations: 2 installs, 0 updates, 0 removals
+  - Downloading league/oauth1-client (v1.10.1)
+  - Downloading laravel/socialite (v5.8.0)
+  - Installing league/oauth1-client (v1.10.1): Extracting archive
+  - Installing laravel/socialite (v5.8.0): Extracting archive
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+
+   INFO  Discovering packages.
+
+  jenssegers/agent ................................................................................. DONE  
+  laravel/fortify .................................................................................. DONE  
+  laravel/jetstream ................................................................................ DONE  
+  laravel/sail ..................................................................................... DONE  
+  laravel/sanctum .................................................................................. DONE  
+  laravel/socialite ................................................................................ DONE  
+  laravel/tinker ................................................................................... DONE  
+  livewire/livewire ................................................................................ DONE  
+  nesbot/carbon .................................................................................... DONE  
+  nunomaduro/collision ............................................................................. DONE  
+  spatie/laravel-ignition .......................................................................... DONE  
+
+84 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+> @php artisan vendor:publish --tag=laravel-assets --ansi --force
+
+   INFO  No publishable resources for tag [laravel-assets].
+
+No security vulnerability advisories found
+Using version ^5.8 for laravel/socialite
+PS C:\xampp\htdocs\laravel\old> composer require laravel/jetstream  
+Info from https://repo.packagist.org: #StandWithUkraine
+./composer.json has been updated
+Running composer update laravel/jetstream
+Loading composer repositories with package information
+Updating dependencies
+Nothing to modify in lock file
+Writing lock file
+Installing dependencies from lock file (including require-dev)
+Nothing to install, update or remove
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+
+   INFO  Discovering packages.
+
+  jenssegers/agent ................................................................................. DONE  
+  laravel/fortify .................................................................................. DONE  
+  laravel/jetstream ................................................................................ DONE  
+  laravel/sail ..................................................................................... DONE  
+  laravel/sanctum .................................................................................. DONE  
+  laravel/socialite ................................................................................ DONE  
+  laravel/tinker ................................................................................... DONE  
+  livewire/livewire ................................................................................ DONE  
+  nesbot/carbon .................................................................................... DONE  
+  nunomaduro/collision ............................................................................. DONE  
+
+84 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
+> @php artisan vendor:publish --tag=laravel-assets --ansi --force
+
+   INFO  No publishable resources for tag [laravel-assets].
+
+No security vulnerability advisories found
+Using version ^3.2 for laravel/jetstream
+PS C:\xampp\htdocs\laravel\old>
+                                php artisan make:migration google_social_auth_id
+
+   INFO  Migration [C:\xampp\htdocs\laravel\old\database\migrations/2023_07_29_120524_google_social_auth_id.php] created successfully.  
+
+PS C:\xampp\htdocs\laravel\old> php artisan make:controller GoogleController
+
+   INFO  Controller [C:\xampp\htdocs\laravel\old\app/Http/Controllers/GoogleController.php] created successfully.
+
+PS C:\xampp\htdocs\laravel\old> 
