@@ -18,7 +18,7 @@ use App\Http\Controllers\PatientController;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('index');
 // Route::get('/login')
 Route::controller(PatientController::class)->group(function(){
 
