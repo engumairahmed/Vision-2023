@@ -19,39 +19,64 @@ use App\Http\Controllers\PatientController;
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
 // Route::get('/login')
-Route::controller(PatientController::class)->group(function(){
 
-    Route::get('/patient','home')->name('home');
-    // Route::post('/','add_user2');
-    // Route::get('/show','show_user')->name('show');
-    // Route::get('/delete/{id}','delete_std');
-    // Route::get('/update/{id}','update_std');
-    // Route::post('/update/{id}','update_std2');
+Route::get('/login',function(){
+    return view('login');
+})->name('login');
 
 
+Route::middleware(['auth','patient'])->group(function(){
+
+    Route::controller(PatientController::class)->group(function(){
+
+        Route::get('/patient','home')->name('patient.home');
+
+        Route::prefix('patient/')->group(function(){
+
+            // Route::post('/','add_user2');
+            // Route::get('/show','show_user')->name('show');
+            // Route::get('/delete/{id}','delete_std');
+            // Route::get('/update/{id}','update_std');
+            // Route::post('/update/{id}','update_std2');
+            
+        });
+
+    });
+});
+Route::middleware(['auth','doctor'])->group(function(){
+
+    Route::controller(DoctorController::class)->group(function(){
+
+        Route::get('/doctor','home')->name('doctor.home');
+            Route::prefix('doctor/')->group(function(){
+
+            // Route::post('/','add_user2');
+            // Route::get('/show','show_user')->name('show');
+            // Route::get('/delete/{id}','delete_std');
+            // Route::get('/update/{id}','update_std');
+            // Route::post('/update/{id}','update_std2');
+
+        });
+
+    });
 });
 
 Route::controller(DoctorController::class)->group(function(){
 
-    Route::get('/doctor','home')->name('home');
-    // Route::post('/','add_user2');
-    // Route::get('/show','show_user')->name('show');
-    // Route::get('/delete/{id}','delete_std');
-    // Route::get('/update/{id}','update_std');
-    // Route::post('/update/{id}','update_std2');
+    Route::controller(AdminController::class)->group(function(){
+
+        Route::get('/admin','dashboard')->name('dashboard');
+        Route::prefix('admin/')->group(function(){
+
+            // Route::post('/','add_user2');
+            // Route::get('/show','show_user')->name('show');
+            // Route::get('/delete/{id}','delete_std');
+            // Route::get('/update/{id}','update_std');
+            // Route::post('/update/{id}','update_std2');
 
 
-});
-
-Route::controller(AdminController::class)->group(function(){
-
-    Route::get('/admin','home')->name('home');
-    // Route::post('/','add_user2');
-    // Route::get('/show','show_user')->name('show');
-    // Route::get('/delete/{id}','delete_std');
-    // Route::get('/update/{id}','update_std');
-    // Route::post('/update/{id}','update_std2');
-
-
+        });
+    });
 });

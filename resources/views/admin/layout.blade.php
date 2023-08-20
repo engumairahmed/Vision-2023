@@ -31,7 +31,7 @@
         <ul class="navbar-nav bg-white sidebar sidebar-light accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('home')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{Route('dashboard')}}">
                 <div class="sidebar-brand-icon mt-3 ml-3">
                     <img src="{{asset("/img/logo.png")}}" width="115" height="81">
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('home')}}">
+                <a class="nav-link" href="{{Route('dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
