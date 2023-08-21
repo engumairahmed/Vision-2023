@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class admin
+class patient
 {
     /**
      * Handle an incoming request.
@@ -15,14 +15,13 @@ class admin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
-        if (auth()->check() && auth()->user()->is_admin && !auth()->user()->is_doctor ) {
+          
+        if (auth()->check() && !auth()->user()->is_doctor && !auth()->user()->is_admin) {
             // dd(auth()->user()->is_admin);
             return $next($request);
         // return redirect()->route('admin-dashboard');
 
         }
         return redirect()->route('user-index');
-
     }
 }
