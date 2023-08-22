@@ -17,10 +17,10 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('Users');
             $table->string('father_name')->nullable();
             $table->string('husband_name')->nullable();
-            $table->string('gender');
-            $table->string('address');
-            $table->string('contact');
-            $table->string('DOB');
+            $table->string('gender')->nullable();
+            $table->string('address')->nullable();
+            $table->string('contact')->nullable();
+            $table->string('DOB')->nullable();
             $table->string('blood_group')->nullable();
             $table->timestamps(); 
         });
