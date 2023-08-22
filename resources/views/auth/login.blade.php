@@ -24,7 +24,13 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
+                                    {{-- @if(Session::has('fail'))
+                                    <div class="alert alert-danger">
+                                        {{Session::get('fail')}}
+                                    </div>
+                                    @endif --}}
                                     @if ($errors->any())
+                                    
                                         <div class="alert alert-danger">
                                             <ul>
                                                 @foreach ($errors->all() as $error)
@@ -36,7 +42,7 @@
                                     <form class="user" method="post">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" name="email" class="form-control form-control-user"
+                                            <input type="email" name="email" value="{{old('email')}}" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>

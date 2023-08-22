@@ -12,6 +12,10 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('index');
+    }
     public function registerPage(){
         return view('auth.register');
     }
@@ -19,7 +23,7 @@ class AuthController extends Controller
         
         $obj->validate([
             'firstName'=>'required|min:3|alpha:ascii',
-            'lastName'=>'min:3|alpha:ascii',
+            'lastName'=>'required|min:3|alpha:ascii',
             'email'=>'required|email|unique:users',
             'password' => [ 'required',
                             Password::min(8)
@@ -44,12 +48,18 @@ class AuthController extends Controller
         return back()->with(['msg'=>'User Registered']);
     }
     public function login(){
+        Auth::logout();
         return view('auth.login');
     }
     public function store(Request $r){
         if(Auth::attempt(['email'=>$r->email,'password'=>$r->password])){
-            dd(auth()->user());
-            // return redirect()->route('admin.dashboard');
+            // dd(auth()->user());
+            return redirect()->route('admin.dashboard');
+        } else{
+            $r->validate([
+                'email'=>'exists:users,email',
+            ]);
+            return redirect()->route('login')->withErrors(['fail'=>'Login Failed']);            
         }
     }
     public function forgot(){

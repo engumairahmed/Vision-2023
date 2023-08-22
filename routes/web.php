@@ -25,6 +25,7 @@ Route::get('/', function () {
 
 
 Route::controller(AuthController::class)->group(function(){
+    Route::get('/logout','logout')->name('logout');
     Route::get('/login','login')->name('login');
     Route::post('/login','store');
     Route::get('/register','registerPage')->name('register');
@@ -74,7 +75,27 @@ Route::middleware(['auth','admin'])->group(function(){
     Route::controller(AdminController::class)->group(function(){
 
         Route::get('/admin','dashboard')->name('admin.dashboard');
-        Route::prefix('admin/')->group(function(){
+
+        Route::prefix('/management')->group(function(){
+            Route::get('/medication','medication')->name('admin.medication');
+            Route::get('/lab-test','labtest')->name('admin.labtest');
+            Route::get('/surgical-procedures','surgeries')->name('admin.surgeries');
+
+            // Route::post('/','add_user2');
+            // Route::get('/show','show_user')->name('show');
+            // Route::get('/delete/{id}','delete_std');
+            // Route::get('/update/{id}','update_std');
+            // Route::post('/update/{id}','update_std2');
+
+
+        });
+
+
+        Route::prefix('admin')->group(function(){
+
+            
+        Route::get('profile','profile')->name('admin.profile');
+        Route::get('security','security')->name('admin.security');
 
             // Route::post('/','add_user2');
             // Route::get('/show','show_user')->name('show');

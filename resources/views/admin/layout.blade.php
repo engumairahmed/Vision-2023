@@ -31,9 +31,9 @@
         <ul class="navbar-nav bg-white sidebar sidebar-light accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{Route('dashboard')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{Route('admin.dashboard')}}">
                 <div class="sidebar-brand-icon mt-3 ml-3">
-                    <img src="{{asset("/img/logo.png")}}" width="115" height="81">
+                    <img src="{{asset("/images/logo.png")}}" width="115" height="81">
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
                 </div>
             </a>
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{Route('dashboard')}}">
+                <a class="nav-link" href="{{Route('admin.dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -60,14 +60,16 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-prescription-bottle-alt"></i>
-                    <span>Medication</span>
+                    <i class="fas fa-list"></i>
+                    <span>Management</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                    <a class="collapse-item" href="{{route('admin.medication')}}">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                        <span> Medication</span></a>
+                        <a class="collapse-item" href="{{route('admin.labtest')}}">Lab Test</a>
+                        <a class="collapse-item" href="{{route('admin.surgeries')}}">Surgical Procedure</a>
                     </div>
                 </div>
             </li>
@@ -323,14 +325,14 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
                                 <img class="img-profile rounded-circle"
-                                    src="{{asset("/img/undraw_profile.svg")}}">
+                                    src="{{asset("/images/undraw_profile.svg")}}">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('admin.profile')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>
@@ -401,7 +403,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
                 </div>
             </div>
         </div>
