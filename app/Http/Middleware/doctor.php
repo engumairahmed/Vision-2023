@@ -16,12 +16,17 @@ class doctor
     public function handle(Request $request, Closure $next): Response
     {
        
-        if (auth()->check() && auth()->user()->is_doctor && !auth()->user()->is_admin) {
+        if (auth()->check() && !auth()->user()->is_admin) {
             // dd(auth()->user()->is_admin);
-            return $next($request);
-        // return redirect()->route('admin-dashboard');
-
+            if(auth()->check() && auth()->user()->is_doctor){
+                return $next($request);
+            } else{
+                return redirect()->route('patient.home');
+            }            
         }
-        return redirect()->route('user-index');
+        return redirect()->route('admin.dashboard');
+
+        // return redirect()->route('user-index');
+    
     }
 }

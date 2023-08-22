@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
@@ -22,10 +23,15 @@ Route::get('/', function () {
 
 // Route::get('/login')
 
-Route::get('/login',function(){
-    return view('login');
-})->name('login');
 
+Route::controller(AuthController::class)->group(function(){
+    Route::get('/login','login')->name('login');
+    Route::post('/login','store');
+    Route::get('/register','register')->name('register');
+    Route::post('/register','create');
+    Route::get('/forgot-password','forgot')->name('forgot');
+    Route::post('/forgot-password','forgotPass');
+});
 
 Route::middleware(['auth','patient'])->group(function(){
 
@@ -63,11 +69,11 @@ Route::middleware(['auth','doctor'])->group(function(){
     });
 });
 
-Route::controller(DoctorController::class)->group(function(){
+Route::middleware(['auth','admin'])->group(function(){
 
     Route::controller(AdminController::class)->group(function(){
 
-        Route::get('/admin','dashboard')->name('dashboard');
+        Route::get('/admin','dashboard')->name('admin.dashboard');
         Route::prefix('admin/')->group(function(){
 
             // Route::post('/','add_user2');
