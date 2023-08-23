@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\lab_test;
 use App\Models\medication;
 use App\Models\patient;
+use App\Models\surgical_procedure;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -100,5 +102,18 @@ class DatabaseSeeder extends Seeder
             'dosage' => 'xyz mg',
             'description' => 'Details & descriptions of medicines',
         ]);
+        lab_test::create([
+            'test_name'=>'Complete Blood Coun-(CBC)',
+            'description' => 'Details & descriptions',
+        ]);
+        lab_test::create([
+            'test_name'=>'Random Blood Sugar-(RBS)',
+            'description' => 'Details & descriptions',
+        ]);
+        surgical_procedure::create([
+            'procedure_name'=>'Procedure Name',
+            'description' => 'Details & descriptions',
+        ]);
+
     }
 }
