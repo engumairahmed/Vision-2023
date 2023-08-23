@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\medication;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\patient;
@@ -20,7 +21,8 @@ class AdminController extends Controller
         return view('admin.security');
     }
     public function medication() {
-        return view('admin.medication');
+        $medicines=medication::get();
+        return view('admin.medication',compact('medicines'));
     }
     public function labtest() {
         return view('admin.labtest');

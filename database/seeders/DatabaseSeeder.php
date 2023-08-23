@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\medication;
 use App\Models\patient;
 use App\Models\User;
 use Illuminate\Database\Seeder;
@@ -83,6 +84,21 @@ class DatabaseSeeder extends Seeder
             'gender' => 'Male',
             'contact' => '0300-1234567',
             'DOB'=>'1991-07-14',
+        ]);
+        medication::create([
+            'medicine'=>'Paracetamol',
+            'dosage' => 'xyz mg',
+            'description' => 'Details & descriptions of medicines',
+        ]);
+        medication::create([
+            'medicine'=>'Ibuprofen',
+            'dosage' => 'xyz mg',
+            'description' => 'Details & descriptions of medicines',
+        ]);
+        medication::create([
+            'medicine'=>'XYZ Name',
+            'dosage' => 'xyz mg',
+            'description' => 'Details & descriptions of medicines',
         ]);
     }
 }
