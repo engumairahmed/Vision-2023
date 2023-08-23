@@ -30,19 +30,20 @@ class AdminController extends Controller
     }
     public function userdata(){
 
-        $users = patient::with('user')->join('users', 'patients.user_id', '=', 'users.id')
+    //     $users = patient::with('user')->join('users', 'patients.user_id', '=', 'users.id')
+    // ->select('patients.*', 'users.name', 'users.email')->get();
+    
+    $users=User::with('patient')->join('patients','patients.user_id', '=', 'users.id')
     ->select('patients.*', 'users.name', 'users.email')->get();
-
-        // $users=User::get();
-        // dd($users[0]);
-        $ages = [];
-        foreach ($users as $user) {
-            $age = Carbon::parse($user->user->DOB)->age;
-            $ages[$user->id] = $age;
-                //  $users->age = Carbon::parse($users->patients->DOB)->age;
+    $ages = [];
+    // dd($users);
+    foreach ($users as $user) {
+            $age = Carbon::parse($user->DOB)->age;
+            $ages[$user->patient_id] = $age;
             }
-            // dd();
-            // dd($user->patient_id);
+            // dd($ages);
         return view('admin.users',compact('users','ages'));
     }
+
+    
 }

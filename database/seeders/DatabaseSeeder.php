@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
             'father_name' => 'Father Name',
             'gender' => 'Male',
             'contact' => '0300-1234567',
-            'DOB'=>'2020-11-11',
+            'DOB'=>'1991-07-14',
         ]);
     }
 }
