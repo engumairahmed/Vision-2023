@@ -96,6 +96,7 @@ Route::middleware(['auth','admin'])->group(function(){
             
         Route::get('profile','profile')->name('admin.profile');
         Route::get('security','security')->name('admin.security');
+        Route::get('users','userdata')->name('admin.users');
 
             // Route::post('/','add_user2');
             // Route::get('/show','show_user')->name('show');

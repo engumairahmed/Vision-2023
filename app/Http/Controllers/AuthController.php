@@ -12,13 +12,16 @@ use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
+
     public function logout(){
         Auth::logout();
         return redirect()->route('index');
     }
+
     public function registerPage(){
         return view('auth.register');
     }
+
     public function register(Request $obj){
         
         $obj->validate([
@@ -38,19 +41,17 @@ class AuthController extends Controller
             'password'=>Hash::make($obj->password),
         ]);
 
-        // dd($user);
         patient::create([
             'user_id'=>$user->id,
         ]);
-        // dd($user);
-        // return redirect()->route('login');
-        // return view('auth.login');
         return back()->with(['msg'=>'User Registered']);
     }
+
     public function login(){
         Auth::logout();
         return view('auth.login');
     }
+
     public function store(Request $r){
         if(Auth::attempt(['email'=>$r->email,'password'=>$r->password])){
             // dd(auth()->user());
@@ -62,9 +63,11 @@ class AuthController extends Controller
             return redirect()->route('login')->withErrors(['fail'=>'Login Failed']);            
         }
     }
+
     public function forgot(){
         return view('auth.forgot-pass');
     }
+    
     public function resetPass(){
 
     }

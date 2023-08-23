@@ -19,4 +19,9 @@ class patient extends Model
         'DOB',
         'blood_group'
     ];
+    public function user(){
+
+        return $this->belongsTo(User::class);
+
+    }
 }

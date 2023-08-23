@@ -20,6 +20,13 @@
     <!-- Custom styles for this template-->
     <link href="{{asset("/css/sb-admin-2.min.css")}}" rel="stylesheet">
 
+    {{-- <!-- Page level plugins -->
+    <script src="{{asset("/vendor/datatables/jquery.dataTables.min.js")}}"></script>
+    <script src="{{asset("/vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
+
+     <!-- Page level custom scripts -->
+     <script src="{{asset("/js/demo/datatables-demo.js")}}"></script> --}}
+
 </head>
 
 <body id="page-top">
@@ -74,21 +81,20 @@
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
+            <!-- Nav Item - Users Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
                     aria-expanded="true" aria-controls="collapseUtilities">
                     <i class="fas fa-fw fa-wrench"></i>
-                    <span>Utilities</span>
+                    <span>Users</span>
                 </a>
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="utilities-color.html">Colors</a>
-                        <a class="collapse-item" href="utilities-border.html">Borders</a>
-                        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                        <a class="collapse-item" href="utilities-other.html">Other</a>
+                        <a class="collapse-item" href="{{route('admin.users')}}">Patients</a>
+                        <a class="collapse-item" href="#">Doctors</a>
+                        <a class="collapse-item" href="#">Animations</a>
+                        <a class="collapse-item" href="#">Other</a>
                     </div>
                 </div>
             </li>
@@ -357,13 +363,13 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                <div class="container-fluid">
+                {{-- <!-- Begin Page Content -->
+                <div class="container-fluid"> --}}
 
                 @yield('content')
 
-                </div>
-                <!-- /.container-fluid -->
+                {{-- </div>
+                <!-- /.container-fluid --> --}}
 
             </div>
             <!-- End of Main Content -->
@@ -419,12 +425,20 @@
     <!-- Custom scripts for all pages-->
     <script src="{{asset("js/sb-admin-2.min.js")}}"></script>
 
+     <!-- Page level plugins -->
+     <script src="{{asset("vendor/datatables/jquery.dataTables.min.js")}}"></script>
+     <script src="{{asset("vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
+
+     <!-- Page level custom scripts -->
+     <script src="{{asset("/js/demo/datatables-demo.js")}}"></script>
+
     <!-- Page level plugins -->
     <script src="{{asset("vendor/chart.js/Chart.min.js")}}"></script>
 
     <!-- Page level custom scripts -->
     <script src="{{asset("js/demo/chart-area-demo.js")}}"></script>
     <script src="{{asset("js/demo/chart-pie-demo.js")}}"></script>
+
 
 </body>
 
