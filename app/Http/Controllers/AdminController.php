@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\medication;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\patient;
+use App\Models\lab_test;
+use App\Models\medication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
 {
@@ -21,11 +23,14 @@ class AdminController extends Controller
         return view('admin.security');
     }
     public function medication() {
-        $medicines=medication::get();
-        return view('admin.medication',compact('medicines'));
+        // $medicines=medication::get();
+        return view('admin.medication');
+        // $medicines=medication::get();
+        // return view('admin.medication',compact('medicines'));
     }
     public function labtest() {
-        return view('admin.labtest');
+        $tests=lab_test::get();
+        return view('admin.labtest',compact('tests'));
     }
     public function surgeries() {
         return view('admin.surgeries');
@@ -47,5 +52,24 @@ class AdminController extends Controller
         return view('admin.users',compact('users','ages'));
     }
 
+     public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $viewsDirectory = resource_path('views/admin');
+
+        $matchingViews = [];
+
+        $files = File::allFiles($viewsDirectory);
+
+        foreach ($files as $file) {
+            $filePath = $file->getRelativePathname();
+
+            if (str_contains($filePath, $query)) {
+                $matchingViews[] = $filePath;
+            }
+        }
+
+        return view('admin.search', compact('matchingViews', 'query'));
+    }
     
 }

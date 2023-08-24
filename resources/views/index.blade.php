@@ -70,43 +70,12 @@
 
       <div class="row justify-content-center" data-aos="fade-up" data-aos-delay="150">
         <div class="col-xl-6 col-lg-8">
-          <h1>Powerful Digital Solutions With Gp<span>.</span></h1>
-          <h2>We are team of talented digital marketers</h2>
+          <h1>Your Personal Medical History Hub</h1>
+          <h2>At MedCustodian, we're dedicated to putting your health in your hands. With our user-friendly platform, you have the power to manage your medical history, prescriptions, test results, and more, all in one secure place.</h2>
         </div>
       </div>
 
-      <div class="row gy-4 mt-5 justify-content-center" data-aos="zoom-in" data-aos-delay="250">
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-store-line"></i>
-            <h3><a href="">Lorem Ipsum</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-bar-chart-box-line"></i>
-            <h3><a href="">Dolor Sitema</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-calendar-todo-line"></i>
-            <h3><a href="">Sedare Perspiciatis</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-paint-brush-line"></i>
-            <h3><a href="">Magni Dolores</a></h3>
-          </div>
-        </div>
-        <div class="col-xl-2 col-md-4">
-          <div class="icon-box">
-            <i class="ri-database-2-line"></i>
-            <h3><a href="">Nemos Enimade</a></h3>
-          </div>
-        </div>
-      </div>
+      
 
     </div>
   </section><!-- End Hero -->
@@ -122,19 +91,19 @@
             <img src="{{asset("images/index/about.jpg")}}" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content" data-aos="fade-right" data-aos-delay="100">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+            <h3>📝 Comprehensive Medical History</h3>
             <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+              Say goodbye to scattered paper records and multiple apps.Here you can maintain a comprehensive digital medical history that includes medications, past diagnoses, treatments, and surgeries – organized and accessible whenever you need it.
             </p>
             <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+              <li><i class="ri-check-double-line"></i> Prescriptions and Tests: Keep track of your prescribed medications and recommended lab tests effortlessly. Receive timely reminders for refills and appointments, helping you stay on top of your health regimen.</li>
+              <li><i class="ri-check-double-line"></i> User-Friendly Interface: Our intuitive interface is designed with you in mind. Whether you're tech-savvy or new to digital health management, MedCustodian is easy to navigate and use.</li>
+              <li><i class="ri-check-double-line"></i> Anywhere, Anytime Access: Access your medical information from the comfort of your home or on the go. With our responsive design, you can use MedCustodian on your desktop, tablet, or smartphone.</li>
             </ul>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+              <a href="{{ROUTE('register')}}"><h4>Get Started Today</h4></a>
+
+Join our growing community of empowered individuals who are taking control of their health journey.<a href="{{ROUTE('register')}}"> Sign up </a>now and start managing your medical history in a smarter, more efficient way. Your well-being matters, and MedCustodian is here to support you every step of the way.
             </p>
           </div>
         </div>

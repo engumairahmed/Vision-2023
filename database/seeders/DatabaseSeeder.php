@@ -103,7 +103,7 @@ class DatabaseSeeder extends Seeder
             'description' => 'Details & descriptions of medicines',
         ]);
         lab_test::create([
-            'test_name'=>'Complete Blood Coun-(CBC)',
+            'test_name'=>'Complete Blood Count-(CBC)',
             'description' => 'Details & descriptions',
         ]);
         lab_test::create([

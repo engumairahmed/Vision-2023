@@ -40,6 +40,8 @@ Route::middleware(['auth','patient'])->group(function(){
 
         Route::get('/patient','home')->name('patient.home');
 
+        Route::get('/prescriptions','prescription')->name('prescriptions');
+
         Route::prefix('patient/')->group(function(){
 
             // Route::post('/','add_user2');
@@ -49,6 +51,8 @@ Route::middleware(['auth','patient'])->group(function(){
             // Route::post('/update/{id}','update_std2');
             
         });
+
+
 
     });
 });
@@ -76,9 +80,11 @@ Route::middleware(['auth','admin'])->group(function(){
 
         Route::get('/admin','dashboard')->name('admin.dashboard');
 
+        Route::get('/admin/search','search')->name('admin.search');
+
         Route::prefix('/management')->group(function(){
             Route::get('/medication','medication')->name('admin.medication');
-            
+
             Route::get('/lab-test','labtest')->name('admin.labtest');
             Route::get('/surgical-procedures','surgeries')->name('admin.surgeries');
 

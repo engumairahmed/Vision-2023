@@ -70,7 +70,7 @@
                                             id="exampleRepeatPassword"  name="confirmpass" placeholder="Repeat Password">
                                     </div>
                                 </div>
-                                <input type="submit" class="btn btn-primary btn-user btn-block" value="Register Account">
+                                <input type="submit" class="btn btn-warning btn-user btn-block" value="Register Account">
                                                   
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Register with Google
