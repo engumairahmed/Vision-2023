@@ -61,13 +61,15 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-prescription-bottle-alt"></i>
-                    <span>Medication</span>
+                    <span>Prescriptions</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Components:</h6>
-                        <a class="collapse-item" href="buttons.html">Buttons</a>
-                        <a class="collapse-item" href="cards.html">Cards</a>
+                        <h6 class="collapse-header">Custom Plans:</h6>
+                        <a class="collapse-item" href="{{route('prescriptions')}}">Prescription</a>
+                        <a class="collapse-item" href="#">Medication</a>
+                        <a class="collapse-item" href="#">Lab test</a>
+                        <a class="collapse-item" href="#">Surgery</a>
                     </div>
                 </div>
             </li>
@@ -330,7 +332,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="{{route('patient.profile')}}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profile
                                 </a>

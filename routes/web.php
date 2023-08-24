@@ -42,7 +42,11 @@ Route::middleware(['auth','patient'])->group(function(){
 
         Route::get('/prescriptions','prescription')->name('prescriptions');
 
+        Route::get('profile','profile')->name('patient.profile');
+        Route::get('security','security')->name('patient.security');
+       
         Route::prefix('patient/')->group(function(){
+
 
             // Route::post('/','add_user2');
             // Route::get('/show','show_user')->name('show');

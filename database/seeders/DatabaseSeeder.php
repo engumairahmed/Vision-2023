@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\lab_test;
+use App\Models\medical_condition;
 use App\Models\medication;
 use App\Models\patient;
 use App\Models\surgical_procedure;
@@ -30,7 +31,7 @@ class DatabaseSeeder extends Seeder
         $pass='test1234';
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@mail.com',
+            'email' => 'test@mail',
             'password' => Hash::make($pass),
         ]);
         $pass='test1234';
@@ -45,10 +46,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'test3@mail.com',
             'password' => Hash::make($pass),
         ]);
-        $pass='doc12345';
+        $pass='doctor12';
         User::factory()->create([
             'name' => 'Doctor User',
-            'email' => 'doc@mail.com',
+            'email' => 'doc@mail',
             'password' => Hash::make($pass),
             'is_doctor'=>1,
         ]);
@@ -86,6 +87,18 @@ class DatabaseSeeder extends Seeder
             'gender' => 'Male',
             'contact' => '0300-1234567',
             'DOB'=>'1991-07-14',
+        ]);
+        medical_condition::create([
+            'condition_name'=>'Flu',
+            'description' => 'Details & descriptions of medical condition',
+        ]);
+        medical_condition::create([
+            'condition_name'=>'Diabetes',
+            'description' => 'Details & descriptions of medical condition',
+        ]);
+        medical_condition::create([
+            'condition_name'=>'Hypertension',
+            'description' => 'Details & descriptions of medical condition',
         ]);
         medication::create([
             'medicine'=>'Paracetamol',

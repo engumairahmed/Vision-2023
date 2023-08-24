@@ -18,7 +18,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Active Medication Plans</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$count}}</div>
                         </div>
                         <div class="col-auto icon-circle bg-primary">
                             <i class="fas fa-capsules fa-lg text-white"></i>

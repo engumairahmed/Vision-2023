@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('patient.layout')
 @section('title','Account Settings')
 
 @section('content')
