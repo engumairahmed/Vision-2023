@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\doctor;
 use App\Models\medical_condition;
 use App\Models\prescription;
 use Illuminate\Http\Request;
@@ -17,7 +18,8 @@ class PatientController extends Controller
     }
     public function prescription(){
         $conditions=medical_condition::get();
-        return view('patient.prescription',compact('conditions'));
+        $doctors=doctor::get();
+        return view('patient.prescription',compact('conditions','doctors'));
     }
     public function profile(){
         return view('patient.profile');
