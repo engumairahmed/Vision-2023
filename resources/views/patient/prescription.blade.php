@@ -27,7 +27,8 @@
                 <div class="card mb-4">
                     <div class="card-header">Medication Details</div>
                     <div class="card-body">
-                        <form method="post">
+                        <button class="btn btn-success"  id="buttonId">Hide</button>
+                        <form method="">
                             <div class="row gx-3 mb-3">
                             <!-- Form Group (Plan Name)-->
                             <div class="mb-3 col-md-6">
@@ -35,16 +36,16 @@
                                 <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="">
                             </div>
                             <!-- Form Group (Medical Condition)-->
-                            <div class="col-md-6">
+                            <div class="col-md-6">                                
                                 <label class="small mb-1" for="inputMedicalCondition">Medical Condition</label>
                                 <select class="form-control" id="inputMedicalCondition" type="text">
                                     <option value="0">Select Medical Condition</option>
                                     @foreach ($conditions as $item)
                                     <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
-                                    @endforeach
-                                    
+                                    @endforeach                                    
                                 </select>
                             </div>
+                           
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
@@ -56,32 +57,31 @@
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
-                                    <select class="form-control" id="selectDoctorName" type="text">
+                                    <select class="js-example-responsive form-control" id="selectDoctorName" type="text" style="">
                                         <option value="0">Select Doctor Name</option>
                                         @foreach ($conditions as $item)
                                         <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
                                         @endforeach                                        
                                     </select>
-                                </div>
+                                </div>                               
                             </div>
                             <!-- Form Row        -->
                             <div class="row gx-3 mb-3">
-                                <!-- Form Group (organization name)-->
+                                <!-- Form Group (Start Date)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputOrgName">Prescription Start Date</label>
-                                    <input class="form-control" type="date" name="" id="">
-                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+                                    <label class="small mb-1" for="startDate">Prescription Start Date</label>
+                                    <input class="form-control date" type="text" name="startDate" id="startDate">
                                 </div>
-                                <!-- Form Group (location)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLocation">Location</label>
-                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
-                                </div>
+                               <!-- Form Group (End Date)-->
+                               <div class="col-md-6">
+                                <label class="small mb-1" for="endDate">Prescription End Date</label>
+                                <input class="form-control date" type="text" name="endDate" id="endDate">
                             </div>
-                            <!-- Form Group (email address)-->
+                            </div>
+                            <!-- Form Group (Lab-Test name)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
+                                <label class="small mb-1" for="inputTestName">Lab Test Name</label>
+                                <input class="form-control" id="inputTestName" type="email" placeholder="Select Test Name" value="">
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">

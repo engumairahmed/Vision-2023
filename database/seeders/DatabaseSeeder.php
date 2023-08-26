@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\lab_test;
+use App\Models\LabTest;
 use App\Models\medical_condition;
 use App\Models\medication;
 use App\Models\patient;
@@ -115,11 +115,11 @@ class DatabaseSeeder extends Seeder
             'dosage' => 'xyz mg',
             'description' => 'Details & descriptions of medicines',
         ]);
-        lab_test::create([
+        LabTest::create([
             'test_name'=>'Complete Blood Count-(CBC)',
             'description' => 'Details & descriptions',
         ]);
-        lab_test::create([
+        LabTest::create([
             'test_name'=>'Random Blood Sugar-(RBS)',
             'description' => 'Details & descriptions',
         ]);

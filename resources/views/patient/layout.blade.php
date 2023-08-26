@@ -17,8 +17,19 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+    <!-- Downloaded jQuery-->
+
+        <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
+
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
     <!-- Custom styles for this template-->
     <link href="{{asset("/css/sb-admin-2.min.css")}}" rel="stylesheet">
+
+        <!-- Add the Select2 CSS -->
+<link href="{{ asset("/css/select2.min.css") }}" rel="stylesheet" />
 
 </head>
 
@@ -269,7 +280,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
+                                        <img class="rounded-circle" src="images/undraw_profile_1.svg"
                                             alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
@@ -281,7 +292,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                                        <img class="rounded-circle" src="images/undraw_profile_2.svg"
                                             alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
@@ -293,7 +304,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                                        <img class="rounded-circle" src="images/undraw_profile_3.svg"
                                             alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
@@ -408,13 +419,27 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#inputMedicalCondition').select2({
+                placeholder: 'Search for an option'
+            });            
+            $('#selectDoctorName').select2({
+                placeholder: 'Search for an option'
+            });
+            $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();;
+            
+            
+        });
+        </script>
+
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script>
+    {{-- <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script> --}}
     <script src="{{asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{{asset("vendor/jquery-easing/jquery.easing.min.js")}}"></script>
+    {{-- <script src="{{asset("vendor/jquery-easing/jquery.easing.min.js")}}"></script> --}}
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset("js/sb-admin-2.min.js")}}"></script>
@@ -432,6 +457,9 @@
     <!-- Page level custom scripts -->
     <script src="{{asset("js/demo/chart-area-demo.js")}}"></script>
     <script src="{{asset("js/demo/chart-pie-demo.js")}}"></script>
+
+      <!-- Add the Select2 JS -->
+      <script src="{{ asset("js/select2.min.js") }}"></script>
 
 </body>
 

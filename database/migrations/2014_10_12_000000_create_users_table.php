@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->boolean('is_admin')->nullable();
             $table->boolean('is_doctor')->nullable();
+            $table->boolean('is_active')->nullable()->default(false);
             $table->string('gauth_id')->nullable();
             $table->string('gauth_type')->nullable();
             $table->rememberToken();

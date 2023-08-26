@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\patient;
-use App\Models\lab_test;
+use App\Models\LabTest;
 use App\Models\medication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -29,7 +29,7 @@ class AdminController extends Controller
         // return view('admin.medication',compact('medicines'));
     }
     public function labtest() {
-        $tests=lab_test::get();
+        $tests=LabTest::get();
         return view('admin.labtest',compact('tests'));
     }
     public function surgeries() {
