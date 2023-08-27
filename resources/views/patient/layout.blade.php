@@ -421,13 +421,16 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#inputMedicalCondition').select2({
-                placeholder: 'Search for an option'
-            });            
-            $('#selectDoctorName').select2({
-                placeholder: 'Search for an option'
-            });
-            $('#inputTestName').select2({
+            // $('#inputMedicalCondition').select2({
+            //     placeholder: 'Search for an option'
+            // });            
+            // $('#selectDoctorName').select2({
+            //     placeholder: 'Search for an option'
+            // });
+            // $('#inputTestName').select2({
+            //     placeholder: 'Search for an option'
+            // });
+            $('.select2').select2({
                 placeholder: 'Search for an option'
             });
             

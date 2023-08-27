@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Medication extends Model
+class MedicalCondition extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'medicine',
-        'dosage',
-        'descripition'        
+        'condition_name',
+        'condition_description'  
     ];
 }
+

@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class medical_condition extends Model
+class PrescriptionMedicalCondition extends Model
 {
     use HasFactory;
-
-    protected $fillable = [
-        'condition_name',
-        'condition_description'  
-    ];
 }

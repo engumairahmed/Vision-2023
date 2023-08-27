@@ -37,7 +37,7 @@
                             <!-- Form Group (Medical Condition)-->
                             <div class="col-md-6">                                
                                 <label class="small mb-1" for="inputMedicalCondition">Medical Condition</label>
-                                <select class="form-control" id="inputMedicalCondition" type="text">
+                                <select class="form-control select2" id="inputMedicalCondition" type="text">
                                     <option value="0">Select Medical Condition</option>
                                     @foreach ($conditions as $item)
                                     <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
@@ -56,10 +56,10 @@
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
-                                    <select class="js-example-responsive  form-control" id="selectDoctorName" type="text" style="">
+                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" style="">
                                         <option value="0">Select Doctor Name</option>
-                                        @foreach ($conditions as $item)
-                                        <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
+                                        @foreach ($doctors as $item)
+                                        <option value="{{$item->user_id}}">{{$item->name}}</option>
                                         @endforeach                                        
                                     </select>
                                 </div>                               
@@ -80,7 +80,7 @@
                             <!-- Form Group (Lab-Test name)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputTestName">Recommended Test Name</label>
-                                <select class="form-control" id="inputTestName" type="email" placeholder="Select Test Name" value="" multiple>
+                                <select class="form-control select2" id="inputTestName" type="email" placeholder="Select Test Name" value="" name="tests[]"multiple>
                                     @foreach ($tests as $item)
                                         <option value="{{$item->lab_id}}">{{$item->test_name}}</option>
                                     @endforeach
@@ -90,13 +90,18 @@
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (phone number)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputPhone">Phone number</label>
-                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
+                                    <label class="small mb-1" for="selectMedicine">Medicine</label>
+                                    <select name="medicine" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
+                                        <option value="0">Select Medicine</option>
+                                        @foreach ($medicine as $item)
+                                        <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
+                                    @endforeach
+                                    </select>
                                 </div>
                                 <!-- Form Group (birthday)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                    <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                                    <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
+                                    <input class="form-control" id="selectFrequency" type="number" name="birthday" placeholder="Medicine intake frequency" min="1" max="4">
                                 </div>
                             </div>
                             <!-- Save changes button-->

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('charges')->nullable();
             $table->string('working_days')->nullable();
             $table->string('timings')->nullable();
+            $table->date('DOB')->nullable();
             $table->timestamps();
 
         });

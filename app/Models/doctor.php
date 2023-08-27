@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class doctor extends Model
+class Doctor extends Model
 {
     use HasFactory;
 
@@ -13,10 +13,16 @@ class doctor extends Model
         'user_id',
         'specialization',
         'qualification',
-        'house_job_start',
+        'housejob_start_date',
         'experience',
         'charges',
         'working_days',
-        'timings'
+        'timings',
+        'DOB'
     ];
+    public function user(){
+
+        return $this->belongsTo(User::class);
+
+    }
 }

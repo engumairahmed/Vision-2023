@@ -6,7 +6,7 @@ use Carbon\Carbon;
 use App\Models\User;
 use App\Models\patient;
 use App\Models\LabTest;
-use App\Models\medication;
+use App\Models\Medication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
