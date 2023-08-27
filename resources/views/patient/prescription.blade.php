@@ -80,7 +80,11 @@
                             <!-- Form Group (Lab-Test name)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputTestName">Recommended Test Name</label>
-                                <input class="form-control" id="inputTestName" type="email" placeholder="Select Test Name" value="">
+                                <select class="form-control" id="inputTestName" type="email" placeholder="Select Test Name" value="" multiple>
+                                    @foreach ($tests as $item)
+                                        <option value="{{$item->lab_id}}">{{$item->test_name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">

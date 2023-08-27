@@ -427,6 +427,10 @@
             $('#selectDoctorName').select2({
                 placeholder: 'Search for an option'
             });
+            $('#inputTestName').select2({
+                placeholder: 'Search for an option'
+            });
+            
             $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();;
             
             
