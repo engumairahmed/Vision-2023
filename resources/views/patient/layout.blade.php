@@ -431,7 +431,7 @@
             //     placeholder: 'Search for an option'
             // });
             $('.select2').select2({
-                placeholder: 'Search for an option'
+                // theme: "dark"
             });
             
             $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();;

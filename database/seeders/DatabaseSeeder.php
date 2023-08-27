@@ -22,32 +22,28 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // \App\Models\User::factory(10)->create();
-        $pass='admin123';
+        $pass='pass1234';
         User::factory()->create([
             'name' => 'Admin Account',
             'email' => 'admin@mail',
             'is_admin'=>1,
             'password' => Hash::make($pass),
         ]);
-        $pass='test1234';
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@mail',
             'password' => Hash::make($pass),
         ]);
-        $pass='test1234';
         User::factory()->create([
             'name' => 'Test2 User2',
             'email' => 'test2@mail.com',
             'password' => Hash::make($pass),
         ]);
-        $pass='test1234';
         User::factory()->create([
             'name' => 'Test3 User3',
             'email' => 'test3@mail.com',
             'password' => Hash::make($pass),
         ]);
-        $pass='doctor12';
         User::factory()->create([
             'name' => 'Doctor User',
             'email' => 'doc@mail',
