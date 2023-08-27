@@ -472,7 +472,7 @@
     });
 
     // Remove medicine input fields
-    $('#medicines-container').on('click', '.remove-medicine', function() {
+    $('#prescForm').on('click', '.removeBtn', function() {
         $(this).parent().remove();
     });
 });
