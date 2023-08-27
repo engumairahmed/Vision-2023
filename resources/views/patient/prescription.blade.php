@@ -27,7 +27,6 @@
                 <div class="card mb-4">
                     <div class="card-header">Medication Details</div>
                     <div class="card-body">
-                        <button class="btn btn-success"  id="buttonId">Hide</button>
                         <form method="">
                             <div class="row gx-3 mb-3">
                             <!-- Form Group (Plan Name)-->
@@ -57,7 +56,7 @@
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
-                                    <select class="js-example-responsive form-control" id="selectDoctorName" type="text" style="">
+                                    <select class="js-example-responsive  form-control" id="selectDoctorName" type="text" style="">
                                         <option value="0">Select Doctor Name</option>
                                         @foreach ($conditions as $item)
                                         <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
@@ -80,7 +79,7 @@
                             </div>
                             <!-- Form Group (Lab-Test name)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputTestName">Lab Test Name</label>
+                                <label class="small mb-1" for="inputTestName">Recommended Test Name</label>
                                 <input class="form-control" id="inputTestName" type="email" placeholder="Select Test Name" value="">
                             </div>
                             <!-- Form Row-->
