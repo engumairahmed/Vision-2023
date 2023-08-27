@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id('presc_id');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('Users');
-            $table->unsignedBigInteger('medical_condition');
-            $table->foreign('medical_condition')->references('condition_id')->on('medical_conditions');
+            $table->string('plan_name');
             $table->date('start_date');
             $table->date('end_date');
             $table->string('doctor_name')->nullable();

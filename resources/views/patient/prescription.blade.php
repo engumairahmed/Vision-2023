@@ -27,7 +27,7 @@
                 <div class="card mb-4">
                     <div class="card-header">Medication Details</div>
                     <div class="card-body">
-                        <form method="">
+                        <form method="" id="prescForm">
                             <div class="row gx-3 mb-3">
                             <!-- Form Group (Plan Name)-->
                             <div class="mb-3 col-md-6">
@@ -37,7 +37,7 @@
                             <!-- Form Group (Medical Condition)-->
                             <div class="col-md-6">                                
                                 <label class="small mb-1" for="inputMedicalCondition">Medical Condition</label>
-                                <select class="form-control select2" id="inputMedicalCondition" type="text">
+                                <select class="form-control select2" id="inputMedicalCondition" name="medicalCondition[]" type="text" multiple>
                                     <option value="0">Select Medical Condition</option>
                                     @foreach ($conditions as $item)
                                     <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
@@ -88,24 +88,35 @@
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
-                                <!-- Form Group (phone number)-->
-                                <div class="col-md-6">
+                                <!-- Form Group (Medicine)-->
+                                <div class="col-md-5">
                                     <label class="small mb-1" for="selectMedicine">Medicine</label>
-                                    <select name="medicine" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
+                                    <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
                                         <option value="0">Select Medicine</option>
                                         @foreach ($medicine as $item)
                                         <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
                                     @endforeach
                                     </select>
                                 </div>
-                                <!-- Form Group (birthday)-->
-                                <div class="col-md-6">
+                                <!-- Form Group (Frequency)-->
+                                <div class="col-md-5">
                                     <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
-                                    <input class="form-control" id="selectFrequency" type="number" name="birthday" placeholder="Medicine intake frequency" min="1" max="4">
+                                    <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
                                 </div>
+                                <div class="col-md-1">
+                                    <label class="small mb-1" for="remove">Remove</label>
+                                    <button class="remove-btn btn btn-danger btn-circle btn-sm" id="removeBtn">-</button>                                    
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="small mb-1" for="addBtn">Add</label>
+                                    <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn">+</button>                                    
+                                </div>
+                                
                             </div>
+                            {{-- @include('dynamic') --}}
+                           
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Save changes</button>
+                            <input class="btn btn-primary" type="submit" value="Save">
                         </form>
                     </div>
                 </div>
@@ -114,3 +125,4 @@
     </div>
 </main>
 @endsection
+@yield('scripts')

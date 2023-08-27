@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\patient;
+use App\Models\Patient;
 use App\Models\LabTest;
 use App\Models\Medication;
 use Illuminate\Http\Request;

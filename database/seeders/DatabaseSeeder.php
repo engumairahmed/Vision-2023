@@ -117,6 +117,10 @@ class DatabaseSeeder extends Seeder
             'condition_name'=>'Hypertension',
             'description' => 'Details & descriptions of medical condition',
         ]);
+        MedicalCondition::create([
+            'condition_name'=>'Fever',
+            'description' => 'Details & descriptions of medical condition',
+        ]);
         medication::create([
             'medicine'=>'Paracetamol',
             'dosage' => 'xyz mg',

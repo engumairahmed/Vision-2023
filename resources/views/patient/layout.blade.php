@@ -20,7 +20,7 @@
     <!-- Downloaded jQuery-->
 
         <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
-
+<!-- CDN jQuery UI-->
         <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
         <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -431,10 +431,51 @@
             //     placeholder: 'Search for an option'
             // });
             $('.select2').select2({
-                // theme: "dark"
+                // theme:"form-control",
             });
+            // $('.select2').addClass('form-control')
             
-            $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();;
+            $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+
+            $(document).ready(function() {
+    // Add medicine input fields
+    $('addBtn').click(function() {
+        var newMedicineField = `
+        <div class="row gx-3 mb-3">
+                                <!-- Form Group (Medicine)-->
+                                <div class="col-md-5">
+                                    <label class="small mb-1" for="selectMedicine">Medicine</label>
+                                    <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
+                                        <option value="0">Select Medicine</option>
+                                        @foreach ($medicine as $item)
+                                        <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <!-- Form Group (Frequency)-->
+                                <div class="col-md-5">
+                                    <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
+                                    <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="small mb-1" for="remove">Remove</label>
+                                    <button class="remove-btn btn btn-danger btn-circle btn-sm" id="removeBtn">-</button>                                    
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="small mb-1" for="addBtn">Add</label>
+                                    <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn">+</button>                                    
+                                </div>
+                                
+                            </div>
+        `;
+        $('#prescForm').append(newMedicineField);
+    });
+
+    // Remove medicine input fields
+    $('#medicines-container').on('click', '.remove-medicine', function() {
+        $(this).parent().remove();
+    });
+});
             
             
         });
