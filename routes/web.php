@@ -42,6 +42,8 @@ Route::middleware(['auth','patient'])->group(function(){
 
         Route::get('/prescriptions','prescription')->name('prescriptions');
 
+        Route::post('/prescriptions','/newPlan');
+
         Route::get('profile','profile')->name('patient.profile');
         Route::get('security','security')->name('patient.security');
        

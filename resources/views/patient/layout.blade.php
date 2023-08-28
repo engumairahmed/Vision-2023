@@ -420,63 +420,12 @@
         </div>
     </div>
     <script>
+        
         $(document).ready(function() {
-            // $('#inputMedicalCondition').select2({
-            //     placeholder: 'Search for an option'
-            // });            
-            // $('#selectDoctorName').select2({
-            //     placeholder: 'Search for an option'
-            // });
-            // $('#inputTestName').select2({
-            //     placeholder: 'Search for an option'
-            // });
-            $('.select2').select2({
-                // theme:"form-control",
-            });
-            // $('.select2').addClass('form-control')
             
-            $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
-
-            $(document).ready(function() {
-    // Add medicine input fields
-    $('addBtn').click(function() {
-        var newMedicineField = `
-        <div class="row gx-3 mb-3">
-                                <!-- Form Group (Medicine)-->
-                                <div class="col-md-5">
-                                    <label class="small mb-1" for="selectMedicine">Medicine</label>
-                                    <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
-                                        <option value="0">Select Medicine</option>
-                                        @foreach ($medicine as $item)
-                                        <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                <!-- Form Group (Frequency)-->
-                                <div class="col-md-5">
-                                    <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
-                                    <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
-                                </div>
-                                <div class="col-md-1">
-                                    <label class="small mb-1" for="remove">Remove</label>
-                                    <button class="remove-btn btn btn-danger btn-circle btn-sm" id="removeBtn">-</button>                                    
-                                </div>
-                                <div class="col-md-1">
-                                    <label class="small mb-1" for="addBtn">Add</label>
-                                    <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn">+</button>                                    
-                                </div>
-                                
-                            </div>
-        `;
-        $('#prescForm').append(newMedicineField);
-    });
-
-    // Remove medicine input fields
-    $('#prescForm').on('click', '.removeBtn', function() {
-        $(this).parent().remove();
-    });
-});
+            // initializeSelect2()
             
+        $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
             
         });
         </script>

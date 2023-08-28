@@ -28,6 +28,11 @@ class PatientController extends Controller
         $medicine=Medication::get();
         return view('patient.prescription',compact('conditions','doctors','tests','medicine'));
     }
+    public function newPlan(Request $r){
+        $presc=new Prescription();
+        $planName=$r->planName;
+        $medicalConditions
+    }
     public function profile(){
         return view('patient.profile');
     }

@@ -27,12 +27,12 @@
                 <div class="card mb-4">
                     <div class="card-header">Medication Details</div>
                     <div class="card-body">
-                        <form method="" id="prescForm">
+                        <form method="post" id="prescForm">
                             <div class="row gx-3 mb-3">
                             <!-- Form Group (Plan Name)-->
                             <div class="mb-3 col-md-6">
                                 <label class="small mb-1" for="inputUsername">Medication Plan Name</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="">
+                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="" name="planName">
                             </div>
                             <!-- Form Group (Medical Condition)-->
                             <div class="col-md-6">                                
@@ -87,6 +87,7 @@
                                 </select>
                             </div>
                             <!-- Form Row-->
+                            <div id="medicine-container">
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (Medicine)-->
                                 <div class="col-md-5">
@@ -104,15 +105,12 @@
                                     <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
                                 </div>
                                 <div class="col-md-1">
-                                    <label class="small mb-1" for="remove">Remove</label>
-                                    <button class="remove-btn btn btn-danger btn-circle btn-sm" id="removeBtn">-</button>                                    
-                                </div>
-                                <div class="col-md-1">
                                     <label class="small mb-1" for="addBtn">Add</label>
-                                    <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn">+</button>                                    
+                                    <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn" type="button">+</button>                                    
                                 </div>
                                 
                             </div>
+                        </div>
                             {{-- @include('dynamic') --}}
                            
                             <!-- Save changes button-->
@@ -124,5 +122,57 @@
         </div>
     </div>
 </main>
+
+<script> $(document).ready(function() {
+    function initializeSelect2(element) {
+        $(element).select2({
+            placeholder: 'Search for options'
+            // Other options as needed
+        });
+    }
+    
+    initializeSelect2('.select2')
+    $('#medicine-container').on('click','.add-btn',function(){
+        console.log('button pressed')
+        var newMedicineField = `
+        <div class="row gx-3 mb-3">
+                                <!-- Form Group (Medicine)-->
+                                <div class="col-md-5">
+                                    <label class="small mb-1" for="selectMedicine">Medicine</label>
+                                    <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
+                                        <option value="0">Select Medicine</option>
+                                        @foreach ($medicine as $item)
+                                        <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
+                                    @endforeach
+                                    </select>
+                                </div>
+                                <!-- Form Group (Frequency)-->
+                                <div class="col-md-5">
+                                    <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
+                                    <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="small mb-1" for="remove">Remove</label>
+                                    <button class="remove-btn btn btn-danger btn-circle btn-sm" id="removeBtn" type="button">-</button>                                    
+                                </div>
+                                <div class="col-md-1">
+                                    <label class="small mb-1" for="addBtn">Add</label>
+                                    <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn" type="button">+</button>                                    
+                                </div>
+                                
+                            </div>
+        `;
+        $('#medicine-container').append(newMedicineField);
+        var newSelectElement = $('#medicine-container').find('.select2').last();
+        initializeSelect2(newSelectElement);
+            });
+
+        $('#medicine-container').on('click','.remove-btn',function(){
+            //  $(this).parent().eq(1).remove()
+            $(this).closest('.row').remove();
+            initializeSelect2()
+            })        
+    })
+    </script>
 @endsection
-@yield('scripts')
+{{-- @yield('scripts') --}}
