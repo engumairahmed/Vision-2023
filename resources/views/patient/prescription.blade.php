@@ -32,7 +32,7 @@
                             <!-- Form Group (Plan Name)-->
                             <div class="mb-3 col-md-6">
                                 <label class="small mb-1" for="inputUsername">Medication Plan Name</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="" name="planName">
+                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="" name="plan_name">
                             </div>
                             <!-- Form Group (Medical Condition)-->
                             <div class="col-md-6">                                
@@ -51,12 +51,12 @@
                                 <!-- Form Group (Doctor Name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputDoctorName">Doctor Name</label>
-                                    <input class="form-control" id="inputDoctorName" type="text" name="doctorName">                                    
+                                    <input class="form-control" id="inputDoctorName" type="text" name="doctor_name">                                    
                                 </div>
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
-                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="selectedDoctor">
+                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="doctor_id">
                                         <option value="0">Select Doctor Name</option>
                                         @foreach ($doctors as $item)
                                         <option value="{{$item->doctor_id}}">{{$item->name}}</option>
@@ -69,18 +69,18 @@
                                 <!-- Form Group (Start Date)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="startDate">Prescription Start Date</label>
-                                    <input class="form-control date" type="text" name="startDate" id="startDate">
+                                    <input class="form-control date" type="text" name="start_date" id="startDate">
                                 </div>
                                <!-- Form Group (End Date)-->
                                <div class="col-md-6">
                                 <label class="small mb-1" for="endDate">Prescription End Date</label>
-                                <input class="form-control date" type="text" name="endDate" id="endDate">
+                                <input class="form-control date" type="text" name="end_date" id="endDate">
                             </div>
                             </div>
                             <!-- Form Group (Lab-Test name)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputTestName">Recommended Test Name</label>
-                                <select class="form-control select2" id="inputTestName" type="email" placeholder="Select Test Name" value="" name="tests[]"multiple>
+                                <select class="form-control select2" id="inputTestName" type="text" placeholder="Select Test Name" value="" name="tests[]"multiple>
                                     @foreach ($tests as $item)
                                         <option value="{{$item->lab_id}}">{{$item->test_name}}</option>
                                     @endforeach
