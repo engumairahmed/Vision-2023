@@ -31,7 +31,14 @@ class PatientController extends Controller
     public function newPlan(Request $r){
         $presc=new Prescription();
         $planName=$r->planName;
-        $medicalConditions
+        $medicalConditions=$r->input('medicalConditions',[]);
+        $doctorName=$r->doctorName;
+        $doctor=$r->selectedDoctor;
+        $startDate=$r->startDate;
+        $endDate=$r->endDate;
+        $tests=$r->input('tests',[]);
+        $medicines=$r->input('medicines',[]);
+        
     }
     public function profile(){
         return view('patient.profile');

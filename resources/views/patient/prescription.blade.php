@@ -51,15 +51,15 @@
                                 <!-- Form Group (Doctor Name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputDoctorName">Doctor Name</label>
-                                    <input class="form-control" id="inputDoctorName" type="text">                                    
+                                    <input class="form-control" id="inputDoctorName" type="text" name="doctorName">                                    
                                 </div>
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
-                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" style="">
+                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="selectedDoctor">
                                         <option value="0">Select Doctor Name</option>
                                         @foreach ($doctors as $item)
-                                        <option value="{{$item->user_id}}">{{$item->name}}</option>
+                                        <option value="{{$item->doctor_id}}">{{$item->name}}</option>
                                         @endforeach                                        
                                     </select>
                                 </div>                               
@@ -92,7 +92,7 @@
                                 <!-- Form Group (Medicine)-->
                                 <div class="col-md-5">
                                     <label class="small mb-1" for="selectMedicine">Medicine</label>
-                                    <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
+                                    <select name="medicines[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
                                         <option value="0">Select Medicine</option>
                                         @foreach ($medicine as $item)
                                         <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
