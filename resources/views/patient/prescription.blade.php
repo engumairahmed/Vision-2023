@@ -27,7 +27,8 @@
                 <div class="card mb-4">
                     <div class="card-header">Medication Details</div>
                     <div class="card-body">
-                        <form method="post" id="prescForm">
+                        <form method="post">
+                            @csrf
                             <div class="row gx-3 mb-3">
                             <!-- Form Group (Plan Name)-->
                             <div class="mb-3 col-md-6">
@@ -38,7 +39,6 @@
                             <div class="col-md-6">                                
                                 <label class="small mb-1" for="inputMedicalCondition">Medical Condition</label>
                                 <select class="form-control select2" id="inputMedicalCondition" name="medicalCondition[]" type="text" multiple>
-                                    <option value="0">Select Medical Condition</option>
                                     @foreach ($conditions as $item)
                                     <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
                                     @endforeach                                    
@@ -51,13 +51,13 @@
                                 <!-- Form Group (Doctor Name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputDoctorName">Doctor Name</label>
-                                    <input class="form-control" id="inputDoctorName" type="text" name="doctor_name">                                    
+                                    <input class="form-control" id="inputDoctorName" type="text" name="doctor_name" value="" placeholder="Enter Doctor Name">                                    
                                 </div>
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
                                     <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="doctor_id">
-                                        <option value="0">Select Doctor Name</option>
+                                        <option value="">Select Doctor Name</option>
                                         @foreach ($doctors as $item)
                                         <option value="{{$item->doctor_id}}">{{$item->name}}</option>
                                         @endforeach                                        
@@ -80,7 +80,7 @@
                             <!-- Form Group (Lab-Test name)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputTestName">Recommended Test Name</label>
-                                <select class="form-control select2" id="inputTestName" type="text" placeholder="Select Test Name" value="" name="tests[]"multiple>
+                                <select class="form-control select2" id="inputTestName" type="text" placeholder="Select Test Name" value="" name="test[]"multiple>
                                     @foreach ($tests as $item)
                                         <option value="{{$item->lab_id}}">{{$item->test_name}}</option>
                                     @endforeach
@@ -92,8 +92,8 @@
                                 <!-- Form Group (Medicine)-->
                                 <div class="col-md-5">
                                     <label class="small mb-1" for="selectMedicine">Medicine</label>
-                                    <select name="medicines[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
-                                        <option value="0">Select Medicine</option>
+                                    <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
+                                        <option value="">Select Medicine</option>
                                         @foreach ($medicine as $item)
                                         <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
                                     @endforeach
@@ -104,11 +104,16 @@
                                     <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
                                     <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
                                 </div>
+                                <!-- Form Group (Instructions)-->
+                                <div class="col-md-5">
+                                    <label class="small mb-1" for="selectFrequency">Instructions</label>
+                                    <input class="form-control" id="selectFrequency" type="text" name="instruction[]" placeholder="e.g. Before Lunch">
+                                </div>
+                                 <!-- Form Group (Actions)-->
                                 <div class="col-md-1">
                                     <label class="small mb-1" for="addBtn">Add</label>
                                     <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn" type="button">+</button>                                    
-                                </div>
-                                
+                                </div>                                
                             </div>
                         </div>
                             {{-- @include('dynamic') --}}
@@ -140,7 +145,7 @@
                                 <div class="col-md-5">
                                     <label class="small mb-1" for="selectMedicine">Medicine</label>
                                     <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
-                                        <option value="0">Select Medicine</option>
+                                        <option value="">Select Medicine</option>
                                         @foreach ($medicine as $item)
                                         <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
                                     @endforeach
@@ -151,6 +156,12 @@
                                     <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
                                     <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
                                 </div>
+                                <!-- Form Group (Instructions)-->
+                                <div class="col-md-5">
+                                    <label class="small mb-1" for="selectFrequency">Instructions</label>
+                                    <input class="form-control" id="selectFrequency" type="text" name="instruction[]" placeholder="e.g. Before Lunch">
+                                </div>
+                                 <!-- Form Group (Actions)-->
                                 <div class="col-md-1">
                                     <label class="small mb-1" for="remove">Remove</label>
                                     <button class="remove-btn btn btn-danger btn-circle btn-sm" id="removeBtn" type="button">-</button>                                    
