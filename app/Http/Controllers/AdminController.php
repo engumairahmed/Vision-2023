@@ -25,8 +25,15 @@ class AdminController extends Controller
     public function medication() {
         return view('admin.medication');
     }
-    public function addMedication(){
+    public function addMedicationForm(){
         return view('admin.management.add-medication');
+    }
+    public function addMedication(Request $r){
+        $medicine=Medication::create([
+            'medicine'=>$r->medic_name,
+            'dosage'=>$r->dosage,
+            'medic_description'=>$r->description,
+        ]);
     }
     public function labtest() {
         $tests=LabTest::get();

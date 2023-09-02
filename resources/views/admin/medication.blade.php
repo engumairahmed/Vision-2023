@@ -12,7 +12,7 @@
                 href="https://datatables.net">official DataTables documentation</a>.</p>
 
                 <div class="m-4">
-                    <a href="#" class="btn btn-info btn-icon-split">
+                    <a href="{{route('admin.add-medication')}}" class="btn btn-info btn-icon-split">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
