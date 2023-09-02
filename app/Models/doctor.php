@@ -10,7 +10,7 @@ class Doctor extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'doc_user_id',
         'specialization',
         'qualification',
         'housejob_start_date',
@@ -18,7 +18,9 @@ class Doctor extends Model
         'charges',
         'working_days',
         'timings',
-        'DOB'
+        'doc_gender',
+        'doc_address',
+        'doc_DOB'
     ];
     public function user(){
 

@@ -10,7 +10,7 @@ class Vitals extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'vital_user_id',
         'blood_pressure',
         'body_temperature',
         'body_weight',

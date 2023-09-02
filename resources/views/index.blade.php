@@ -22,7 +22,6 @@
   <link href="{{asset("vendor/index/bootstrap-icons/bootstrap-icons.css")}}" rel="stylesheet">
   <link href="{{asset("vendor/index/boxicons/css/boxicons.min.css")}}" rel="stylesheet">
   <link href="{{asset("vendor/index/glightbox/css/glightbox.min.css")}}" rel="stylesheet">
-  <link href="{{asset("vendor/index/remixicon/remixicon.css")}}" rel="stylesheet">
   <link href="{{asset("vendor/index/swiper/swiper-bundle.min.css")}}" rel="stylesheet">
 
   <!-- Template Main CSS File -->
@@ -759,19 +758,16 @@ Join our growing community of empowered individuals who are taking control of th
     </div>
   </footer><!-- End Footer -->
 
-  <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 
 
   <!-- Vendor JS Files -->
-  <script src="{{asset("vendor/index/purecounter/purecounter_vanilla.js")}}"></script>
   <script src="{{asset("vendor/index/aos/aos.js")}}"></script>
   <script src="{{asset("vendor/index/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
   <script src="{{asset("vendor/index/glightbox/js/glightbox.min.js")}}"></script>
   <script src="{{asset("vendor/index/isotope-layout/isotope.pkgd.min.js")}}"></script>
   <script src="{{asset("vendor/index/swiper/swiper-bundle.min.js")}}"></script>
-  <script src="{{asset("vendor/index/php-email-form/validate.js")}}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{asset("js/main.js")}}"></script>

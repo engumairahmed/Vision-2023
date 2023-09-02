@@ -10,11 +10,11 @@ class Prescription extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'presc_user_id',
         'plan_name',
         'start_date',
-        'end_date',
-        'doctor_id',
-        'doctor_name'
+        'end_date',        
+        'doctor_name',
+        'presc_doctor_id'
     ];
 }

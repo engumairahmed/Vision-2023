@@ -19,13 +19,20 @@ class PatientController extends Controller
         $user_id = auth()->user()->id;
 
         $count = Prescription::where('user_id', $user_id)->count();
-    
-        return view('patient.home',compact('count'));
+        $result = User::select('*')
+    ->join('prescriptions as p', 'users.id', '=', 'p.user_id')
+    ->join('doctors as d', 'p.doctor_id', '=', 'd.doctor_id')
+    ->join('prescription_medical_conditions as pc', 'p.presc_id', '=', 'pc.prescription_id')
+    ->join('prescription_medications as pm', 'pm.prescription_id', '=', 'p.presc_id')
+    ->where('users.id', $user_id)
+    ->get();
+    dd($result);
+        return view('patient.home',compact('count','result'));
     }
     public function prescription(){
         $conditions=MedicalCondition::get();
         // $doctors=doctor::get();
-        $doctors=User::with('doctor')->join('doctors','doctors.user_id', '=', 'users.id')
+        $doctors=User::with('doctor')->join('doctors','doctors.doc_user_id', '=', 'users.id')
     ->select('doctors.*', 'users.name', 'users.email')->get();
         $tests=LabTest::get();
         $medicine=Medication::get();
@@ -35,19 +42,19 @@ class PatientController extends Controller
         // dd($r);
         $user = auth()->user();
         $presc=Prescription::create([
-            'user_id' => $user->id,
+            'presc_user_id' => $user->id,
             'plan_name' => $r->plan_name,
             'start_date' => $r->start_date,
             'end_date' => $r->end_date,
-            'doctor_id' => $r->doctor_id,
+            'presc_doctor_id' => $r->doctor_id,
             'doctor_name' => $r->doctor_name,
         ]);
         $medicalConditions=$r->input('medicalCondition',[]);
         foreach($medicalConditions as $item){
             // dd($item);
             $MedicalCondition=PrescriptionMedicalCondition::create([
-            'prescription_id'=>$presc->id,
-            'medical_condition_id'=>$item,   
+            'pmc_prescription_id'=>$presc->id,
+            'pmc_medical_condition_id'=>$item,   
             ]);
         }
         $tests=$r->input('test',[]);
@@ -55,8 +62,8 @@ class PatientController extends Controller
         foreach($tests as $item){
             // dd($item);
             PrescriptionLabTest::create([
-            'prescription_id'=>$presc->id,
-            'lab_test_id'=>$item,   
+            'pl_prescription_id'=>$presc->id,
+            'pl_lab_test_id'=>$item,   
             ]);
         }
 
@@ -67,10 +74,10 @@ class PatientController extends Controller
         foreach($medicines as $key => $medicine){
             //   dd($item);
             PrescriptionMedication::create([
-            'prescription_id'=>$presc->id,
-            'medication_id'=>$medicine,
-            'frequency' => $frequency[$key],
-            'instructions' => $instruction[$key],   
+            'pm_prescription_id'=>$presc->id,
+            'pm_medication_id'=>$medicine,
+            'pm_frequency' => $frequency[$key],
+            'pm_instructions' => $instruction[$key],   
             ]);
         }
         return redirect()->back();

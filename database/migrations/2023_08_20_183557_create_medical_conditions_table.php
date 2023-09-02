@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('medical_conditions', function (Blueprint $table) {
             $table->id('condition_id');
             $table->string('condition_name');
-            $table->text('description');
+            $table->text('condition_description');
             $table->timestamps();
 
         });

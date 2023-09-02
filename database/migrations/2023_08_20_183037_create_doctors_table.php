@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('doctors', function (Blueprint $table) {
             $table->id('doctor_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('Users');
+            $table->unsignedBigInteger('doc_user_id');
+            $table->foreign('doc_user_id')->references('id')->on('Users');
+            $table->string('doc_contact')->nullable();
             $table->string('specialization');
             $table->string('qualification');
             $table->date('housejob_start_date');
@@ -22,7 +23,9 @@ return new class extends Migration
             $table->integer('charges')->nullable();
             $table->string('working_days')->nullable();
             $table->string('timings')->nullable();
-            $table->date('DOB')->nullable();
+            $table->string('doc_gender')->nullable();
+            $table->string('doc_address')->nullable();
+            $table->date('doc_DOB')->nullable();
             $table->timestamps();
 
         });

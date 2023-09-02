@@ -23,10 +23,10 @@ class AdminController extends Controller
         return view('admin.security');
     }
     public function medication() {
-        // $medicines=medication::get();
         return view('admin.medication');
-        // $medicines=medication::get();
-        // return view('admin.medication',compact('medicines'));
+    }
+    public function addMedication(){
+        return view('admin.management.add-medication');
     }
     public function labtest() {
         $tests=LabTest::get();
@@ -37,15 +37,13 @@ class AdminController extends Controller
     }
     public function userdata(){
 
-    //     $users = patient::with('user')->join('users', 'patients.user_id', '=', 'users.id')
-    // ->select('patients.*', 'users.name', 'users.email')->get();
     
-    $users=User::with('patient')->join('patients','patients.user_id', '=', 'users.id')
+    $users=User::with('Patient')->join('patients','patients.pat_user_id', '=', 'users.id')
     ->select('patients.*', 'users.name', 'users.email')->get();
     $ages = [];
     // dd($users);
     foreach ($users as $user) {
-            $age = Carbon::parse($user->DOB)->age;
+            $age = Carbon::parse($user->pat_DOB)->age;
             $ages[$user->patient_id] = $age;
             }
             // dd($ages);

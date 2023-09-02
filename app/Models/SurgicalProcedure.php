@@ -10,7 +10,7 @@ class SurgicalProcedure extends Model
     use HasFactory;
 
     protected $fillable = [
-        'procedure_name',
-        'description'
+        'sp_name',
+        'sp_description'
     ];
 }

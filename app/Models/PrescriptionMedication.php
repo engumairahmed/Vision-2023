@@ -10,9 +10,9 @@ class PrescriptionMedication extends Model
     use HasFactory;
 
     protected $fillable = [
-        'prescription_id',
-        'medication_id',
-        'frequency',
-        'instructions'
+        'pm_prescription_id',
+        'pm_medication_id',
+        'pm_frequency',
+        'pm_instructions'
     ];
 }

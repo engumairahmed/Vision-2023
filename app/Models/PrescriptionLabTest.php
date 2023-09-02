@@ -10,9 +10,9 @@ class PrescriptionLabTest extends Model
     use HasFactory;
 
     protected $fillable = [
-        'prescription_id',
-        'lab_test_id',
-        'instructions'
+        'pl_prescription_id',
+        'pl_lab_test_id',
+        'pl_instructions'
     ];
 }
 

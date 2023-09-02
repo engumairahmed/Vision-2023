@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('medic_id');
             $table->string('medicine');
             $table->string('dosage');
-            $table->string('description');
+            $table->string('medic_description');
             $table->timestamps();
 
         });

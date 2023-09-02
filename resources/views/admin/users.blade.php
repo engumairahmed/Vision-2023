@@ -42,7 +42,7 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
-                                <td>{{$user->DOB}}</td>
+                                <td>{{$user->pat_DOB}}</td>
                                 <td>{{$user->father_name}}</td>
                                 <td>{{$ages[$user->patient_id]}}</td>
 

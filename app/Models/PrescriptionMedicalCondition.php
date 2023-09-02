@@ -10,7 +10,7 @@ class PrescriptionMedicalCondition extends Model
     use HasFactory;
     
     protected $fillable = [
-        'prescription_id',
-        'medical_condition_id',
+        'pmc_prescription_id',
+        'pmc_medical_condition_id',
     ];
 }

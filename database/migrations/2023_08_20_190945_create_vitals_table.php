@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('vitals', function (Blueprint $table) {
             $table->id('vital_id');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('Users');
+            $table->unsignedBigInteger('vital_user_id');
+            $table->foreign('vital_user_id')->references('id')->on('Users');
             $table->string('blood_pressure')->nullable();
             $table->string('body_temperature')->nullable();
             $table->string('body_weight')->nullable();
