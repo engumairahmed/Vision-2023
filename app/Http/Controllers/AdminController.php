@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
-use App\Models\Patient;
 use App\Models\LabTest;
+use App\Models\Patient;
 use App\Models\Medication;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
@@ -23,21 +24,26 @@ class AdminController extends Controller
         return view('admin.security');
     }
     public function medication() {
-        return view('admin.medication');
+        $medicines = medication::all();
+        return view('admin.management.medication',compact('medicines'));
     }
     public function addMedicationForm(){
         return view('admin.management.add-medication');
     }
-    public function addMedication(Request $r){
-        $medicine=Medication::create([
-            'medicine'=>$r->medic_name,
-            'dosage'=>$r->dosage,
-            'medic_description'=>$r->description,
+    public function addMedication(Request $rq){
+        DB::table('medications')->insert([
+            'medicine' => $rq->medic_name,
+            'dosage' => $rq->dosage,
+            'medic_description' => $rq->description,
         ]);
+        return redirect()->back()->with('msg','Medicine added');
     }
     public function labtest() {
         $tests=LabTest::get();
-        return view('admin.labtest',compact('tests'));
+        return view('admin.management.labtest',compact('tests'));
+    }
+    public function addLabtestForm(){
+        return view('admin.management.add-labtest');
     }
     public function surgeries() {
         return view('admin.surgeries');

@@ -92,6 +92,7 @@ Route::middleware(['auth','admin'])->group(function(){
             Route::get('/medication','medication')->name('admin.medication');
             Route::get('/add-medication','addMedicationForm')->name('admin.add-medication');
             Route::post('/add-medication','addMedication');
+            Route::get('/add-labtest','addLabtestForm')->name('admin.lab-test');
 
             Route::get('/lab-test','labtest')->name('admin.labtest');
             Route::get('/surgical-procedures','surgeries')->name('admin.surgeries');

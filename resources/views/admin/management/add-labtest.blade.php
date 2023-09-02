@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title','MedCustodian-Medication')
+@section('title','MedCustodian-Add Test')
 
 @section('content')
 <main>

@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{asset("images/index/favicon.png")}}" rel="icon">
-  <link href="{{asset("images/index/apple-touch-icon.png")}}" rel="apple-touch-icon">
+  <link href="{{asset("images/logo.png")}}" rel="icon">
+  <link href="{{asset("images/logo.png")}}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -42,11 +42,12 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-lg-between">
 
-      <h1 class="logo me-auto me-lg-0"><a href="#">Med Custodian</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto me-lg-0"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <a href="#hero" class="logo me-auto me-lg-0 nav-link scrollto"><img src="{{asset("images/logo.png")}}" alt="" class="img-fluid"></a>
+      
+      <h1 class="logo me-auto me-lg-0  nav-link scrollto"><a href="#hero" class=" nav-link scrollto">Med Custodian</a></h1>
 
-      <nav id="navbar" class="navbar order-last order-lg-0">
+      <nav id="navbar" class="navbar order-last order-lg-0 ">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
@@ -712,9 +713,9 @@ Join our growing community of empowered individuals who are taking control of th
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#hero">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#Services">Services</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
             </ul>
