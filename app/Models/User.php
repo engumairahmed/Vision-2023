@@ -54,7 +54,7 @@ class User extends Authenticatable
     }
     public function doctor(){
 
-        return $this->hasOne(doctor::class);
+        return $this->hasOne(doctor::class, 'doc_user_id', 'id');
 
     }
 }
