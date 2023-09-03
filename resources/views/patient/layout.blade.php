@@ -419,6 +419,9 @@
             </div>
         </div>
     </div>
+
+    @stack('script')
+
     <script>
         
         $(document).ready(function() {
