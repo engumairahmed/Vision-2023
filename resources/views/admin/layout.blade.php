@@ -72,11 +72,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="{{route('admin.medication')}}">
-                        <i class="fas fa-prescription-bottle-alt"></i>
-                        <span> Medication</span></a>
-                        <a class="collapse-item" href="{{route('admin.labtest')}}">Lab Test</a>
-                        <a class="collapse-item" href="{{route('admin.surgeries')}}">Surgical Procedure</a>
+                        <a class="collapse-item" href="{{route('admin.medication')}}">Medications</a>
+                        <a class="collapse-item" href="{{route('admin.labtest')}}">Medical Tests</a>
+                        <a class="collapse-item" href="{{route('admin.surgeries')}}">Surgical Procedures</a>
                     </div>
                 </div>
             </li>

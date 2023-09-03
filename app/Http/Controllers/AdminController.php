@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\LabTest;
 use App\Models\Patient;
 use App\Models\Medication;
+use App\Models\Prescription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -15,7 +16,11 @@ class AdminController extends Controller
 {
     //
     public function dashboard(){
-        return view('admin.dashboard');
+        $userCount = User::whereNull('is_admin')->whereNull('is_doctor')->count();
+        $doctorCount = User::whereNull('is_admin')->where('is_doctor',1)->count();
+        $presc_count = Prescription::count();
+        
+        return view('admin.dashboard',compact('userCount','doctorCount','presc_count'));
     }
     public function profile(){
         return view('admin.profile');
