@@ -37,8 +37,8 @@ class AdminController extends Controller
 
     public function medication()
     {
-        $medicines = medication::all();
-        $medicineCount = medication::count();
+        $medicines = Medication::all();
+        $medicineCount = Medication::count();
         return view('admin.management.medication',compact('medicines','medicineCount'));
     }
 
