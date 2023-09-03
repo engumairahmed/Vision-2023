@@ -260,9 +260,9 @@ Join our growing community of empowered individuals who are taking control of th
 
   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
     <div class="icon-box">
-      <div class="icon"><img src="images/index/doctors/integration.jpeg" class="img-fluid" alt=""></div>
-      <h4><a href="">Appointment Scheduling and Reminders</a></h4>
-      <p>We provide online appointment services through the system, that send automated appointment reminders via email, SMS, or phone calls so that it is feasible for patients by taking online appointmnet from home.</p>
+      <div class="icon"><img src="images/index/doctors/treatment plan.jpeg" class="img-fluid" alt=""></div>
+      <h4><a href="">Providing treatment Plans</a></h4>
+      <p>managing patients in the sense of recognising their problems, tracking their progress, and providing the best possible treatment plans. </p>
     </div>
   </div>
 
