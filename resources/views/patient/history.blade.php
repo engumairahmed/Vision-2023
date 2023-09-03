@@ -37,7 +37,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($plan as $item)
+                            @foreach ($result as $item)
                                 
                             <tr>
                                 <td>{{$item->plan_name}}</td>

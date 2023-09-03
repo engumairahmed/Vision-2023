@@ -128,7 +128,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($plan as $item)
+                            @foreach ($result as $item)
                                 
                             <tr>
                                 <td>{{$item->plan_name}}</td>
@@ -137,8 +137,7 @@
                                 @endisset
                                 <td>{{$item->start_date}}</td>
                                 <td>{{$item->end_date}}</td>
-                                <td><a href="#" class="btn btn-circle btn-sm btn-info"><i class="fas fa-info-circle"></i></a></td>
-
+                                <td><a href="{{ route('user.plan', ['id' => $item->presc_id]) }}" class="btn btn-circle btn-sm btn-info"><i class="fas fa-info-circle"></i></a></td>
                             </tr>
 
                             @endforeach

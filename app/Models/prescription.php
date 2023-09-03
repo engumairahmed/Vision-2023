@@ -17,4 +17,5 @@ class Prescription extends Model
         'doctor_name',
         'presc_doctor_id'
     ];
+    
 }

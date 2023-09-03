@@ -439,7 +439,7 @@
         document.addEventListener('DOMContentLoaded', function () {
         setTimeout(function() {
             document.querySelector('.alert').classList.add('d-none');
-        }, 3000);
+        }, 2000);
     });
     </script>
 

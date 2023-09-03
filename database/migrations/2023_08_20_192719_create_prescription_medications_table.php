@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('pm_prescription_id')->references('presc_id')->on('prescriptions');
             $table->unsignedBigInteger('pm_medication_id');
             $table->foreign('pm_medication_id')->references('medic_id')->on('medications');
-            $table->string('frequency');
+            $table->string('pm_frequency');
             $table->string('pm_instructions')->nullable();
             $table->timestamps();
         });
