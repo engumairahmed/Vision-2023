@@ -12,7 +12,7 @@
                             <div class="page-header-icon col-auto icon-circle bg-primary">
                                 <i class="fas fa-capsules fa-xs text-white"></i>
                             </div>
-                            Add Medicine / Medication
+                            Add Medical Test
                         </h1>
                     </div>
                 </div>
@@ -33,27 +33,20 @@
             <div class="col-xl-12">
                 <!-- Plan details card-->
                 <div class="card mb-4">
-                    <div class="card-header">Medication Details</div>
+                    <div class="card-header">Test Details</div>
                     <div class="card-body">
                         <form method="post">
                             @csrf
-                            <div class="row gx-3 mb-3">
                             <!-- Form Group (Plan Name)-->
-                            <div class="mb-3 col-md-6">
-                                <label class="small mb-1" for="inputMedicationName">Medication Name</label>
-                                <input class="form-control" id="inputMedicationName" type="text" placeholder="Enter Medicine Name" value="" name="medic_name">
-                            </div>
-                            <!-- Form Group (Medical Condition)-->
-                            <div class="col-md-6">                                
-                                <label class="small mb-1" for="inputDosage">Dosage</label>
-                                <input class="form-control select2" id="inputDosage" name="dosage" type="text">
+                            <div class="mb-3">
+                                <label class="small mb-1" for="inputTestName">Test Name</label>
+                                <input class="form-control" id="inputTestName" type="text" placeholder="Enter Medical Test Name" value="" name="test_name">
                             </div>
                            
-                            </div>
                                 <!-- Form Group (Medicine Description)-->
                                 <div class="mb-3">
-                                    <label class="small mb-1" for="inputMedicineDescription">Details & Description</label>
-                                    <textarea class="form-control" id="inputMedicineDescription" name="description" placeholder="Enter Description" cols="30" rows="10"></textarea>                                  
+                                    <label class="small mb-1" for="inputTestDescription">Details & Description</label>
+                                    <textarea class="form-control" id="inputTestDescription" name="description" placeholder="Enter Description" cols="30" rows="10"></textarea>                                  
                                 </div>                           
                             <!-- Save changes button-->
                             
@@ -66,13 +59,3 @@
     </div>
 </main>
 @endsection
-
-@push('script')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function() {
-            document.querySelector('.alert').classList.add('d-none');
-        }, 3000);
-    });
-</script>
-@endpush

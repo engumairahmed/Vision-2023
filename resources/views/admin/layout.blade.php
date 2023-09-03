@@ -436,7 +436,15 @@
     </div>
 
     @stack('script')
-    
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function() {
+            document.querySelector('.alert').classList.add('d-none');
+        }, 3000);
+    });
+    </script>
+
     <!-- Bootstrap core JavaScript-->
     <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script>
     <script src="{{asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>

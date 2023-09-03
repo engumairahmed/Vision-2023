@@ -30,11 +30,11 @@ class AdminController extends Controller
     public function addMedicationForm(){
         return view('admin.management.add-medication');
     }
-    public function addMedication(Request $rq){
+    public function addMedication(Request $r){
         DB::table('medications')->insert([
-            'medicine' => $rq->medic_name,
-            'dosage' => $rq->dosage,
-            'medic_description' => $rq->description,
+            'medicine' => $r->medic_name,
+            'dosage' => $r->dosage,
+            'medic_description' => $r->description,
         ]);
         return redirect()->back()->with('msg','Medicine added');
     }
@@ -44,6 +44,13 @@ class AdminController extends Controller
     }
     public function addLabtestForm(){
         return view('admin.management.add-labtest');
+    }
+    public function addLabTest(Request $r){
+        DB::table('lab_tests')->insert([
+            'test_name' => $r->test_name,
+            'test_description' => $r->description,
+        ]);
+        return redirect()->back()->with('msg','Medical Test added');
     }
     public function surgeries() {
         return view('admin.surgeries');

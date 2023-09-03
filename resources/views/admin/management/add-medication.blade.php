@@ -66,13 +66,3 @@
     </div>
 </main>
 @endsection
-
-@push('script')
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function() {
-            document.querySelector('.alert').classList.add('d-none');
-        }, 3000);
-    });
-</script>
-@endpush
