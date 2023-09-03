@@ -27,6 +27,11 @@
   <!-- Template Main CSS File -->
   <link href="{{asset("css/style.css")}}" rel="stylesheet">
 
+   <!-- font awesome link-->
+   <link rel="stylesheet" 
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+       crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- =======================================================
   * Template Name: Gp
   * Updated: Jul 27 2023 with Bootstrap v5.3.1
@@ -51,7 +56,7 @@
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
           <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
+         
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
         </ul>
@@ -133,7 +138,7 @@ Join our growing community of empowered individuals who are taking control of th
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
-      <div class="container" data-aos="fade-up">
+      <!-- <div class="container" data-aos="fade-up">
 
         <div class="row">
           <div class="image col-lg-6" style='background-image: url("images/index/features.jpg");' data-aos="fade-right"></div>
@@ -161,70 +166,108 @@ Join our growing community of empowered individuals who are taking control of th
           </div>
         </div>
 
-      </div>
+      </div> -->
+
+      <div class="container" data-aos="fade-up">
+
+<div class="row">
+<div class="section-title">
+ 
+  <h3>Objectives</h3>
+  <p><i>Objectives Of Patient History Management System </i></p>
+</div>
+  <div class="image col-lg-6" style='background-image: url("images/index/med history.jpg");' data-aos="fade-right"></div>
+  <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
+    <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
+      <i class="bx bx-receipt"></i>
+      <h4>Storing Records</h4>
+      <p>To create a computerized information system for storing records.</p>
+    </div>
+    <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+      <i class="bx bx-cube-alt"></i>
+      <h4>Paper Less Work</h4>
+      <p>To Lessen the amount of paper work.</p>
+    </div>
+    <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+      <i class="bx bx-images"></i>
+      <h4>Human Work</h4>
+      <p>Lower the amount of human work required in the hospital.</p>
+    </div>
+    <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
+      <i class="bx bx-shield"></i>
+      <h4> Manage And Search Records</h4>
+      <p>Provide end-users with the ability to manage and search records in a matter of seconds.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
     </section><!-- End Features Section -->
 
     <!-- ======= Services Section ======= -->
     <section id="services" class="services">
+  
       <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>Services</h2>
-          <p>Check our Services</p>
-        </div>
+<div class="section-title">
+  <h2>Services</h2>
+  <h3>Our Services</h3>
+  <p><i>Services that helps to manage the information related Your health care </i></p>
+</div>
 
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
+<div class="row">
+  <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+    <div class="icon-box">
+      <div class="icon"> <img src="images/index/doctors/cardiology.png" class="img-fluid" alt=""></div>
+      <h4><a href="">Electronic Health Records (EHR) Management</a></h4>
+      <p>We provide a secure platform for storing, accessing, and updating patient health records electronically. This includes medical history, diagnosis, treatment plans, medications, allergies, and test results.</p>
+    </div>
+  </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspiciatis</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
+  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+    <div class="icon-box">
+      <div class="icon"> <img src="images/index/doctors/prescp.jpg" class="img-fluid" alt=""></div>
+      <h4><a href="">Lab and Imaging Orders</a></h4>
+      <p>Physicians can create and manage lab tests and imaging orders within the system, with results automatically integrated into the patient's electronic record.</p>
+    </div>
+  </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
+  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+    <div class="icon-box">
+      <div class="icon"><img src="images/index/doctors/pat portal.jpeg" class="img-fluid" alt=""></div>
+      <h4><a href="">Patient Portal</a></h4>
+      <p>We gives patients access regarding their health information, appointment history, test results, and allows them to communicate with their healthcare providers.</p>
+    </div>
+  </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
+  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
+    <div class="icon-box">
+      <div class="icon"><img src="images/index/doctors/bill.jpeg" class="img-fluid" alt=""></div>
+      <h4><a href="">Billing and Insurance Management</a></h4>
+      <p>We also provide services like billing and insurance claims, track payment status, generate invoices, and provide a clear overview of financial transactions related to patient care. </p>
+    </div>
+  </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-slideshow"></i></div>
-              <h4><a href="">Dele cardo</a></h4>
-              <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
-            </div>
-          </div>
+  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
+    <div class="icon-box">
+      <div class="icon"><img src="images/index/doctors/patient reg.jpg" class="img-fluid" alt=""></div>
+      <h4><a href="">Patient Registration and Check-In</a></h4>
+      <p>Patients are able to complete their registration forms online before their visit and quickly check in at the clinic using self-service kiosks or mobile devices.</p>
+    </div>
+  </div>
 
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-arch"></i></div>
-              <h4><a href="">Divera don</a></h4>
-              <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
-            </div>
-          </div>
+  <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
+    <div class="icon-box">
+      <div class="icon"><img src="images/index/doctors/integration.jpeg" class="img-fluid" alt=""></div>
+      <h4><a href="">Appointment Scheduling and Reminders</a></h4>
+      <p>We provide online appointment services through the system, that send automated appointment reminders via email, SMS, or phone calls so that it is feasible for patients by taking online appointmnet from home.</p>
+    </div>
+  </div>
 
-        </div>
+</div>
 
-      </div>
+</div>
     </section><!-- End Services Section -->
 
     <!-- ======= Cta Section ======= -->
@@ -238,10 +281,44 @@ Join our growing community of empowered individuals who are taking control of th
         </div>
 
       </div>
-    </section><!-- End Cta Section -->
+    </section>
+    <!-- End Cta Section -->
 
+     <!-- ======= why choose us Section ======= -->
+     <section id="chhose us" class="choose us">
+
+<div class="why-chooseus">
+  <div class="main-choose">
+    <div class="inner-chose">
+    
+</div>
+
+<div class= "inner-chose">
+  <h1>Why Choose Us?</h1>
+  <div class="inner-chose-content">
+    <div class="main-inner-choose">
+    <div class="chose-icon">
+    <i class="fa-solid fa-eye"></i>
+</div>
+  <div class="icon-content">
+    <p>Our Vision is to make a community in which all people achieve their full potential for health and well-being across the lifespan.  We work to be trusted by patients, a valued partner in the community, and creators of positive change.</p>
+
+</div>
+</div>
+<div class="main-inner-choose">
+    <div class="chose-icon">
+    <i class="fa-solid fa-bullseye"></i>
+</div>
+  <div class="icon-content">
+    <p>Our mission is to serve the humanity and improve the lives of those we serve by making innovative and high-quality health and pharmacy services safe, affordable and easy to access.</p>
+
+</div>
+</div>
+</div>
+</div>
+<!-- ============end why choose us================ -->
     <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    <!-- <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -391,10 +468,10 @@ Join our growing community of empowered individuals who are taking control of th
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section>End Portfolio Section -->
 
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
+    <!-- <section id="counts" class="counts">
       <div class="container" data-aos="fade-up">
 
         <div class="row no-gutters">
@@ -438,12 +515,12 @@ Join our growing community of empowered individuals who are taking control of th
                   </div>
                 </div>
               </div>
-            </div><!-- End .content-->
-          </div>
+            </div>  End .content-->
+          <!-- </div>
         </div>
 
       </div>
-    </section><!-- End Counts Section -->
+    </section>End Counts Section --> 
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">
@@ -463,7 +540,8 @@ Join our growing community of empowered individuals who are taking control of th
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
+            <!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -476,7 +554,8 @@ Join our growing community of empowered individuals who are taking control of th
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
+            <!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -489,7 +568,8 @@ Join our growing community of empowered individuals who are taking control of th
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
+            <!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -502,7 +582,8 @@ Join our growing community of empowered individuals who are taking control of th
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
+            <!-- End testimonial item -->
 
             <div class="swiper-slide">
               <div class="testimonial-item">
@@ -515,21 +596,23 @@ Join our growing community of empowered individuals who are taking control of th
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
-            </div><!-- End testimonial item -->
+            </div>
+            <!-- End testimonial item -->
           </div>
           <div class="swiper-pagination"></div>
         </div>
 
       </div>
-    </section><!-- End Testimonials Section -->
+    </section>
+    <!-- End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
     <section id="team" class="team">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Team</h2>
-          <p>Check our Team</p>
+          <h2>Doctors</h2>
+          <p>Meet our Expert Doctors</p>
         </div>
 
         <div class="row">
@@ -537,7 +620,7 @@ Join our growing community of empowered individuals who are taking control of th
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="100">
               <div class="member-img">
-                <img src="images/index/team/team-1.jpg" class="img-fluid" alt="">
+                <img src="images/index/doctors/doctor.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -546,8 +629,8 @@ Join our growing community of empowered individuals who are taking control of th
                 </div>
               </div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
+                <h4>Dr Zehra (Eye Specialist)</h4>
+                <span><b>Dr Zehra is a highly skilled and dedicated ophthalmologist with a passion for providing exceptional eye care. Dr Zehra is a trusted specialist in diagnosing, treating, and managing a wide range of eye conditions. </b></span>
               </div>
             </div>
           </div>
@@ -555,7 +638,7 @@ Join our growing community of empowered individuals who are taking control of th
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="200">
               <div class="member-img">
-                <img src="images/index/team/team-2.jpg" class="img-fluid" alt="">
+                <img src="images/index/doctors/doctor1.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -564,8 +647,8 @@ Join our growing community of empowered individuals who are taking control of th
                 </div>
               </div>
               <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
+                <h4>Dr Masroor (Neurologist)</h4>
+                <span><b>Dr Masroor, a distinguished neurologist who is dedicated to the intricate field of neurology. With a profound commitment to understanding and treating neurological disorders, Dr Neurologist brings a wealth of expertise and compassion to every aspect of patient care.</b></span>
               </div>
             </div>
           </div>
@@ -573,7 +656,7 @@ Join our growing community of empowered individuals who are taking control of th
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
-                <img src="images/index/team/team-3.jpg" class="img-fluid" alt="">
+                <img src="images/index/doctors/doctor2.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -582,8 +665,8 @@ Join our growing community of empowered individuals who are taking control of th
                 </div>
               </div>
               <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
+                <h4>Dr Shakeel (Orthopedic)</h4>
+                <span><b>Dr Shakeel a distinguished orthopedic surgeon who is dedicated to providing exceptional care in the realm of orthopedics. With a strong foundation in medical expertise and a commitment to improving musculoskeletal health, Dr Shakeel stands as a trusted specialist in diagnosing, treating, and rehabilitating a wide range of orthopedic conditions.</b></span>
               </div>
             </div>
           </div>
@@ -591,7 +674,7 @@ Join our growing community of empowered individuals who are taking control of th
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="400">
               <div class="member-img">
-                <img src="images/index/team/team-4.jpg" class="img-fluid" alt="">
+                <img src="images/index/doctors/doctor5.jpg" class="img-fluid" alt="">
                 <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
@@ -600,8 +683,8 @@ Join our growing community of empowered individuals who are taking control of th
                 </div>
               </div>
               <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
+                <h4>Dr Iqra (Cardiologist)</h4>
+                <span><b>Dr Iqra, an esteemed cardiologist who is dedicated to promoting cardiovascular health and wellness. With a profound commitment to patient care and a wealth of expertise in the field of cardiology, Dr iqra is a trusted specialist in diagnosing, treating, and managing a wide spectrum of heart-related conditions.</b></span>
               </div>
             </div>
           </div>
@@ -620,9 +703,11 @@ Join our growing community of empowered individuals who are taking control of th
           <p>Contact Us</p>
         </div>
 
-        <div>
+        <!-- <div>
           <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-        </div>
+        </div> -->
+        <div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="270" id="gmap_canvas" src="https://maps.google.com/maps?q=Aptech D - 4 Block H North Nazimabad II center  Town, Karachi, Karachi City, Sindh 74700, Pakistan &t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2yu.co">2yu</a><br><style>.mapouter{position:relative;text-align:right;height:270px;width:100%px;}</style><a href="https://embedgooglemap.2yu.co">html embed google map</a><style>.gmap_canvas {overflow:hidden;background:none!important;height:270px;width:100%px;}</style></div></div>
+
 
         <div class="row mt-5">
 
@@ -631,19 +716,19 @@ Join our growing community of empowered individuals who are taking control of th
               <div class="address">
                 <i class="bi bi-geo-alt"></i>
                 <h4>Location:</h4>
-                <p>A108 Adam Street, New York, NY 535022</p>
+                <p>D - 4 Block H North Nazimabad Town, Karachi, Karachi City, Sindh 74700, Pakistan</p>
               </div>
 
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>info@example.com</p>
+                <p>medcustodian@mail.com</p>
               </div>
 
               <div class="phone">
                 <i class="bi bi-phone"></i>
                 <h4>Call:</h4>
-                <p>+1 5589 55488 55s</p>
+                <p>+92 321 2782593</p>
               </div>
 
             </div>
@@ -694,10 +779,10 @@ Join our growing community of empowered individuals who are taking control of th
             <div class="footer-info">
               <h3>Med Custodian</h3>
               <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@example.com<br>
+             <strong>Address:</strong> D - 4 Block H North Nazimabad Town, Karachi, Karachi City, Sindh 74700, Pakistan 
+                <br><br>
+                <strong>Phone:</strong> +92 321 2782593<br><br>
+                <strong>Email:</strong> medcustodian@mail.com<br>
               </p>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -733,7 +818,7 @@ Join our growing community of empowered individuals who are taking control of th
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Our Newsletter</h4>
-            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <p>you will get an email from us</p>
             <form action="" method="post">
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
