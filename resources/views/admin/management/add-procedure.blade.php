@@ -1,5 +1,5 @@
 @extends('admin.layout')
-@section('title','MedCustodian-Add Test')
+@section('title','MedCustodian-Surgical Procedure')
 
 @section('content')
 <main>
@@ -9,10 +9,10 @@
                 <div class="row align-items-center justify-content-between pt-3">
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon col-auto icon-circle bg-warning">
-                                <i class="fas fa-microscope fa-xs text-white"></i>
+                            <div class="page-header-icon col-auto icon-circle bg-danger">
+                                <i class="fas fa-file-medical-alt fa-xs text-white"></i>
                             </div>
-                            Add Medical Test
+                            Add Surgical Procedure
                         </h1>
                     </div>
                 </div>
@@ -33,20 +33,20 @@
             <div class="col-xl-12">
                 <!-- Plan details card-->
                 <div class="card mb-4">
-                    <div class="card-header">Test Details</div>
+                    <div class="card-header">Procedure Details</div>
                     <div class="card-body">
                         <form method="post">
                             @csrf
                             <!-- Form Group (Plan Name)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputTestName">Test Name</label>
-                                <input class="form-control" id="inputTestName" type="text" placeholder="Enter Medical Test Name" value="" name="test_name">
+                                <label class="small mb-1" for="inputProcedureName">Test Name</label>
+                                <input class="form-control" id="inputProcedureName" type="text" placeholder="Enter Surgical Procedure Name" value="" name="sp_name">
                             </div>
                            
                                 <!-- Form Group (Medicine Description)-->
                                 <div class="mb-3">
-                                    <label class="small mb-1" for="inputTestDescription">Details & Description</label>
-                                    <textarea class="form-control" id="inputTestDescription" name="description" placeholder="Enter Description" cols="30" rows="10"></textarea>                                  
+                                    <label class="small mb-1" for="inputDescription">Details & Description</label>
+                                    <textarea class="form-control" id="inputDescription" name="description" placeholder="Enter Description" cols="30" rows="10"></textarea>                                  
                                 </div>                           
                             <!-- Save changes button-->
                             

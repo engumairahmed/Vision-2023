@@ -4,18 +4,36 @@
 @section('content')
  <!-- Begin Page Content -->
  <div class="container-fluid">
-    <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Medical Test</h1>
-        <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="https://datatables.net">official DataTables documentation</a>.</p>
+    <div class="row">
+        <div class="col-xl-8 col-md-6 mb-4">
+            <h1 class="h3 mb-2 text-gray-800">Medical Test</h1>
+            <p class="mb-4">Below is a list of all medical tests currently added in system.</p>
+        </div>
+         <!-- Earnings (Monthly) Card Example -->
+         <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-warning border-bottom-warning shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                Total Medical Tests</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$testCount}}</div>
+                        </div>
+                        <div class="col-auto icon-circle bg-warning">
+                            <i class="fas fa-microscope fa-lg text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
         <div class="m-4">
             <a href="{{route('admin.lab-test')}}" class="btn btn-warning btn-icon-split">
                 <span class="icon text-white-50">
                     <i class="fas fa-plus"></i>
                 </span>
-                <span class="text">Add Lab Test</span>
+                <span class="text">Add Test</span>
             </a>
         </div>
 
@@ -50,7 +68,7 @@
                             @foreach ($tests as $test)
                                 
                             <tr>
-                                <td>{{$test->lab_id}}</td>
+                                <td>{{$test->test_id}}</td>
                                 <td>{{$test->test_name}}</td>
                                 <td>{{$test->description}}</td>
                                 <td>

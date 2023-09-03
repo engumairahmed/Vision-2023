@@ -88,15 +88,20 @@ Route::middleware(['auth','admin'])->group(function(){
 
         Route::get('/admin/search','search')->name('admin.search');
 
-        Route::prefix('/management')->group(function(){
+        Route::prefix('/admin/management')->group(function(){
+
             Route::get('/medication','medication')->name('admin.medication');
             Route::get('/add-medication','addMedicationForm')->name('admin.add-medication');
             Route::post('/add-medication','addMedication');
+
+            Route::get('/lab-test','labtest')->name('admin.labtest');
             Route::get('/add-labtest','addLabtestForm')->name('admin.lab-test');
             Route::post('/add-labtest','addLabTest');
 
-            Route::get('/lab-test','labtest')->name('admin.labtest');
             Route::get('/surgical-procedures','surgeries')->name('admin.surgeries');
+            Route::get('/add-procedures','addSpForm')->name('admin.add-sp');
+            Route::post('/add-procedures','addSp');
+            Route::get('/surgical-procedure/{id}','showSp')->name('admin.showSp');
 
             // Route::post('/','add_user2');
             // Route::get('/show','show_user')->name('show');

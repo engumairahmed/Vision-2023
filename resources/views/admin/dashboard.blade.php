@@ -20,7 +20,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Users</div>
+                                Clientele</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$userCount}}</div>
                         </div>
                         <div class="col-auto icon-circle bg-primary">
@@ -38,7 +38,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Total Doctors</div>
+                                Medical Personnel</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$doctorCount}}</div>
                         </div>
                         <div class="col-auto icon-circle bg-success">
@@ -55,7 +55,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Prescriptions
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Cumulative Prescriptions
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$presc_count}}</div>
                         </div>

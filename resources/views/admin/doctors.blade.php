@@ -1,14 +1,13 @@
 @extends('admin.layout')
-@section('title','User')
+@section('title','Doctors')
 
 @section('content')
   <!-- Begin Page Content -->
   <div class="container-fluid">
     <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Patients info Tables</h1>
+        <h1 class="h3 mb-2 text-gray-800">Doctors</h1>
         <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-            For more information about DataTables, please visit the <a target="_blank"
-                href="https://datatables.net">official DataTables documentation</a>.</p>
+            For more information about DataTables, please visit the</p>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -21,18 +20,16 @@
                         <thead>
                             <tr>
                                 <th>Name</th>
-                                <th>E-Mail</th>
+                                <th>Specializaion</th>
                                 <th>DOB</th>
-                                <th>Father's Name</th>
                                 <th>Age</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Name</th>
-                                <th>E-Mail</th>
+                                <th>Specializaion</th>
                                 <th>DOB</th>
-                                <th>Father's Name</th>
                                 <th>Age</th>
                             </tr>
                         </tfoot>
@@ -41,10 +38,9 @@
                                 
                             <tr>
                                 <td>{{$user->name}}</td>
-                                <td>{{$user->email}}</td>
-                                <td>{{$user->pat_DOB}}</td>
-                                <td>{{$user->father_name}}</td>
-                                <td>{{$ages[$user->patient_id]}}</td>
+                                <td>{{$user->speacialization}}</td>
+                                <td>{{$user->doc_DOB}}</td>
+                                <td>{{$ages[$user->doctor_id]}}</td>
 
                             </tr>
 
