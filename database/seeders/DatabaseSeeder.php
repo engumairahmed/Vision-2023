@@ -57,13 +57,6 @@ class DatabaseSeeder extends Seeder
             'is_doctor'=>1,
         ]);
         Patient::create([
-            'pat_user_id'=>1,
-            'father_name' => 'Father Name',
-            'pat_gender' => 'Male',
-            'pat_contact' => '0300-1234567',
-            'pat_DOB'=>'2011-11-09',
-        ]);
-        Patient::create([
             'pat_user_id'=>2,
             'father_name' => 'Father Name',
             'pat_gender' => 'Male',
@@ -93,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'charges'=>2000,
             'working_days'=>'Mon,Wed,Thur',
             'timings'=>'11AM-2PM',
-            'doc_gender' => 'Female',
+            'doc_gender' => 'Male',
             'doc_contact' => '0300-1234567',
             'doc_DOB'=>'2010-11-09',
         ]);Doctor::create([

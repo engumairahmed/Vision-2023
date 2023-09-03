@@ -53,7 +53,8 @@ class AuthController extends Controller
     }
 
     public function store(Request $r){
-        if(Auth::attempt(['email'=>$r->email,'password'=>$r->password])){
+        $remember = $r->has('remember');
+        if(Auth::attempt(['email'=>$r->email,'password'=>$r->password],$remember)){
             // dd(auth()->user());
             return redirect()->route('admin.dashboard');
         } else{

@@ -24,7 +24,7 @@ Route::get('/', function () {
 // Route::get('/login')
 
 
-Route::controller(AuthController::class)->group(function(){
+Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::get('/logout','logout')->name('logout');
     Route::get('/login','login')->name('login');
     Route::post('/login','store');

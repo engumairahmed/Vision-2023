@@ -122,7 +122,7 @@ class AdminController extends Controller
     public function docData()
     {    
         $users=User::with('Doctor')->join('doctors','doctors.doc_user_id', '=', 'users.id')
-        ->select('doctors.*', 'users.name', 'users.email')->get();
+        ->select('*')->get();
         $ages = [];
         // dd($users);
         foreach ($users as $user) {
