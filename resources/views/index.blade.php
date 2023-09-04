@@ -252,9 +252,9 @@ Join our growing community of empowered individuals who are taking control of th
 
   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
     <div class="icon-box">
-      <div class="icon"><img src="images/index/doctors/patient reg.jpg" class="img-fluid" alt=""></div>
-      <h4><a href="">Surgical Procedure</a></h4>
-      <p>Patients are able to complete their registration forms online before their visit and quickly check in at the clinic using self-service kiosks or mobile devices.</p>
+      <div class="icon"><img src="images/index/doctors/wapp.png" class="img-fluid" alt=""></div>
+      <h4><a href="">Send Prescription Plans</a></h4>
+      <p>We also send doctor's created Prescription Plan  to patients via email or WhatsApp  </p>
     </div>
   </div>
 

@@ -156,8 +156,7 @@ h6 {
 }
 
 #header .img-fluid{
-   height: 100 px;
-   width: 90px;
+   size: default;
  
 
 }
