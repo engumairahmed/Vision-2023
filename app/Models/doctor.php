@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Doctor extends Model
 {
+    protected $table = 'doctors'; 
+    protected $primaryKey = 'doctor_id';
     use HasFactory;
 
     protected $fillable = [
@@ -25,6 +27,11 @@ class Doctor extends Model
     public function user(){
 
         return $this->belongsTo(User::class, 'doc_user_id', 'id');
+
+    }
+    public function prescription(){
+
+        return $this->belongsTo(Prescription::class, 'doc_user_id', 'id');
 
     }
 }

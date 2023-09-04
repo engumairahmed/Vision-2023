@@ -58,6 +58,8 @@ Route::middleware(['auth','patient'])->group(function(){
             
         });
 
+        Route::get('/plan/{id}','planInfo')->name('user.plan');
+
 
 
     });

@@ -19,6 +19,14 @@
             </div>
         </div>
     </header>
+    @if (Session::has('msg'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{Session::get('msg')}} 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
     <!-- Main page content-->
     <div class="container-xl px-4 mt-4">        
         <div class="row">
@@ -82,7 +90,7 @@
                                 <label class="small mb-1" for="inputTestName">Recommended Test Name</label>
                                 <select class="form-control select2" id="inputTestName" type="text" placeholder="Select Test Name" value="" name="test[]"multiple>
                                     @foreach ($tests as $item)
-                                        <option value="{{$item->lab_id}}">{{$item->test_name}}</option>
+                                        <option value="{{$item->test_id}}">{{$item->test_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

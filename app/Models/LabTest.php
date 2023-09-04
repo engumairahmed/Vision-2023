@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class LabTest extends Model
 {
+    protected $table = 'lab_tests'; 
+    protected $primaryKey = 'test_id';
     use HasFactory;
 
     protected $fillable = [

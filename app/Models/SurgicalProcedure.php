@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class SurgicalProcedure extends Model
 {
+    protected $table = 'surgical_procedures'; 
+    protected $primaryKey = 'sp_id';
     use HasFactory;
 
     protected $fillable = [

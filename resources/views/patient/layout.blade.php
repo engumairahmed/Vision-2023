@@ -431,7 +431,13 @@
         $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
             
         });
-        </script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function() {
+                document.querySelector('.alert').classList.add('d-none');
+            }, 2000);
+         });
+    </script>
 
 
     <!-- Bootstrap core JavaScript-->

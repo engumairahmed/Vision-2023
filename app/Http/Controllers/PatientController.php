@@ -9,37 +9,57 @@ use App\Models\Medication;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Models\MedicalCondition;
+use Illuminate\Support\Facades\DB;
 use App\Models\PrescriptionLabTest;
-use App\Models\PrescriptionMedicalCondition;
 use App\Models\PrescriptionMedication;
+use App\Models\PrescriptionMedicalCondition;
 
 class PatientController extends Controller
 {
-    public function home(){
+    public function home()
+    {
         $user_id = auth()->user()->id;
-// dd($user_id);
         $count = Prescription::where('presc_user_id', $user_id)->count();
         $result = User::select('*')
-    ->join('prescriptions as p', 'users.id', '=', 'p.presc_user_id')
-    ->join('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
-    ->join('prescription_medical_conditions as pc', 'p.presc_id', '=', 'pc.pmc_prescription_id')
-    ->join('prescription_medications as pm', 'p.presc_id', '=', 'pm.pm_prescription_id')
-    ->where('users.id', $user_id)
-    ->get();
-    dd($result);
+            ->join('prescriptions as p', 'users.id', '=', 'p.presc_user_id')
+            ->join('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
+            ->join('prescription_medical_conditions as pc', 'p.presc_id', '=', 'pc.pmc_prescription_id')
+            ->join('prescription_medications as pm', 'p.presc_id', '=', 'pm.pm_prescription_id')
+            ->where('users.id', $user_id)
+            ->get();
         return view('patient.home',compact('count','result'));
     }
-    public function prescription(){
+
+    public function prescription()
+    {
         $conditions=MedicalCondition::get();
         // $doctors=doctor::get();
         $doctors=User::with('doctor')->join('doctors','doctors.doc_user_id', '=', 'users.id')
-    ->select('doctors.*', 'users.name', 'users.email')->get();
+            ->select('doctors.*', 'users.name', 'users.email')->get();
         $tests=LabTest::get();
         $medicine=Medication::get();
         return view('patient.prescription',compact('conditions','doctors','tests','medicine'));
     }
-    public function newPlan(Request $r){
-        // dd($r);
+
+    public function planInfo($id)
+    {
+        // dd($id);
+        $plan=Prescription::find($id);
+        // $prescriptions = Prescription::where('presc_id', $id)->get();
+        $prescriptions = DB::table('prescriptions')
+        ->join('users', 'prescriptions.presc_user_id', '=', 'users.id')
+        ->leftJoin('doctors', 'prescriptions.presc_doctor_id', '=', 'doctors.doctor_id')
+        ->join('prescription_medical_conditions', 'prescriptions.presc_id', '=', 'prescription_medical_conditions.pmc_prescription_id')
+        ->join('prescription_medications', 'prescriptions.presc_id', '=', 'prescription_medications.pm_prescription_id')
+        ->where('prescriptions.presc_id', '=', $id) 
+        ->select('*') 
+        ->get();
+        // dd($prescriptions);
+        return view('patient.plan',compact('plan','prescriptions'));
+    }
+
+    public function newPlan(Request $r)
+    {
         $user = auth()->user();
         $presc=Prescription::create([
             'presc_user_id' => $user->id,
@@ -80,9 +100,11 @@ class PatientController extends Controller
             'pm_instructions' => $instruction[$key],   
             ]);
         }
-        return redirect()->back();
+        return redirect()->back()->with('msg','Prescription Plan Created');
     }
-    public function profile(){
+
+    public function profile()
+    {
         return view('patient.profile');
     }
 }
