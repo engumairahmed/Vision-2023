@@ -19,6 +19,8 @@ class Vitals extends Model
         'pulse_rate',
         'respiratory_rate',
         'oxygen_saturation',
-        'blood_glucose_levels'
+        'blood_glucose_levels',
+        'vital_created_by'
     ];
+    
 }

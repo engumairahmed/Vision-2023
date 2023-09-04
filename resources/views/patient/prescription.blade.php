@@ -41,12 +41,12 @@
                             <!-- Form Group (Plan Name)-->
                             <div class="mb-3 col-md-6">
                                 <label class="small mb-1" for="inputUsername">Medication Plan Name</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="" name="plan_name">
+                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="" name="plan_name" required>
                             </div>
                             <!-- Form Group (Medical Condition)-->
                             <div class="col-md-6">                                
                                 <label class="small mb-1" for="inputMedicalCondition">Medical Condition</label>
-                                <select class="form-control select2" id="inputMedicalCondition" name="medicalCondition[]" type="text" multiple>
+                                <select class="form-control select2" id="inputMedicalCondition" name="medicalCondition[]" type="text" multiple required>
                                     @foreach ($conditions as $item)
                                     <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
                                     @endforeach                                    
@@ -77,12 +77,12 @@
                                 <!-- Form Group (Start Date)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="startDate">Prescription Start Date</label>
-                                    <input class="form-control date" type="text" name="start_date" id="startDate">
+                                    <input class="form-control date" type="text" name="start_date" id="startDate" required>
                                 </div>
                                <!-- Form Group (End Date)-->
                                <div class="col-md-6">
                                 <label class="small mb-1" for="endDate">Prescription End Date</label>
-                                <input class="form-control date" type="text" name="end_date" id="endDate">
+                                <input class="form-control date" type="text" name="end_date" id="endDate" required>
                             </div>
                             </div>
                             <!-- Form Group (Lab-Test name)-->

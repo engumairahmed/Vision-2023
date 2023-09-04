@@ -115,7 +115,7 @@
                                 <th>Consultant</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
-                                <th>View</th>
+                                <th>View Details</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -128,13 +128,12 @@
                             </tr>
                         </tfoot>
                         <tbody>
+                            {{-- {{dd($doctor)}} --}}
                             @foreach ($result as $item)
                                 
                             <tr>
                                 <td>{{$item->plan_name}}</td>
-                                @isset($item->doctor_id)
-                                <td>{{$item->name}}</td>
-                                @endisset
+                                <td>{{$item->doc_name}}</td>
                                 <td>{{$item->start_date}}</td>
                                 <td>{{$item->end_date}}</td>
                                 <td><a href="{{ route('user.plan', ['id' => $item->presc_id]) }}" class="btn btn-circle btn-sm btn-info"><i class="fas fa-info-circle"></i></a></td>

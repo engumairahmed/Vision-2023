@@ -16,4 +16,10 @@ class Medication extends Model
         'dosage',
         'medic_descripition',        
     ];
+
+    public function prescriptions()
+    {
+        return $this->belongsToMany(Prescription::class, 'prescription_medications', 'pm_medication_id', 'pm_prescription_id');
+    }
+
 }
