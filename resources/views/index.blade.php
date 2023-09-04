@@ -229,8 +229,8 @@ Join our growing community of empowered individuals who are taking control of th
   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
     <div class="icon-box">
       <div class="icon"> <img src="images/index/doctors/prescp.jpg" class="img-fluid" alt=""></div>
-      <h4><a href="">Lab and Imaging Orders</a></h4>
-      <p>Physicians can create and manage lab tests and imaging orders within the system, with results automatically integrated into the patient's electronic record.</p>
+      <h4><a href="">Medical Test</a></h4>
+      <p>Physicians can prescribe tests to their patients and the report is uploaded by the doctor or patient by himself.</p>
     </div>
   </div>
 
@@ -244,16 +244,16 @@ Join our growing community of empowered individuals who are taking control of th
 
   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
     <div class="icon-box">
-      <div class="icon"><img src="images/index/doctors/bill.jpeg" class="img-fluid" alt=""></div>
-      <h4><a href="">Billing and Insurance Management</a></h4>
-      <p>We also provide services like billing and insurance claims, track payment status, generate invoices, and provide a clear overview of financial transactions related to patient care. </p>
+      <div class="icon"><img src="images/index/doctors/health care.jpg" class="img-fluid" alt=""></div>
+      <h4><a href="">Used By Different Healthcare Facilities </a></h4>
+      <p>Our Website can be used in Different healthcare facilities such as clinics, hospitals etc.  </p>
     </div>
   </div>
 
   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="200">
     <div class="icon-box">
       <div class="icon"><img src="images/index/doctors/patient reg.jpg" class="img-fluid" alt=""></div>
-      <h4><a href="">Patient Registration and Check-In</a></h4>
+      <h4><a href="">Surgical Procedure</a></h4>
       <p>Patients are able to complete their registration forms online before their visit and quickly check in at the clinic using self-service kiosks or mobile devices.</p>
     </div>
   </div>
@@ -261,8 +261,8 @@ Join our growing community of empowered individuals who are taking control of th
   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="300">
     <div class="icon-box">
       <div class="icon"><img src="images/index/doctors/treatment plan.jpeg" class="img-fluid" alt=""></div>
-      <h4><a href="">Providing treatment Plans</a></h4>
-      <p>managing patients in the sense of recognising their problems, tracking their progress, and providing the best possible treatment plans. </p>
+      <h4><a href="">Medication Plans</a></h4>
+      <p>We Provide medication Plans to our Patients that how long will they take the given medicines according to their health condition. </p>
     </div>
   </div>
 
