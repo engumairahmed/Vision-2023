@@ -69,11 +69,13 @@ class PatientController extends Controller
             'presc_doctor_id' => $r->doctor_id,
             'doctor_name' => $r->doctor_name,
         ]);
+        $prescId=$presc->presc_id;
+        // dd($prescId);
         $medicalConditions=$r->input('medicalCondition',[]);
         foreach($medicalConditions as $item){
             // dd($item);
             $MedicalCondition=PrescriptionMedicalCondition::create([
-            'pmc_prescription_id'=>$presc->id,
+            'pmc_prescription_id'=>$prescId,
             'pmc_medical_condition_id'=>$item,   
             ]);
         }
@@ -82,7 +84,7 @@ class PatientController extends Controller
         foreach($tests as $item){
             // dd($item);
             PrescriptionLabTest::create([
-            'pl_prescription_id'=>$presc->id,
+            'pl_prescription_id'=>$prescId,
             'pl_lab_test_id'=>$item,   
             ]);
         }
@@ -94,7 +96,7 @@ class PatientController extends Controller
         foreach($medicines as $key => $medicine){
             //   dd($item);
             PrescriptionMedication::create([
-            'pm_prescription_id'=>$presc->id,
+            'pm_prescription_id'=>$prescId,
             'pm_medication_id'=>$medicine,
             'pm_frequency' => $frequency[$key],
             'pm_instructions' => $instruction[$key],   
