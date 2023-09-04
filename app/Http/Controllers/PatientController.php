@@ -9,9 +9,10 @@ use App\Models\Medication;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Models\MedicalCondition;
+use Illuminate\Support\Facades\DB;
 use App\Models\PrescriptionLabTest;
-use App\Models\PrescriptionMedicalCondition;
 use App\Models\PrescriptionMedication;
+use App\Models\PrescriptionMedicalCondition;
 
 class PatientController extends Controller
 {
@@ -42,9 +43,19 @@ class PatientController extends Controller
 
     public function planInfo($id)
     {
-        $plan=Prescription::find($id)->get();
-        dd($plan);
-        return view('patient.plan',compact('plan'));
+        // dd($id);
+        $plan=Prescription::find($id);
+        // $prescriptions = Prescription::where('presc_id', $id)->get();
+        $prescriptions = DB::table('prescriptions')
+        ->join('users', 'prescriptions.presc_user_id', '=', 'users.id')
+        ->leftJoin('doctors', 'prescriptions.presc_doctor_id', '=', 'doctors.doctor_id')
+        ->join('prescription_medical_conditions', 'prescriptions.presc_id', '=', 'prescription_medical_conditions.pmc_prescription_id')
+        ->join('prescription_medications', 'prescriptions.presc_id', '=', 'prescription_medications.pm_prescription_id')
+        ->where('prescriptions.presc_id', '=', $id) 
+        ->select('*') 
+        ->get();
+        // dd($prescriptions);
+        return view('patient.plan',compact('plan','prescriptions'));
     }
 
     public function newPlan(Request $r)

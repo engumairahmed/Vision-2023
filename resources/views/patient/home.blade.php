@@ -124,7 +124,7 @@
                                 <th>Consultant</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
-                                <th>View</th>
+                                <th>View Details</th>
                             </tr>
                         </tfoot>
                         <tbody>

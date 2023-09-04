@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prescription extends Model
 {
+    protected $table = 'prescriptions'; 
+    protected $primaryKey = 'presc_id';
+
     use HasFactory;
 
     protected $fillable = [
