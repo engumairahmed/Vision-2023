@@ -63,9 +63,24 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+      @if (auth()->check()) 
 
-      <a href="{{ROUTE('login')}}" class="get-started-btn scrollto">Get Started</a>
+      <!-- dropdown -->
 
+      <div class="dropdown">
+        <a class="get-started-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person"></i> {{ auth()->user()->name }}
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a></li>
+          <li><a class="dropdown-item" href="{{ROUTE('logout')}}">Logout</a></li>
+        </ul>
+      </div>      
+       
+        <!-- end dropdown -->
+      @else
+        <a href="{{ROUTE('login')}}" class="get-started-btn scrollto">Get Started</a>
+      @endif
     </div>
   </header><!-- End Header -->
 
@@ -834,13 +849,13 @@ Join our growing community of empowered individuals who are taking control of th
       <div class="copyright">
         &copy; Copyright <strong><span>Med Custodian</span></strong>. All Rights Reserved
       </div>
-      <div class="credits">
+      {{-- <div class="credits"> --}}
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+        {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
+      {{-- </div> --}}
     </div>
   </footer><!-- End Footer -->
 

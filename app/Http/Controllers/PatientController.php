@@ -63,31 +63,14 @@ class PatientController extends Controller
 
     public function planInfo($id)
     {
-        $plan=Prescription::find($id);
-        // $prescriptions = DB::table('prescriptions')
-        // ->join('users', 'prescriptions.presc_user_id', '=', 'users.id')
-        // ->leftJoin('doctors', 'prescriptions.presc_doctor_id', '=', 'doctors.doctor_id')
-        // ->join('prescription_medical_conditions', 'prescriptions.presc_id', '=', 'prescription_medical_conditions.pmc_prescription_id')
-        // ->join('prescription_medications', 'prescriptions.presc_id', '=', 'prescription_medications.pm_prescription_id')
-        // ->where('prescriptions.presc_id', '=', $id) 
-        // ->select('*') 
-        // ->get();
-
-        // $presciptions=DB::table('');
+        $plan=Prescription::find($id);        
+            
+        $prescription = Prescription::with(['medications', 'medicalConditions', 'labTests', 'doctor'])
+        ->find($id);
         
-        $prescriptionId = $id; 
-            
-            $prescription = Prescription::with(['medications', 'medicalConditions', 'labTests', 'doctor'])
-            ->find($prescriptionId);
-
-            $doctorName = $prescription->doctor->user->name;
-        
-            
-            $medications = $prescription->medications;
-            $medicalConditions = $prescription->medicalConditions;
-            $labTests = $prescription->labTests;
-            
-            // dd($prescription);
+        $medications = $prescription->medications;
+        $medicalConditions = $prescription->medicalConditions;
+        $labTests = $prescription->labTests;
 
         return view('patient.plan',compact('prescription','medications','medicalConditions','labTests'));
     }
