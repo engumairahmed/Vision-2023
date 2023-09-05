@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Doctor;
 use App\Models\LabTest;
+use App\Models\Patient;
 use App\Models\Medication;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
@@ -43,6 +44,35 @@ class PatientController extends Controller
         ->get();       
 
         return view('patient.home',compact('count','result'));
+    }
+
+    public function history()
+    {
+        $user_id = auth()->user()->id;
+
+        $count = Prescription::where('presc_user_id', $user_id)->count();
+
+        $result = DB::table('prescriptions as p')
+        ->join('users as u_patient', 'p.presc_user_id', '=', 'u_patient.id')
+        ->join('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
+        ->join('users as u_doctor', 'd.doc_user_id', '=', 'u_doctor.id')
+        ->select(
+            'u_patient.name as patient_name',
+            'u_doctor.name as doc_name',
+            'p.presc_id',
+            'p.plan_name',
+            'p.start_date',
+            'p.end_date',
+            'p.doctor_name',
+            'p.presc_doctor_id',
+            'd.doc_user_id',
+            'd.doc_contact',
+            'd.specialization'
+        )
+        ->where('p.presc_user_id', 2)
+        ->get();       
+
+        return view('patient.history',compact('count','result'));
     }
 
     public function prescription()
@@ -120,6 +150,15 @@ class PatientController extends Controller
 
     public function profile()
     {
-        return view('patient.profile');
+        $user_id=auth()->user()->id;
+        $userId=auth()->user();
+
+        if ($userId->patient) {
+            $user = $userId->patient;
+        } else {
+            $user = null;
+        }
+        // dd($user);
+        return view('patient.profile',compact('user'));
     }
 }

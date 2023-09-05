@@ -9,8 +9,8 @@
                 <div class="row align-items-center justify-content-between pt-3">
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon col-auto icon-circle bg-primary">
-                                <i class="fas fa-capsules fa-lg text-white"></i>
+                            <div class="page-header-icon col-auto icon-circle bg-warning">
+                                <i class="fas fa-clipboard-list fa-xs text-white"></i>
                             </div>
                             Create Medication Plan
                         </h1>
@@ -127,7 +127,7 @@
                             {{-- @include('dynamic') --}}
                            
                             <!-- Save changes button-->
-                            <input class="btn btn-primary" type="submit" value="Save">
+                            <input class="btn btn-warning text-dark" type="submit" value="Save">
                         </form>
                     </div>
                 </div>

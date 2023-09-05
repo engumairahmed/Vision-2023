@@ -45,55 +45,77 @@
                 <div class="card mb-4">
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
-                        <form>
-                            <!-- Form Group (username)-->
+                        <form method="post">
+                            <!-- Form Group (Full Name)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (first name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputFirstName">First name</label>
-                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
-                                </div>
-                                <!-- Form Group (last name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLastName">Last name</label>
-                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
-                                </div>
+                                <label class="small mb-1" for="inputName">Full Name (how your name will appear to Doctor or Admin on the site)</label>
+                                <input class="form-control" id="inputName" type="text" name="name" placeholder="Enter your username" value="{{ auth()->user()->name }}">
                             </div>
                             <!-- Form Row        -->
                             <div class="row gx-3 mb-3">
-                                <!-- Form Group (organization name)-->
+                                <!-- Form Group (Father name)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
+                                    <label class="small mb-1" for="inputFatherName">Father's Name</label>
+                                    <input class="form-control" id="inputFatherName" type="text" name="fatherName" placeholder="Enter your Father's name" value="{{ auth()->user()->father_name }}">
                                 </div>
-                                <!-- Form Group (location)-->
+                                <!-- Form Group (Husband name)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLocation">Location</label>
-                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
+                                    <label class="small mb-1" for="inputHusbandName">Husband's Name</label>
+                                    <input class="form-control" id="inputHusbandName" type="text" name="HusbandName" placeholder="Enter your Husband's Name" value="{{ auth()->user()->husband_name }}">
                                 </div>
                             </div>
                             <!-- Form Group (email address)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
+                                <input class="form-control" id="inputEmailAddress" name="email" type="email" placeholder="Enter your email address" value="{{ auth()->user()->email }}">
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (phone number)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputPhone">Phone number</label>
-                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
+                                    <input class="form-control" id="inputPhone" type="tel" name="contact" placeholder="Enter your phone number" value="{{$user->pat_contact}}">
                                 </div>
                                 <!-- Form Group (birthday)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                    <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
+                                    <input class="form-control" id="inputBirthday" type="text" name="dob" placeholder="Enter your birthday" value="{{$user->pat_DOB}}">
                                 </div>
+                            </div>
+                            <!-- Form Row-->
+                            <div class="row gx-3 mb-3">
+                                <!-- Form Group (Gender)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputGender">Gender</label>
+
+                                    @php
+                                       $gender=$user->pat_gender; 
+                                    @endphp
+
+                                    <select class="form-control" name="gender" id="">
+                                        
+                                        <option value="Male"@php                                     
+                                            if ($gender == 'Male') echo 'selected';
+                                        @endphp>Male</option>
+                                        <option value="Female"@php                                     
+                                        if ($gender == 'Female') echo 'selected';
+                                    @endphp>Female</option>
+                                        <option value="Other"@php                                     
+                                        if ($gender == 'Other') echo 'selected';
+                                    @endphp>Other</option>
+
+                                    </select>
+                                </div>
+                                <!-- Form Group (Blood Group)-->
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="inputBloodGroup">Blood Group</label>
+                                    <input class="form-control" id="inputBloodGroup" type="text" name="bloodGroup" placeholder="Enter your birthday" value="{{$user->blood_group}}">
+                                </div>
+                            </div>
+                            <!-- Form Group (address)-->
+                            <div class="mb-3">
+                                <label class="small mb-1" for="inputAddress">Address</label>
+                                <input class="form-control" id="inputAddress" name="address" type="text" placeholder="Enter your address" value="{{ auth()->user()->pat_address }}">
                             </div>
                             <!-- Save changes button-->
                             <button class="btn btn-primary" type="button">Save changes</button>

@@ -55,31 +55,39 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item m-2" role="presentation">
-      <button class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Medical Condition</button>
+      <button class="nav-link active" id="condition-tab" data-toggle="tab" data-target="#condition" type="button" role="tab" aria-controls="condition" aria-selected="true">Medical Condition</button>
     </li>
     <li class="nav-item m-2" role="presentation">
-      <button class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Medication</button>
+      <button class="nav-link" id="medication-tab" data-toggle="tab" data-target="#medication" type="button" role="tab" aria-controls="medication" aria-selected="false">Medication</button>
     </li>
     <li class="nav-item m-2" role="presentation">
-      <button class="nav-link" id="messages-tab" data-toggle="tab" data-target="#messages" type="button" role="tab" aria-controls="messages" aria-selected="false">Medical Tests</button>
+      <button class="nav-link" id="tests-tab" data-toggle="tab" data-target="#tests" type="button" role="tab" aria-controls="tests" aria-selected="false">Medical Tests</button>
     </li>
+    <li class="nav-item m-2" role="presentation">
+        <button class="nav-link" id="reports-tab" data-toggle="tab" data-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="false">Medical Tests</button>
+      </li>
   </ul>
   
   <!-- Tab panes -->
   <div class="tab-content">
-    <div class="tab-pane mt-3 active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane mt-3 active" id="condition" role="tabpanel" aria-labelledby="condition-tab">
         @foreach ($medicalConditions as $item)
             <p>{{$item->condition_name}}</p>
         @endforeach
     </div>
-    <div class="tab-pane mt-3" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="tab-pane mt-3" id="medication" role="tabpanel" aria-labelledby="medication-tab">
         @foreach ($medications as $item)
             <p>Medicine : {{$item->medicine}} {{$item->dosage}} -> Daily : {{$item->pivot->pm_frequency}} times -> Instructions : {{$item->pivot->pm_instructions}}</p>
         @endforeach
     </div>
-    <div class="tab-pane mt-3" id="messages" role="tabpanel" aria-labelledby="messages-tab">
+    <div class="tab-pane mt-3" id="tests" role="tabpanel" aria-labelledby="tests-tab">
         @foreach ($labTests as $item)
             <p>Medical Test Name : {{$item->test_name}}</p>
+        @endforeach
+    </div>
+    <div class="tab-pane mt-3" id="reports" role="tabpanel" aria-labelledby="reports-tab">
+        @foreach ($labTests as $item)
+            <p>Medical Reports : {{$item->test_name}}</p>
         @endforeach
     </div>
   </div>

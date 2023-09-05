@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,8 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-// Route::get('/login')
+Route::post('/',[Controller::class,'message']);
+
 
 
 Route::controller(AuthController::class)->middleware(['web'])->group(function(){
@@ -32,6 +34,7 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::post('/register','register');
     Route::get('/forgot-password','forgot')->name('forgot');
     Route::post('/forgot-password','forgotPass');
+    Route::post('profile','updateInfo');
 });
 
 Route::middleware(['auth','patient'])->group(function(){
@@ -45,7 +48,11 @@ Route::middleware(['auth','patient'])->group(function(){
         Route::post('/prescriptions','newPlan');
 
         Route::get('profile','profile')->name('patient.profile');
+        
+
         Route::get('security','security')->name('patient.security');
+
+        Route::get('/history','history')->name('history');
        
         Route::prefix('patient/')->group(function(){
 

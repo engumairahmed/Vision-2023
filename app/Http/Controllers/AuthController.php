@@ -47,6 +47,20 @@ class AuthController extends Controller
         return back()->with(['msg'=>'User Registered']);
     }
 
+    public function updateInfo(Request $r){
+
+        $id=auth()->user()->id;
+
+        $r->validate([
+            'name'=>'required|min:3|alpha:ascii',
+            'email'=>'required|email|unique:users',
+        ]);
+        User::where('id', $id)->update([
+            'name' => $r->name,
+            'email' => $r->email,
+        ]);
+    }
+
     public function login(){
         Auth::logout();
         return view('auth.login');
