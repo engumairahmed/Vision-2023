@@ -7,8 +7,8 @@
     <title>MedCustodian</title>
 </head>
 <body>
-    <h1>{{$verificationMail}}</h1>
-    <a href="{{ $verificationMail }}">Verify Email Address</a>
-    <a href="{{ route('verify.email', ['token' => $user->email_verification_token]) }}">Verify Email</a>
+    <h1>Welcom to MedCustodian</h1>
+    <h3>This is an auto generated response email for account verification</h3>
+    <a href="{{ $verificationMail }}">Follow this link for email verification</a>
 </body>
 </html>

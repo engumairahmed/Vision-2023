@@ -37,7 +37,7 @@ class AuthController extends Controller
                                     ->numbers()],
             'confirmpass' => 'same:password',
         ]);
-        
+
         $user=User::create([
             'name'=>$obj->firstName." ".$obj->lastName,
             'email'=>$obj->email,
@@ -47,18 +47,33 @@ class AuthController extends Controller
         Patient::create([
             'pat_user_id'=>$user->id,
         ]);
-        return back()->with(['msg'=>'User Registered']);
-
-        $verificationMail= route('emails.verification', [
+        
+        $verificationMail= route('verify.email', [
             'id' => $user->getKey(),
             'hash' => sha1($user->getEmailForVerification()),
         ]);
-
+        
         Mail::to($user->email)->send(new VerificationMail($verificationMail));
+
+        return back()->with(['msg'=>'User Registered, Please check your email for account verification ']);
     }
 
-    public function verifyEmail(){
+    public function notice(){
+        return view('emails.notice');
+    }
 
+    public function verifyEmail(Request $request)
+    {
+        $id = $request->query('id');
+        $hash = $request->query('hash');
+        // dd($hash);
+
+        $user = User::find($id);
+
+    if ($user && sha1($user->getEmailForVerification()) === $hash) {
+        $user->markEmailAsVerified();
+        return view('auth.login');
+    }
     }
 
     public function updateInfo(Request $r){

@@ -53,26 +53,6 @@ class PatientController extends Controller
         $user_id = auth()->user()->id;
 
         $count = Prescription::where('presc_user_id', $user_id)->count();
-
-        $result1 = DB::table('prescriptions as p')
-        ->join('users as u_patient', 'p.presc_user_id', '=', 'u_patient.id')
-        ->join('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
-        ->join('users as u_doctor', 'd.doc_user_id', '=', 'u_doctor.id')
-        ->select(
-            'u_patient.name as patient_name',
-            'u_doctor.name as doc_name',
-            'p.presc_id',
-            'p.plan_name',
-            'p.start_date',
-            'p.end_date',
-            'p.doctor_name',
-            'p.presc_doctor_id',
-            'd.doc_user_id',
-            'd.doc_contact',
-            'd.specialization'
-        )
-        ->where('p.presc_user_id', $user_id)
-        ->get();  
         
         $result= Prescription::select(
             'u_patient.name as patient_name',
@@ -96,55 +76,6 @@ class PatientController extends Controller
         })->orWhere('prescriptions.presc_user_id', $user_id)
         ->get();
     
-        
-        // $result = DB::table('prescriptions as p')
-        //     ->join('users as u_patient', 'p.presc_user_id', '=', 'u_patient.id')
-        //     ->leftJoin('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
-        //     ->leftJoin('users as u_doctor', 'd.doc_user_id', '=', 'u_doctor.id')
-        //     ->select(
-        //         'u_patient.name as patient_name',
-        //         'u_doctor.name as doc_name',
-        //         'p.presc_id',
-        //         'p.plan_name',
-        //         'p.start_date',
-        //         'p.end_date',
-        //         'p.doctor_name',
-        //         'p.presc_doctor_id',
-        //         'd.doc_user_id',
-        //         'd.doc_contact',
-        //         'd.specialization'
-        //     )
-        //     ->where(function($query) use ($user_id) {
-        //         $query->where('p.presc_user_id', $user_id)
-        //             ->orWhereNull('p.presc_doctor_id');
-        //     })
-        //     ->get();
-
-
-        // $result = DB::table('prescriptions as p')
-        // ->join('users as u_patient', 'p.presc_user_id', '=', 'u_patient.id')
-        // ->leftJoin('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
-        // ->leftJoin('users as u_doctor', 'd.doc_user_id', '=', 'u_doctor.id')
-        // ->select(
-        //     'u_patient.name as patient_name',
-        //     'u_doctor.name as doc_name',
-        //     'p.presc_id',
-        //     'p.plan_name',
-        //     'p.start_date',
-        //     'p.end_date',
-        //     'p.doctor_name',
-        //     'p.presc_doctor_id',
-        //     'd.doc_user_id',
-        //     'd.doc_contact',
-        //     'd.specialization'
-        // )
-        // ->where(function($query) use ($user_id) {
-        //     $query->where('p.presc_user_id', $user_id)
-        //         ->orWhereNull('p.presc_doctor_id');
-        // })
-        // ->get();
-
-            // dd($result2);
         return view('patient.history',compact('count','result'));
     }
 

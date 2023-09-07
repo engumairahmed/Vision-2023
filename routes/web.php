@@ -41,6 +41,8 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::post('/forgot-password','forgotPass');
     Route::post('profile','updateInfo');
     Route::get('/verify/email', 'verifyEmail')->name('verify.email');
+    Route::get('/emails/verify','notice')->name('verification.notice');
+    Route::get('/email','email')->name('emails.verification');
 });
 
 Route::middleware(['auth','patient','verified'])->group(function(){
