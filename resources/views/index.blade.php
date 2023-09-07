@@ -63,9 +63,24 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
+      @if (auth()->check()) 
 
-      <a href="{{ROUTE('login')}}" class="get-started-btn scrollto">Get Started</a>
+      <!-- dropdown -->
 
+      <div class="dropdown">
+        <a class="get-started-btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person"></i> {{ auth()->user()->name }}
+        </a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="{{route('admin.dashboard')}}">Dashboard</a></li>
+          <li><a class="dropdown-item" href="{{ROUTE('logout')}}">Logout</a></li>
+        </ul>
+      </div>      
+       
+        <!-- end dropdown -->
+      @else
+        <a href="{{ROUTE('login')}}" class="get-started-btn scrollto">Get Started</a>
+      @endif
     </div>
   </header><!-- End Header -->
 
@@ -116,66 +131,18 @@ Join our growing community of empowered individuals who are taking control of th
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Clients Section ======= -->
-    <section id="clients" class="clients">
-      <div class="container" data-aos="zoom-in">
-
-        <div class="clients-slider swiper">
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="images/index/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="images/index/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="images/index/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="images/index/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="images/index/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="images/index/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="images/index/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="images/index/clients/client-8.png" class="img-fluid" alt=""></div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Clients Section -->
+ 
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
-      <!-- <div class="container" data-aos="fade-up">
-
-        <div class="row">
-          <div class="image col-lg-6" style='background-image: url("images/index/features.jpg");' data-aos="fade-right"></div>
-          <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
-            <div class="icon-box mt-5 mt-lg-0" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-receipt"></i>
-              <h4>Est labore ad</h4>
-              <p>Consequuntur sunt aut quasi enim aliquam quae harum pariatur laboris nisi ut aliquip</p>
-            </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-cube-alt"></i>
-              <h4>Harum esse qui</h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt</p>
-            </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-images"></i>
-              <h4>Aut occaecati</h4>
-              <p>Aut suscipit aut cum nemo deleniti aut omnis. Doloribus ut maiores omnis facere</p>
-            </div>
-            <div class="icon-box mt-5" data-aos="zoom-in" data-aos-delay="150">
-              <i class="bx bx-shield"></i>
-              <h4>Beatae veritatis</h4>
-              <p>Expedita veritatis consequuntur nihil tempore laudantium vitae denat pacta</p>
-            </div>
-          </div>
-        </div>
-
-      </div> -->
 
       <div class="container" data-aos="fade-up">
 
 <div class="row">
 <div class="section-title">
  
-  <h3>Objectives</h3>
-  <p><i>Objectives Of Patient History Management System </i></p>
+  <h3>Endeavors:</h3>
+  <p><i>Striving to achieve excellence, the Patient History Management System aims to meet the following key objectives:</i></p>
 </div>
   <div class="image col-lg-6" style='background-image: url("images/index/med history.jpg");' data-aos="fade-right"></div>
   <div class="col-lg-6" data-aos="fade-left" data-aos-delay="100">
@@ -230,7 +197,7 @@ Join our growing community of empowered individuals who are taking control of th
     <div class="icon-box">
       <div class="icon"> <img src="images/index/doctors/prescp.jpg" class="img-fluid" alt=""></div>
       <h4><a href="">Medical Test</a></h4>
-      <p>Physicians can prescribe tests to their patients and the report is uploaded by the doctor or patient by himself.</p>
+      <p>Physicians have the capability to prescribe tests to their patients, and the resulting reports can be uploaded either by the doctor or the patient themselves.</p>
     </div>
   </div>
 
@@ -254,7 +221,7 @@ Join our growing community of empowered individuals who are taking control of th
     <div class="icon-box">
       <div class="icon"><img src="images/index/doctors/wapp.png" class="img-fluid" alt=""></div>
       <h4><a href="">Send Prescription Plans</a></h4>
-      <p>We also send doctor's created Prescription Plan  to patients via email or WhatsApp  </p>
+      <p>This system enables the seamless distribution of a doctor's prescription to patients through WhatsApp or email.</p>
     </div>
   </div>
 
@@ -738,7 +705,8 @@ Join our growing community of empowered individuals who are taking control of th
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form method="post" class="php-email-form">
+              @csrf
               <div class="row">
                 <div class="col-md-6 form-group">
                   <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -834,13 +802,13 @@ Join our growing community of empowered individuals who are taking control of th
       <div class="copyright">
         &copy; Copyright <strong><span>Med Custodian</span></strong>. All Rights Reserved
       </div>
-      <div class="credits">
+      {{-- <div class="credits"> --}}
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/gp-free-multipurpose-html-bootstrap-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-      </div>
+        {{-- Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> --}}
+      {{-- </div> --}}
     </div>
   </footer><!-- End Footer -->
 

@@ -41,10 +41,24 @@ class AuthController extends Controller
             'password'=>Hash::make($obj->password),
         ]);
 
-        patient::create([
-            'user_id'=>$user->id,
+        Patient::create([
+            'pat_user_id'=>$user->id,
         ]);
         return back()->with(['msg'=>'User Registered']);
+    }
+
+    public function updateInfo(Request $r){
+
+        $id=auth()->user()->id;
+
+        $r->validate([
+            'name'=>'required|min:3|alpha:ascii',
+            'email'=>'required|email|unique:users',
+        ]);
+        User::where('id', $id)->update([
+            'name' => $r->name,
+            'email' => $r->email,
+        ]);
     }
 
     public function login(){

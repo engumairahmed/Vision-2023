@@ -15,4 +15,10 @@ class LabTest extends Model
         'test_name',
         'test_description'  
     ];
+
+    public function prescriptions(){
+        
+        return $this->belongsToMany(Prescription::class, 'prescription_lab_tests', 'pl_lab_test_id', 'pl_prescription_id');
+    }
+
 }

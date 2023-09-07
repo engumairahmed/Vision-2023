@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
@@ -21,7 +23,12 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-// Route::get('/login')
+Auth::routes([
+    'verify'=>true
+]);
+
+Route::post('/',[Controller::class,'message']);
+
 
 
 Route::controller(AuthController::class)->middleware(['web'])->group(function(){
@@ -32,6 +39,7 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::post('/register','register');
     Route::get('/forgot-password','forgot')->name('forgot');
     Route::post('/forgot-password','forgotPass');
+    Route::post('profile','updateInfo');
 });
 
 Route::middleware(['auth','patient'])->group(function(){
@@ -45,7 +53,11 @@ Route::middleware(['auth','patient'])->group(function(){
         Route::post('/prescriptions','newPlan');
 
         Route::get('profile','profile')->name('patient.profile');
+        
+
         Route::get('security','security')->name('patient.security');
+
+        Route::get('/history','history')->name('history');
        
         Route::prefix('patient/')->group(function(){
 
@@ -58,7 +70,12 @@ Route::middleware(['auth','patient'])->group(function(){
             
         });
 
+        Route::get('/medicines','medication')->name('user.medicines');
+
         Route::get('/plan/{id}','planInfo')->name('user.plan');
+
+        Route::get('/upload-reports','reports')->name('user.add-reports');
+        Route::post('/upload-reports','addReport');
 
 
 

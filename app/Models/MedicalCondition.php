@@ -15,5 +15,11 @@ class MedicalCondition extends Model
         'condition_name',
         'condition_description'  
     ];
+
+    public function prescriptions()
+    {
+        return $this->belongsToMany(Prescription::class, 'prescription_medical_conditions', 'pmc_medical_condition_id', 'pmc_prescription_id');
+    }
+    
 }
 

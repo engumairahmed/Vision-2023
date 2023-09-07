@@ -5,12 +5,13 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\doctor;
 use App\Models\patient;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -49,12 +50,13 @@ class User extends Authenticatable
 
     public function patient(){
 
-        return $this->hasOne(patient::class, 'pat_user_id', 'id');
+        return $this->hasOne(Patient::class, 'pat_user_id', 'id');
 
     }
     public function doctor(){
 
-        return $this->hasOne(doctor::class, 'doc_user_id', 'id');
+        return $this->hasOne(Doctor::class, 'doc_user_id', 'id');
 
     }
+    
 }

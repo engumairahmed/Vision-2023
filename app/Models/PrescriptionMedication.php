@@ -17,4 +17,8 @@ class PrescriptionMedication extends Model
         'pm_frequency',
         'pm_instructions'
     ];
+
+    public function medication(){
+        return $this->belongsTo(Medication::class, 'pm_medication_id', 'medic_id');
+    }
 }

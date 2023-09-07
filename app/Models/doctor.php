@@ -24,14 +24,22 @@ class Doctor extends Model
         'doc_address',
         'doc_DOB'
     ];
+
     public function user(){
 
         return $this->belongsTo(User::class, 'doc_user_id', 'id');
 
     }
+    
     public function prescription(){
 
         return $this->belongsTo(Prescription::class, 'doc_user_id', 'id');
+
+    }
+
+    public function prescriptions(){
+
+        return $this->hasMany(Prescription::class, 'presc_doctor_id', 'doctor_id');
 
     }
 }
