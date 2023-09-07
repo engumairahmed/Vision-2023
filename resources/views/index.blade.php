@@ -244,7 +244,7 @@ Join our growing community of empowered individuals who are taking control of th
 
   <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
     <div class="icon-box">
-      <div class="icon"><img src="images/index/doctors/health care.jpg" class="img-fluid" alt=""></div>
+      <div class="icon"><img src="images/index/doctors/hcare.png" class="img-fluid" alt=""></div>
       <h4><a href="">Used By Different Healthcare Facilities </a></h4>
       <p>Our Website can be used in Different healthcare facilities such as clinics, hospitals etc.  </p>
     </div>
