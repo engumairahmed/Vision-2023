@@ -28,9 +28,9 @@
       </div>
     @endif
     <!-- Main page content-->
-    <div class="container-xl px-4 mt-4">        
+    <div class="container-xl px-8 mt-4">        
         <div class="row">
-            <div class="col-xl-8">
+            <div class="col-xl-10">
                 <!-- Plan details card-->
                 <div class="card mb-4">
                     <div class="card-header">Medication Details</div>
@@ -64,7 +64,7 @@
                                 <!-- Form Group (last name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
-                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="doctor_id">
+                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="doctor_id" onchange="toggleInputField()">
                                         <option value="">Select Doctor Name</option>
                                         @foreach ($doctors as $item)
                                         <option value="{{$item->doctor_id}}">{{$item->name}}</option>
@@ -136,7 +136,30 @@
     </div>
 </main>
 
-<script> $(document).ready(function() {
+@push('script')
+<script>
+   
+</script>
+@endpush
+
+<script> 
+
+function toggleInputField() {
+        var inputDoctorName = document.getElementById('inputDoctorName');
+        var selectDoctorName = document.getElementById('selectDoctorName');
+
+        if (selectDoctorName.value) {
+            inputDoctorName.disabled = true;
+            inputDoctorName.value = null;
+        } else {
+            inputDoctorName.disabled = false;
+        }
+    }
+
+$(document).ready(function() {
+
+    // $('#selectDoctorName').prop('selectedIndex', -1);
+
     function initializeSelect2(element) {
         $(element).select2({
             placeholder: 'Search for options'

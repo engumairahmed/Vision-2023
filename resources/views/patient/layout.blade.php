@@ -85,6 +85,14 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
+             <!-- Nav Item - Charts -->
+             <li class="nav-item">
+                <a class="nav-link" href="{{route('user.medicines')}}">
+                    <i class="fas fa-fw fa-pills"></i>
+                    <span>Medicines</span></a>
+            </li>
+
+
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>

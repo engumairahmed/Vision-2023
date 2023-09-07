@@ -64,7 +64,7 @@
       <button class="nav-link" id="tests-tab" data-toggle="tab" data-target="#tests" type="button" role="tab" aria-controls="tests" aria-selected="false">Medical Tests</button>
     </li>
     <li class="nav-item m-2" role="presentation">
-        <button class="nav-link" id="reports-tab" data-toggle="tab" data-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="false">Medical Tests</button>
+        <button class="nav-link" id="reports-tab" data-toggle="tab" data-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="false">Medical Reports</button>
       </li>
   </ul>
   
@@ -86,9 +86,22 @@
         @endforeach
     </div>
     <div class="tab-pane mt-3" id="reports" role="tabpanel" aria-labelledby="reports-tab">
-        @foreach ($labTests as $item)
-            <p>Medical Reports : {{$item->test_name}}</p>
+        {{-- {{dd($medicalReports)}} --}}
+        @foreach ($medicalReports as $item)
+            @if (isset($item->mr_name))
+            <p>Medical Reports: {{ $item->mr_name }}</p>
+            @else
+            <p>No reports found</p>
+            @endif
         @endforeach
+        <div class="m-4">
+            <a href="{{route('user.add-reports')}}" class="btn btn-info btn-icon-split">
+                <span class="icon text-white-50">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="text">Upload Reports</span>
+            </a>
+        </div>
     </div>
   </div>
 

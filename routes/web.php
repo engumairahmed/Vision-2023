@@ -1,11 +1,12 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\PatientController;
-use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ use App\Http\Controllers\Controller;
 Route::get('/', function () {
     return view('index');
 })->name('index');
+
+Auth::routes([
+    'verify'=>true
+]);
 
 Route::post('/',[Controller::class,'message']);
 
@@ -65,7 +70,12 @@ Route::middleware(['auth','patient'])->group(function(){
             
         });
 
+        Route::get('/medicines','medication')->name('user.medicines');
+
         Route::get('/plan/{id}','planInfo')->name('user.plan');
+
+        Route::get('/upload-reports','reports')->name('user.add-reports');
+        Route::post('/upload-reports','addReport');
 
 
 

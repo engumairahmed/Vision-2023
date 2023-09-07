@@ -21,6 +21,7 @@
                             <tr>
                                 <th>Plan</th>
                                 <th>Consultant</th>
+                                <th>Consultant</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>
@@ -30,18 +31,20 @@
                             <tr>
                                 <th>Plan</th>
                                 <th>Consultant</th>
+                                <th>Consultant</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- {{dd($doctor)}} --}}
+                            {{-- {{dd($result)}} --}}
                             @foreach ($result as $item)
                                 
                             <tr>
                                 <td>{{$item->plan_name}}</td>
                                 <td>{{$item->doc_name}}</td>
+                                <td>{{$item->doctor_name}}</td>
                                 <td>{{$item->start_date}}</td>
                                 <td>{{$item->end_date}}</td>
                                 <td><a href="{{ route('user.plan', ['id' => $item->presc_id]) }}" class="btn btn-circle btn-sm btn-info"><i class="fas fa-info-circle"></i></a></td>

@@ -9,9 +9,11 @@ use App\Models\Patient;
 use App\Models\Medication;
 use App\Models\Prescription;
 use Illuminate\Http\Request;
+use App\Models\MedicalReports;
 use App\Models\MedicalCondition;
 use Illuminate\Support\Facades\DB;
 use App\Models\PrescriptionLabTest;
+use Illuminate\Support\Facades\Auth;
 use App\Models\PrescriptionMedication;
 use App\Models\PrescriptionMedicalCondition;
 
@@ -52,7 +54,7 @@ class PatientController extends Controller
 
         $count = Prescription::where('presc_user_id', $user_id)->count();
 
-        $result = DB::table('prescriptions as p')
+        $result1 = DB::table('prescriptions as p')
         ->join('users as u_patient', 'p.presc_user_id', '=', 'u_patient.id')
         ->join('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
         ->join('users as u_doctor', 'd.doc_user_id', '=', 'u_doctor.id')
@@ -69,9 +71,80 @@ class PatientController extends Controller
             'd.doc_contact',
             'd.specialization'
         )
-        ->where('p.presc_user_id', 2)
-        ->get();       
+        ->where('p.presc_user_id', $user_id)
+        ->get();  
+        
+        $result= Prescription::select(
+            'u_patient.name as patient_name',
+            'u_doctor.name as doc_name',
+            'prescriptions.presc_id as presc_id',
+            'prescriptions.plan_name',
+            'prescriptions.start_date',
+            'prescriptions.end_date',
+            'prescriptions.doctor_name',
+            'prescriptions.presc_doctor_id',
+            'doctors.doc_user_id',
+            'doctors.doc_contact',
+            'doctors.specialization'
+        )
+        ->join('users as u_patient', 'prescriptions.presc_user_id', '=', 'u_patient.id')
+        ->leftJoin('doctors', 'prescriptions.presc_doctor_id', '=', 'doctors.doctor_id')
+        ->leftJoin('users as u_doctor', 'doctors.doc_user_id', '=', 'u_doctor.id')
+        ->where(function($query) use ($user_id) {
+            $query->where('prescriptions.presc_user_id', $user_id)
+                  ->whereNull('prescriptions.presc_doctor_id');
+        })->orWhere('prescriptions.presc_user_id', $user_id)
+        ->get();
+    
+        
+        // $result = DB::table('prescriptions as p')
+        //     ->join('users as u_patient', 'p.presc_user_id', '=', 'u_patient.id')
+        //     ->leftJoin('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
+        //     ->leftJoin('users as u_doctor', 'd.doc_user_id', '=', 'u_doctor.id')
+        //     ->select(
+        //         'u_patient.name as patient_name',
+        //         'u_doctor.name as doc_name',
+        //         'p.presc_id',
+        //         'p.plan_name',
+        //         'p.start_date',
+        //         'p.end_date',
+        //         'p.doctor_name',
+        //         'p.presc_doctor_id',
+        //         'd.doc_user_id',
+        //         'd.doc_contact',
+        //         'd.specialization'
+        //     )
+        //     ->where(function($query) use ($user_id) {
+        //         $query->where('p.presc_user_id', $user_id)
+        //             ->orWhereNull('p.presc_doctor_id');
+        //     })
+        //     ->get();
 
+
+        // $result = DB::table('prescriptions as p')
+        // ->join('users as u_patient', 'p.presc_user_id', '=', 'u_patient.id')
+        // ->leftJoin('doctors as d', 'p.presc_doctor_id', '=', 'd.doctor_id')
+        // ->leftJoin('users as u_doctor', 'd.doc_user_id', '=', 'u_doctor.id')
+        // ->select(
+        //     'u_patient.name as patient_name',
+        //     'u_doctor.name as doc_name',
+        //     'p.presc_id',
+        //     'p.plan_name',
+        //     'p.start_date',
+        //     'p.end_date',
+        //     'p.doctor_name',
+        //     'p.presc_doctor_id',
+        //     'd.doc_user_id',
+        //     'd.doc_contact',
+        //     'd.specialization'
+        // )
+        // ->where(function($query) use ($user_id) {
+        //     $query->where('p.presc_user_id', $user_id)
+        //         ->orWhereNull('p.presc_doctor_id');
+        // })
+        // ->get();
+
+            // dd($result2);
         return view('patient.history',compact('count','result'));
     }
 
@@ -93,16 +166,21 @@ class PatientController extends Controller
 
     public function planInfo($id)
     {
+        $user = Auth::user();
         $plan=Prescription::find($id);        
             
         $prescription = Prescription::with(['medications', 'medicalConditions', 'labTests', 'doctor'])
         ->find($id);
+
+        $medicalReports = MedicalReports::where('mr_prescription_id', $id)
+        ->where('mr_created_by', $user->id)
+        ->get();
         
         $medications = $prescription->medications;
         $medicalConditions = $prescription->medicalConditions;
         $labTests = $prescription->labTests;
 
-        return view('patient.plan',compact('prescription','medications','medicalConditions','labTests'));
+        return view('patient.plan',compact('prescription','medications','medicalConditions','labTests','medicalReports'));
     }
 
     public function newPlan(Request $r)
@@ -160,5 +238,36 @@ class PatientController extends Controller
         }
         // dd($user);
         return view('patient.profile',compact('user'));
+    }
+    public function medication(){
+        $medicines = Medication::all();
+        $medicineCount = Medication::count();
+        return view('patient.medicine', compact('medicines','medicineCount'));
+    }
+
+    public function reports(){
+
+        $userId = auth()->user()->id;
+
+        $prescription=Prescription::where('presc_user_id', $userId)->get();
+
+        return view('patient.add-report',compact('prescription'));
+    }
+    public function addReport(Request $r){
+        $userId = auth()->user()->id;
+        // dd($userId);
+        $originalFileName = $r->file('report')->getClientOriginalName();
+        $file_name=time().$originalFileName.'.'.$r->report->extension();
+        $path='files/'.$file_name;
+        $r->report->move(public_path('files/'),$file_name);
+
+        $report=MedicalReports::create([
+            'mr_prescription_id' => $r->prescription,
+            'mr_report' => $path,
+            'mr_name'=>$originalFileName,
+            'mr_created_by'=>$userId,
+        ]);
+
+        return redirect()->back()->with('msg','Report uploaded successfully');
     }
 }

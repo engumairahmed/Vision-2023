@@ -41,8 +41,8 @@ class AuthController extends Controller
             'password'=>Hash::make($obj->password),
         ]);
 
-        patient::create([
-            'user_id'=>$user->id,
+        Patient::create([
+            'pat_user_id'=>$user->id,
         ]);
         return back()->with(['msg'=>'User Registered']);
     }
