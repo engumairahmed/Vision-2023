@@ -23,9 +23,9 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-Auth::routes([
-    'verify'=>true
-]);
+// Auth::routes([
+//     'verify'=>true
+// ]);
 
 Route::post('/',[Controller::class,'message']);
 
@@ -40,9 +40,10 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::get('/forgot-password','forgot')->name('forgot');
     Route::post('/forgot-password','forgotPass');
     Route::post('profile','updateInfo');
+    Route::get('/verify/email', 'verifyEmail')->name('verify.email');
 });
 
-Route::middleware(['auth','patient'])->group(function(){
+Route::middleware(['auth','patient','verified'])->group(function(){
 
     Route::controller(PatientController::class)->group(function(){
 
@@ -81,7 +82,7 @@ Route::middleware(['auth','patient'])->group(function(){
 
     });
 });
-Route::middleware(['auth','doctor'])->group(function(){
+Route::middleware(['auth','doctor','verified'])->group(function(){
 
     Route::controller(DoctorController::class)->group(function(){
 
@@ -99,7 +100,7 @@ Route::middleware(['auth','doctor'])->group(function(){
     });
 });
 
-Route::middleware(['auth','admin'])->group(function(){
+Route::middleware(['auth','admin','verified'])->group(function(){
 
     Route::controller(AdminController::class)->group(function(){
 

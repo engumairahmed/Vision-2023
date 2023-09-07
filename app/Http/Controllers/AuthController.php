@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
 use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
+use App\Mail\VerificationMail;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -45,6 +48,17 @@ class AuthController extends Controller
             'pat_user_id'=>$user->id,
         ]);
         return back()->with(['msg'=>'User Registered']);
+
+        $verificationMail= route('emails.verification', [
+            'id' => $user->getKey(),
+            'hash' => sha1($user->getEmailForVerification()),
+        ]);
+
+        Mail::to($user->email)->send(new VerificationMail($verificationMail));
+    }
+
+    public function verifyEmail(){
+
     }
 
     public function updateInfo(Request $r){
