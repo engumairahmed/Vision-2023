@@ -29,7 +29,13 @@ Route::get('/', function () {
 
 Route::post('/',[Controller::class,'message']);
 
-
+// Google URL
+Route::controller(GoogleController::class)->group(function(){
+    Route::prefix('google')->name('google.')->group( function(){
+        Route::get('login','loginWithGoogle')->name('login');
+        Route::any('callback','callbackFromGoogle')->name('callback');
+    });
+});
 
 Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::get('/logout','logout')->name('logout');
@@ -40,8 +46,8 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::get('/forgot-password','forgot')->name('forgot');
     Route::post('/forgot-password','forgotPass');
     Route::post('profile','updateInfo');
-    Route::get('/verify/email', 'verifyEmail')->name('verify.email');
-    Route::get('/emails/verify','notice')->name('verification.notice');
+    Route::get('/email/verify', 'verifyEmail')->name('verify.email');
+    Route::get('/email/notice','notice')->name('verification.notice');
     Route::get('/email','email')->name('emails.verification');
 });
 

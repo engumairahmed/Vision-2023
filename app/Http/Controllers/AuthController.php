@@ -72,7 +72,9 @@ class AuthController extends Controller
 
     if ($user && sha1($user->getEmailForVerification()) === $hash) {
         $user->markEmailAsVerified();
-        return view('auth.login');
+        return redirect()->intended('login');
+    } else {
+        return view('emails.notice');
     }
     }
 

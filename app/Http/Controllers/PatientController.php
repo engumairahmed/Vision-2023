@@ -130,15 +130,15 @@ class PatientController extends Controller
         $medicalConditions=$r->input('medicalCondition',[]);
         foreach($medicalConditions as $item){
             $MedicalCondition=PrescriptionMedicalCondition::create([
-            'pmc_prescription_id'=>$prescId,
-            'pmc_medical_condition_id'=>$item,   
+                'pmc_prescription_id'=>$prescId,
+                'pmc_medical_condition_id'=>$item,   
             ]);
         }
         $tests=$r->input('test',[]);
         foreach($tests as $item){
             PrescriptionLabTest::create([
-            'pl_prescription_id'=>$prescId,
-            'pl_lab_test_id'=>$item,   
+                'pl_prescription_id'=>$prescId,
+                'pl_lab_test_id'=>$item,   
             ]);
         }
 
@@ -146,13 +146,18 @@ class PatientController extends Controller
         $frequency=$r->input('frequency',[]);
         $instruction=$r->input('instruction',[]);
         $meds=array_combine($medicines,$frequency);
-        foreach($medicines as $key => $medicine){
-            PrescriptionMedication::create([
-            'pm_prescription_id'=>$prescId,
-            'pm_medication_id'=>$medicine,
-            'pm_frequency' => $frequency[$key],
-            'pm_instructions' => $instruction[$key],   
-            ]);
+        dd($meds);
+        if(isset($medicines)){
+            foreach($medicines as $key => $medicine){
+                PrescriptionMedication::create([
+                'pm_prescription_id'=>$prescId,
+                'pm_medication_id'=>$medicine,
+                'pm_frequency' => $frequency[$key],
+                'pm_instructions' => $instruction[$key],   
+                ]);
+            }
+        return redirect()->back()->with('msg','Prescription Plan Created without medication details');
+
         }
         return redirect()->back()->with('msg','Prescription Plan Created');
     }

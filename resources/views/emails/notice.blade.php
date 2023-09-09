@@ -28,7 +28,7 @@
                                     <a class="small" href="{{route('register')}}">Register</a>
                                 </div>
                                 <div class="text-center">
-                                    <a class="small" href="{{route('login')}}">Login!</a>
+                                    <a class="small" href="{{route('login')}}">Goto Login!</a>
                                 </div>
                             </div>
                         </div>
