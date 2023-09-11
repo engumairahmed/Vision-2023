@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Patient;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\VerificationMail;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -78,18 +79,70 @@ class AuthController extends Controller
     }
     }
 
+//     public function updateInfo(Request $r){
+// // dd(Auth()->user());
+//         $id=auth()->user()->id;
+
+//         $r->validate([
+//             'name'=>'required|min:3|alpha:ascii',
+//             'email'=>'required|email|unique:users',
+//         ]);
+//         User::where('id', $id)->update([
+//             'name' => $r->name,
+//             'email' => $r->email,
+//         ]);
+//         Patient::where('pat_user_id',$id)->update([
+//             'father_name'=>$r->fatherName,
+//             'pat_gender'=>$r->gender,
+//             'pat_contact'=>$r->contact,
+//             'pat_address'=>$r->address,
+//             'pat_DOB'=>$r->dob,
+//             'blood_group'=>$r->bloodGroup
+//         ]);
+    // }
+
     public function updateInfo(Request $r){
-
-        $id=auth()->user()->id;
-
+        $id = auth()->user()->id;
+    
         $r->validate([
-            'name'=>'required|min:3|alpha:ascii',
-            'email'=>'required|email|unique:users',
+            'name'=>'required|min:3',
+            'email'=>'required|email|unique:users,email,'.$id,
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:5120',
+            // Add other validation rules here
         ]);
-        User::where('id', $id)->update([
-            'name' => $r->name,
-            'email' => $r->email,
-        ]);
+    
+        DB::beginTransaction();
+    
+        try {
+            
+            if ($r->hasFile('image')) {
+                $image = $r->file('image');
+                $imageName = time().'.'.$image->getClientOriginalExtension();
+                $path = public_path('files/images');
+                $image->move($path, $imageName);
+            }
+
+            User::where('id', $id)->update([
+                'name' => $r->name,
+                'email' => $r->email,
+                'profile_pic'=>'files/images/'.$imageName,
+            ]);
+            Patient::where('pat_user_id', $id)->update([
+                'father_name'=>$r->fatherName,
+                'pat_gender'=>$r->gender,
+                'pat_contact'=>$r->contact,
+                'pat_address'=>$r->address,
+                'pat_DOB'=>$r->dob,
+                'blood_group'=>$r->bloodGroup
+            ]);
+    
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(['error' => 'An error occurred while updating the information.']);
+        }
+    
+        return redirect()->back()->with('msg', 'Information updated successfully.');
     }
 
     public function login(){

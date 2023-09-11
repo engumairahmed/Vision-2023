@@ -25,6 +25,27 @@
             <a class="nav-link" href="{{route('patient.security')}}">Security</a>
         </nav>
         <hr class="mt-0 mb-4">
+        @if (Session::has('msg'))
+            <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+                {{Session::get('msg')}} 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        @if ($errors->any())
+            <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>         
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        @endif
+        <form method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
@@ -32,11 +53,17 @@
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">
+                        <img class="img-account-profile rounded-circle mb-2" src="{{asset('images/undraw_profile.svg')}}" alt="">
                         <!-- Profile picture help block-->
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button-->
-                        <button class="btn btn-primary" type="button">Upload new image</button>
+                        <div class="custom-file">
+                            <input type="file" id="fileInput" style="display: none;" accept=".jpg,.jpeg,.png">
+                            <button type="button" id="customButton" class="btn btn-primary">Upload File</button>
+                            <span id="fileName"></span>
+                        </div>
+                        {{-- <input type="file" class="btn btn-primary form-control" name="" id=""> --}}
+                        {{-- <button class="btn btn-primary" type="button">Upload new image</button> --}}
                     </div>
                 </div>
             </div>
@@ -45,8 +72,9 @@
                 <div class="card mb-4">
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
-                        <form method="post">
+                        
                             <!-- Form Group (Full Name)-->
+                            @csrf
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputName">Full Name (how your name will appear to Doctor or Admin on the site)</label>
                                 <input class="form-control" id="inputName" type="text" name="name" placeholder="Enter your username" value="{{ auth()->user()->name }}">
@@ -64,7 +92,7 @@
                                 @endphp
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputHusbandName">Husband's Name</label>                                    
-                                    <input class="form-control" id="inputHusbandName" type="text" name="HusbandName" placeholder="Enter your Husband's Name" value="{{ auth()->user()->husband_name }}" @php                                     
+                                    <input class="form-control" id="inputHusbandName" type="text" name="husbandName" placeholder="Enter your Husband's Name" value="{{ auth()->user()->husband_name }}" @php                                     
                                     if ($gender == 'Male') echo 'disabled';
                             @endphp>
                                 </div>
@@ -94,7 +122,9 @@
                                     <label class="small mb-1" for="inputGender">Gender</label>
 
                                     <select class="form-control" name="gender" id="">
-                                        
+                                        <option value="0"@php                                     
+                                            if ($gender == 'NULL') echo 'selected';
+                                        @endphp>Select an option</option>
                                         <option value="Male"@php                                     
                                             if ($gender == 'Male') echo 'selected';
                                         @endphp>Male</option>
@@ -116,10 +146,10 @@
                             <!-- Form Group (address)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputAddress">Address</label>
-                                <input class="form-control" id="inputAddress" name="address" type="text" placeholder="Enter your address" value="{{ auth()->user()->pat_address }}">
+                                <input class="form-control" id="inputAddress" name="address" type="text" placeholder="Enter your address" value="{{ $user->pat_address }}">
                             </div>
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Save changes</button>
+                            <button class="btn btn-primary" type="submit">Save changes</button>
                         </form>
                     </div>
                 </div>
@@ -127,5 +157,18 @@
         </div>
     </div>
 </main>
+
+@push('script')
+    <script>
+        document.getElementById('customButton').addEventListener('click', function() {
+    document.getElementById('fileInput').click();
+});
+
+document.getElementById('fileInput').addEventListener('change', function() {
+    var fileName = this.value.split("\\").pop();
+    document.getElementById('fileName').textContent = fileName;
+});
+    </script>
+@endpush
 
 @endsection

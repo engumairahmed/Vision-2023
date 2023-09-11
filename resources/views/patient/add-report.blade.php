@@ -28,6 +28,18 @@
         </button>
       </div>
     @endif
+    @if ($errors->any())
+        <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>         
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <!-- Main page content-->
     <div class="container-xl px-4 mt-4">        
         <div class="row">
@@ -53,7 +65,7 @@
                                 <!-- Form Group (Medicine Description)-->
                                 <div class="mb-3">
                                     <label class="small mb-1" for="file">Add Files</label>
-                                    <input class="form-control" type="file" name="report" id="file" accept=".pdf,.doc,.docx" multiple>
+                                    <input class="form-control" type="file" name="report" id="file" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple>
                                 </div>                           
                             <!-- Save changes button-->
                             

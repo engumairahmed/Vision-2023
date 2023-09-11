@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PatientController;
 
 /*
@@ -31,9 +32,9 @@ Route::post('/',[Controller::class,'message']);
 
 // Google URL
 Route::controller(GoogleController::class)->group(function(){
-    Route::prefix('google')->name('google.')->group( function(){
-        Route::get('login','loginWithGoogle')->name('login');
-        Route::any('callback','callbackFromGoogle')->name('callback');
+    Route::prefix('/google')->group( function(){
+        Route::get('/login','loginWithGoogle')->name('google-login');
+        Route::any('/callback','callbackFromGoogle')->name('callback');
     });
 });
 

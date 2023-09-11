@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -25,16 +26,21 @@ class GoogleController extends Controller
             if(!$is_user){
 
                 $saveUser = User::updateOrCreate([
-                    'google_id' => $user->getId(),
+                    'gauth_id' => $user->getId(),
                 ],[
                     'name' => $user->getName(),
                     'email' => $user->getEmail(),
                     'gauth_type'=> 'google',
-                    'password' => Hash::make($user->getName().'@'.$user->getId())
+                    'password' => Hash::make($user->getName().'@'.$user->getId()),
+                    'email_verified_at'=>now(),
+
+                ]);
+                Patient::create([
+                    'pat_user_id'=>$user->id,
                 ]);
             }else{
                 $saveUser = User::where('email',  $user->getEmail())->update([
-                    'google_id' => $user->getId(),
+                    'gauth_id' => $user->getId(),
                 ]);
                 $saveUser = User::where('email', $user->getEmail())->first();
             }

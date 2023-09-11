@@ -192,6 +192,10 @@ class PatientController extends Controller
     public function addReport(Request $r){
         $userId = auth()->user()->id;
         // dd($userId);
+        $r->validate([
+            'report'=>'image|mimes:jpeg,png,jpg,pdf,doc,docx|max:5120',
+            // Add other validation rules here
+        ]);
         $originalFileName = $r->file('report')->getClientOriginalName();
         $file_name=time().$originalFileName.'.'.$r->report->extension();
         $path='files/'.$file_name;
