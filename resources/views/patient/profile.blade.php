@@ -59,9 +59,14 @@
                                     <input class="form-control" id="inputFatherName" type="text" name="fatherName" placeholder="Enter your Father's name" value="{{ auth()->user()->father_name }}">
                                 </div>
                                 <!-- Form Group (Husband name)-->
+                                @php
+                                    $gender=$user->pat_gender; 
+                                @endphp
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputHusbandName">Husband's Name</label>
-                                    <input class="form-control" id="inputHusbandName" type="text" name="HusbandName" placeholder="Enter your Husband's Name" value="{{ auth()->user()->husband_name }}">
+                                    <label class="small mb-1" for="inputHusbandName">Husband's Name</label>                                    
+                                    <input class="form-control" id="inputHusbandName" type="text" name="HusbandName" placeholder="Enter your Husband's Name" value="{{ auth()->user()->husband_name }}" @php                                     
+                                    if ($gender == 'Male') echo 'disabled';
+                            @endphp>
                                 </div>
                             </div>
                             <!-- Form Group (email address)-->
@@ -79,7 +84,7 @@
                                 <!-- Form Group (birthday)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                    <input class="form-control" id="inputBirthday" type="text" name="dob" placeholder="Enter your birthday" value="{{$user->pat_DOB}}">
+                                    <input class="form-control date" id="inputBirthday" type="text" name="dob" placeholder="Enter your birthday" value="{{$user->pat_DOB}}">
                                 </div>
                             </div>
                             <!-- Form Row-->
@@ -87,10 +92,6 @@
                                 <!-- Form Group (Gender)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputGender">Gender</label>
-
-                                    @php
-                                       $gender=$user->pat_gender; 
-                                    @endphp
 
                                     <select class="form-control" name="gender" id="">
                                         
@@ -109,7 +110,7 @@
                                 <!-- Form Group (Blood Group)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputBloodGroup">Blood Group</label>
-                                    <input class="form-control" id="inputBloodGroup" type="text" name="bloodGroup" placeholder="Enter your birthday" value="{{$user->blood_group}}">
+                                    <input class="form-control" id="inputBloodGroup" type="text" name="bloodGroup" placeholder="Enter your Blood Group" value="{{$user->blood_group}}">
                                 </div>
                             </div>
                             <!-- Form Group (address)-->

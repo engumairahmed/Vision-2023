@@ -246,7 +246,11 @@
             
             // initializeSelect2()
             
-        $('.date').datepicker({ dateFormat: 'yy-mm-dd' }).val();
+        $('.date').datepicker({ 
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+             }).val();
             
         });
 

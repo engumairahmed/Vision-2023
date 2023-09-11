@@ -146,7 +146,7 @@ class PatientController extends Controller
         $frequency=$r->input('frequency',[]);
         $instruction=$r->input('instruction',[]);
         $meds=array_combine($medicines,$frequency);
-        dd($meds);
+        // dd($meds);
         if(isset($medicines)){
             foreach($medicines as $key => $medicine){
                 PrescriptionMedication::create([

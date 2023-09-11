@@ -45,7 +45,7 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::post('/register','register');
     Route::get('/forgot-password','forgot')->name('forgot');
     Route::post('/forgot-password','forgotPass');
-    Route::post('profile','updateInfo');
+    Route::post('/profile','updateInfo');
     Route::get('/email/verify', 'verifyEmail')->name('verify.email');
     Route::get('/email/notice','notice')->name('verification.notice');
     Route::get('/email','email')->name('emails.verification');

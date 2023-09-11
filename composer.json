@@ -11,7 +11,6 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.8",
-        "livewire/livewire": "^2.12",
         "nesbot/carbon": "^2.68"
     },
     "require-dev": {
