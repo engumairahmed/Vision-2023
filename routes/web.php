@@ -80,6 +80,8 @@ Route::middleware(['auth','patient','verified'])->group(function(){
             
         });
 
+        Route::get('/vitals','vital')->name('patient.vital');
+
         Route::get('/medicines','medication')->name('user.medicines');
 
         Route::get('/plan/{id}','planInfo')->name('user.plan');

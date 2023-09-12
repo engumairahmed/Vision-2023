@@ -85,11 +85,18 @@
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-             <!-- Nav Item - Charts -->
+             <!-- Nav Item -->
              <li class="nav-item">
                 <a class="nav-link" href="{{route('user.medicines')}}">
                     <i class="fas fa-fw fa-pills"></i>
                     <span>Medicines</span></a>
+            </li>
+
+            <!-- Nav Item -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('patient.vital')}}">
+                    <i class="fas fa-fw fa-pills"></i>
+                    <span>Vitals</span></a>
             </li>
 
 

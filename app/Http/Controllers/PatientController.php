@@ -210,4 +210,8 @@ class PatientController extends Controller
 
         return redirect()->back()->with('msg','Report uploaded successfully');
     }
+
+    public function vital(){
+        return view('patient.vitals');
+    }
 }

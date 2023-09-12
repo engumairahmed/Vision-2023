@@ -139,11 +139,6 @@
 @push('script')
 <script>
    
-</script>
-@endpush
-
-<script> 
-
 function toggleInputField() {
         var inputDoctorName = document.getElementById('inputDoctorName');
         var selectDoctorName = document.getElementById('selectDoctorName');
@@ -215,6 +210,9 @@ $(document).ready(function() {
             initializeSelect2()
             })        
     })
-    </script>
+</script>
+@endpush
+
+
 @endsection
 {{-- @yield('scripts') --}}
