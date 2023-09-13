@@ -22,6 +22,11 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Your account needs to be Activated!</h1>
                                     <p class="p text-gray-900 mb-4">Follow the link you recieved in your email for account activation</p>
+                                    @if (Session::has('msg'))
+                                        <span>{{Session::get('msg')}}</span>
+                                    @else
+                                    <a class="large" href="{{route('resend.verification')}}">Resend verification email</a>
+                                    @endif
                                 </div>
                                 <hr>
                                 <div class="text-center">

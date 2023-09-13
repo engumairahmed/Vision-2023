@@ -16,6 +16,7 @@ use App\Models\PrescriptionLabTest;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PrescriptionMedication;
 use App\Models\PrescriptionMedicalCondition;
+use App\Models\Vitals;
 
 class PatientController extends Controller
 {
@@ -194,7 +195,6 @@ class PatientController extends Controller
         // dd($userId);
         $r->validate([
             'report'=>'image|mimes:jpeg,png,jpg,pdf,doc,docx|max:5120',
-            // Add other validation rules here
         ]);
         $originalFileName = $r->file('report')->getClientOriginalName();
         $file_name=time().$originalFileName.'.'.$r->report->extension();
@@ -213,5 +213,32 @@ class PatientController extends Controller
 
     public function vital(){
         return view('patient.vitals');
+    }
+
+    public function vitalCreate(Request $r){
+        $userId=auth()->user()->id;
+        $r->validate([
+            'systolic'=>'numeric',
+            'diastolic'=>'numeric',
+            'body_temp'=>'numeric',
+            'pulse_rate'=>'numeric',
+            'respiratory_rate'=>'numeric',
+            'spo2'=>'numeric',
+            'blood_glucose'=>'numeric'
+        ]);
+        $bp=$r->systolic."/".$r->diastolic;
+        Vitals::create([
+        'vital_user_id'=>$userId,
+        'blood_pressure'=>$bp,
+        'body_temperature'=>$r->body_temp,
+        'body_weight'=>$r->body_weight,
+        'pulse_rate'=>$r->pulse_rate,
+        'respiratory_rate'=>$r->respiratory_rate,
+        'oxygen_saturation'=>$r->spo2,
+        'blood_glucose_levels'=>$r->blood_glucose,
+        'vital_created_by'=>$userId,
+        ]);
+
+        return redirect()->back()->with('msg','Vitals added successfully');
     }
 }

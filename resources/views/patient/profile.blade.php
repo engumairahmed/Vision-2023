@@ -84,7 +84,7 @@
                                 <!-- Form Group (Father name)-->
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputFatherName">Father's Name</label>
-                                    <input class="form-control" id="inputFatherName" type="text" name="fatherName" placeholder="Enter your Father's name" value="{{ auth()->user()->father_name }}">
+                                    <input class="form-control" id="inputFatherName" type="text" name="fatherName" placeholder="Enter your Father's name" value="{{ $user->father_name }}">
                                 </div>
                                 <!-- Form Group (Husband name)-->
                                 @php
@@ -92,7 +92,7 @@
                                 @endphp
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="inputHusbandName">Husband's Name</label>                                    
-                                    <input class="form-control" id="inputHusbandName" type="text" name="husbandName" placeholder="Enter your Husband's Name" value="{{ auth()->user()->husband_name }}" @php                                     
+                                    <input class="form-control" id="inputHusbandName" type="text" name="husbandName" placeholder="Enter your Husband's Name" value="{{ $user->husband_name }}" @php                                     
                                     if ($gender == 'Male') echo 'disabled';
                             @endphp>
                                 </div>

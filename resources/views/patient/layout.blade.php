@@ -95,7 +95,7 @@
             <!-- Nav Item -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('patient.vital')}}">
-                    <i class="fas fa-fw fa-pills"></i>
+                    <i class="fas fa-fw fa-wave-square"></i>
                     <span>Vitals</span></a>
             </li>
 

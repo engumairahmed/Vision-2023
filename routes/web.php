@@ -48,6 +48,7 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::post('/forgot-password','forgotPass');
     Route::post('/profile','updateInfo');
     Route::get('/email/verify', 'verifyEmail')->name('verify.email');
+    Route::get('/email/resend','resend')->name('resend.verification');
     Route::get('/email/notice','notice')->name('verification.notice');
     Route::get('/email','email')->name('emails.verification');
 });
@@ -81,6 +82,7 @@ Route::middleware(['auth','patient','verified'])->group(function(){
         });
 
         Route::get('/vitals','vital')->name('patient.vital');
+        Route::post('/vitals','vitalCreate')->name('patient.vital');
 
         Route::get('/medicines','medication')->name('user.medicines');
 

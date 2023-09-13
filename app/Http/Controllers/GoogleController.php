@@ -46,7 +46,7 @@ class GoogleController extends Controller
             }
 
 
-            Auth::loginUsingId($saveUser->id);
+            Auth::loginUsingId($saveUser->id, true);
 
             return redirect()->route('admin.dashboard');
         } catch (\Throwable $th) {

@@ -67,7 +67,6 @@ class AuthController extends Controller
     {
         $id = $request->query('id');
         $hash = $request->query('hash');
-        // dd($hash);
 
         $user = User::find($id);
 
@@ -79,27 +78,25 @@ class AuthController extends Controller
     }
     }
 
-//     public function updateInfo(Request $r){
-// // dd(Auth()->user());
-//         $id=auth()->user()->id;
+    public function resend(Request $r)
+    {
+        
+        $user = $r->user();
 
-//         $r->validate([
-//             'name'=>'required|min:3|alpha:ascii',
-//             'email'=>'required|email|unique:users',
-//         ]);
-//         User::where('id', $id)->update([
-//             'name' => $r->name,
-//             'email' => $r->email,
-//         ]);
-//         Patient::where('pat_user_id',$id)->update([
-//             'father_name'=>$r->fatherName,
-//             'pat_gender'=>$r->gender,
-//             'pat_contact'=>$r->contact,
-//             'pat_address'=>$r->address,
-//             'pat_DOB'=>$r->dob,
-//             'blood_group'=>$r->bloodGroup
-//         ]);
-    // }
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->route('login')->with('msg', 'Your account is already verified.');
+        }
+
+        $verificationMail= route('verify.email', [
+            'id' => $user->getKey(),
+            'hash' => sha1($user->getEmailForVerification()),
+        ]);
+        
+        Mail::to($user->email)->send(new VerificationMail($verificationMail));
+
+        return back()->with('msg', 'Verification email sent. Please check your email.');
+    }
+
 
     public function updateInfo(Request $r){
         $id = auth()->user()->id;

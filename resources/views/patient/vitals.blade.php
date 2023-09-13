@@ -1,5 +1,5 @@
 @extends('patient.layout')
-@section('title','Account Settings')
+@section('title','Vitals')
 
 @section('content')
 <main>
@@ -9,7 +9,7 @@
                 <div class="row align-items-center justify-content-between pt-3">
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
-                            <div class="page-header-icon col-auto icon-circle bg-warning">
+                            <div class="page-header-icon col-auto icon-circle bg-info">
                                 <i class="fas fa-clipboard-list fa-xs text-white"></i>
                             </div>
                              Vitals
@@ -54,96 +54,60 @@
                         <form method="post">
                             @csrf
                             <div class="row gx-3 mb-3">
-                            <!-- Form Group (Plan Name)-->
-                            <div class="mb-3 col-md-6">
-                                <label class="small mb-1" for="inputUsername">Medication Plan Name</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter Plan Name" value="" name="plan_name" required>
-                            </div>
-                            <!-- Form Group (Medical Condition)-->
-                            <div class="col-md-6">                                
-                                <label class="small mb-1" for="inputMedicalCondition">Medical Condition</label>
-                                <select class="form-control select2" id="inputMedicalCondition" name="medicalCondition[]" type="text" multiple required>
-                                    @foreach ($conditions as $item)
-                                    <option value="{{$item->condition_id}}">{{$item->condition_name}}</option>
-                                    @endforeach                                    
-                                </select>
-                            </div>
-                           
+                                <!-- Form Group (BP Systolic)-->
+                                <div class="mb-3 col-md-6">
+                                    <label class="small mb-1" for="inputSystolic">Blood Pressure(top)</label>
+                                    <input class="form-control" id="inputSystolic" type="number" placeholder="Enter Systolic Pressure (on the top)" value="{{ old('systolic') }}" name="systolic">
+                                </div>
+                                <!-- Form Group (BP Diastolic)-->
+                                <div class="col-md-6">                                
+                                    <label class="small mb-1" for="inputDiastolic">Blood Pressure(below)</label>
+                                    <input class="form-control" id="ipnutDiastolic" type="number" placeholder="Enter Diastolic Pressure (below)" value="{{ old('diastolic') }}" name="diastolic">
+                                </div>                         
                             </div>
                             <!-- Form Row-->
                             <div class="row gx-3 mb-3">
-                                <!-- Form Group (Doctor Name)-->
+                                <!-- Form Group (Body Temperature)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputDoctorName">Doctor Name</label>
-                                    <input class="form-control" id="inputDoctorName" type="text" name="doctor_name" value="" placeholder="Enter Doctor Name">                                    
+                                    <label class="small mb-1" for="inputTemperature">Body Temperature (°Farhenheit)</label>
+                                    <input class="form-control" id="inputTemperature" type="number" name="body_temp" value="{{ old('body_temp') }}" placeholder="Enter Body Temperature" min="97" max="106">                                    
                                 </div>
-                                <!-- Form Group (last name)-->
+                                <!-- Form Group (Body Weight)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="selectDoctorName">Select Doctor from list</label>
-                                    <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="doctor_id" onchange="toggleInputField()">
-                                        <option value="">Select Doctor Name</option>
-                                        @foreach ($doctors as $item)
-                                        <option value="{{$item->doctor_id}}">{{$item->name}}</option>
-                                        @endforeach                                        
-                                    </select>
+                                    <label class="small mb-1" for="selectDoctorName">Body Weight (Kilogram)</label>
+                                    <input class="form-control" id="inputDoctorName" type="number" name="body_weight" value="{{ old('body_weight') }}" placeholder="Enter Body Weight">                                 
                                 </div>                               
                             </div>
-                            <!-- Form Row        -->
+                            <!-- Form Row -->
                             <div class="row gx-3 mb-3">
-                                <!-- Form Group (Start Date)-->
+                                <!-- Form Group (Pulse Rate)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="startDate">Prescription Start Date</label>
-                                    <input class="form-control date" type="text" name="start_date" id="startDate" required>
+                                    <label class="small mb-1" for="startDate">Pulse Rate (BPM)</label>
+                                    <input class="form-control" id="startDate" type="number" name="pulse_rate" value="{{ old('pulse_rate') }}" placeholder="Enter Pulse Rate">
                                 </div>
-                               <!-- Form Group (End Date)-->
+                               <!-- Form Group (SpO2)-->
                                <div class="col-md-6">
-                                <label class="small mb-1" for="endDate">Prescription End Date</label>
-                                <input class="form-control date" type="text" name="end_date" id="endDate" required>
-                            </div>
-                            </div>
-                            <!-- Form Group (Lab-Test name)-->
-                            <div class="mb-3">
-                                <label class="small mb-1" for="inputTestName">Recommended Test Name</label>
-                                <select class="form-control select2" id="inputTestName" type="text" placeholder="Select Test Name" value="" name="test[]"multiple>
-                                    @foreach ($tests as $item)
-                                        <option value="{{$item->test_id}}">{{$item->test_name}}</option>
-                                    @endforeach
-                                </select>
+                                    <label class="small mb-1" for="inputSpO2">Oxygen Saturation Rate</label>
+                                    <input class="form-control" id="inputSpO2" type="number" name="spo2" value="{{ old('spo2') }}" placeholder="Oxygen Saturation Rate / SpO2">
+                                </div>
                             </div>
                             <!-- Form Row-->
                             <div id="medicine-container">
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (Medicine)-->
-                                <div class="col-md-5">
-                                    <label class="small mb-1" for="selectMedicine">Medicine</label>
-                                    <select name="medicine[]" class="form-control select2" id="selectMedicine" type="tel" placeholder="Select medicine">
-                                        <option value="">Select Medicine</option>
-                                        @foreach ($medicine as $item)
-                                        <option value="{{$item->medic_id}}">{{$item->medicine}}</option>
-                                    @endforeach
-                                    </select>
+                                <div class="row gx-3 mb-3">
+                                    <!-- Form Group (Medicine)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputResiratoryRate">Respiratory Rate</label>
+                                        <input class="form-control" id="inputResiratoryRate" type="number" name="respiratory_rate" value="{{ old('respiratory_rate') }}" placeholder="Enter Respiratory Rate">    
+                                    </div>
+                                    <!-- Form Group (Frequency)-->
+                                    <div class="col-md-6">
+                                        <label class="small mb-1" for="inputBloodGlucoseLevel">Blood Glucose Levels (mg/dL)</label>
+                                        <input class="form-control" id="inputBloodGlucoseLevel" type="number" name="blood_glucose" value="{{ old('blood_glucose') }}" placeholder="Enter Blood Glucose Levels">
+                                    </div>                               
                                 </div>
-                                <!-- Form Group (Frequency)-->
-                                <div class="col-md-5">
-                                    <label class="small mb-1" for="selectFrequency">Medicine Frequency</label>
-                                    <input class="form-control" id="selectFrequency" type="number" name="frequency[]" placeholder="Medicine intake frequency" min="1" max="4">
-                                </div>
-                                <!-- Form Group (Instructions)-->
-                                <div class="col-md-5">
-                                    <label class="small mb-1" for="selectFrequency">Instructions</label>
-                                    <input class="form-control" id="selectFrequency" type="text" name="instruction[]" placeholder="e.g. Before Lunch">
-                                </div>
-                                 <!-- Form Group (Actions)-->
-                                <div class="col-md-1">
-                                    <label class="small mb-1" for="addBtn">Add</label>
-                                    <button class="add-btn btn btn-info btn-circle btn-sm" id="addBtn" type="button">+</button>                                    
-                                </div>                                
-                            </div>
-                        </div>
-                            {{-- @include('dynamic') --}}
-                           
+                            </div>                           
                             <!-- Save changes button-->
-                            <input class="btn btn-warning text-dark" type="submit" value="Save">
+                            <input class="btn btn-info text-light" type="submit" value="Save">
                         </form>
                     </div>
                 </div>
