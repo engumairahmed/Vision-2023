@@ -45,8 +45,14 @@ class PatientController extends Controller
         )
         ->where('p.presc_user_id', 2)
         ->get();       
+        $vital = Vitals::where('vital_user_id', $user_id)->latest()->first();
 
-        return view('patient.home',compact('count','result'));
+        if ($vital) {
+            return view('patient.home',compact('count','result','vital'));
+        } else {
+            $vital=Null;
+            return view('patient.home',compact('count','result','vital'));
+        }
     }
 
     public function history()
@@ -194,7 +200,7 @@ class PatientController extends Controller
         $userId = auth()->user()->id;
         // dd($userId);
         $r->validate([
-            'report'=>'image|mimes:jpeg,png,jpg,pdf,doc,docx|max:5120',
+            'report'=>'file|mimes:jpeg,png,jpg,pdf,doc,docx|max:5120',
         ]);
         $originalFileName = $r->file('report')->getClientOriginalName();
         $file_name=time().$originalFileName.'.'.$r->report->extension();
@@ -230,15 +236,25 @@ class PatientController extends Controller
         Vitals::create([
         'vital_user_id'=>$userId,
         'blood_pressure'=>$bp,
-        'body_temperature'=>$r->body_temp,
-        'body_weight'=>$r->body_weight,
-        'pulse_rate'=>$r->pulse_rate,
+        'body_temperature'=>$r->body_temp."°F",
+        'body_weight'=>$r->body_weight."KG",
+        'pulse_rate'=>$r->pulse_rate."BPM",
         'respiratory_rate'=>$r->respiratory_rate,
-        'oxygen_saturation'=>$r->spo2,
-        'blood_glucose_levels'=>$r->blood_glucose,
+        'oxygen_saturation'=>$r->spo2."%",
+        'blood_glucose_levels'=>$r->blood_glucose."mg/dL",
         'vital_created_by'=>$userId,
         ]);
 
         return redirect()->back()->with('msg','Vitals added successfully');
+    }
+    public function vitalHistory(){
+        $userId=auth()->user()->id;
+
+        // $vitals = Vitals::where('vital_user_id', $userId)->get();
+
+        $vitals = Vitals::where('vital_user_id', $userId)->with('createdByUser')->get();
+
+
+        return view('patient.vital-history',compact('vitals'));
     }
 }

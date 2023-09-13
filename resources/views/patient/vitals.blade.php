@@ -55,7 +55,7 @@
                             @csrf
                             <div class="row gx-3 mb-3">
                                 <!-- Form Group (BP Systolic)-->
-                                <div class="mb-3 col-md-6">
+                                <div class="col-md-6">
                                     <label class="small mb-1" for="inputSystolic">Blood Pressure(top)</label>
                                     <input class="form-control" id="inputSystolic" type="number" placeholder="Enter Systolic Pressure (on the top)" value="{{ old('systolic') }}" name="systolic">
                                 </div>

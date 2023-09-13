@@ -83,6 +83,7 @@ Route::middleware(['auth','patient','verified'])->group(function(){
 
         Route::get('/vitals','vital')->name('patient.vital');
         Route::post('/vitals','vitalCreate')->name('patient.vital');
+        Route::get('/vitals/history','vitalHistory')->name('patient.vitalhistory');
 
         Route::get('/medicines','medication')->name('user.medicines');
 

@@ -105,7 +105,6 @@ class AuthController extends Controller
             'name'=>'required|min:3',
             'email'=>'required|email|unique:users,email,'.$id,
             'image'=>'image|mimes:jpeg,png,jpg,gif|max:5120',
-            // Add other validation rules here
         ]);
     
         DB::beginTransaction();

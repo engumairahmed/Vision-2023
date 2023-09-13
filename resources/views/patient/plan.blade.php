@@ -89,9 +89,11 @@
         {{-- {{dd($medicalReports)}} --}}
         @foreach ($medicalReports as $item)
             @if (isset($item->mr_name))
-            <p>Medical Reports: {{ $item->mr_name }}</p>
+            <div>
+                <span>Medical Report: </span><a href="{{asset($item->mr_report)}}" download="{{ $item->mr_name }}">{{ $item->mr_name }}</a>
+            </div>
             @else
-            <p>No reports found</p>
+                <p>No reports found</p>
             @endif
         @endforeach
         <div class="m-4">

@@ -23,4 +23,7 @@ class Vitals extends Model
         'vital_created_by'
     ];
     
+    public function createdByUser() {
+        return $this->belongsTo(User::class, 'vital_created_by', 'id');
+    }
 }

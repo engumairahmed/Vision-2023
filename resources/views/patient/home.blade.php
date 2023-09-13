@@ -36,7 +36,8 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Last Vitals</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                            <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}} | Temperature: {{$vital->body_temperature}} °F | Weight: {{$vital->body_weight}}</div>
+                            <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}}</div>
                         </div>
                         <div class="col-auto icon-circle bg-info">
                             <i class="fas fa-wave-square fa-lg text-white"></i>
