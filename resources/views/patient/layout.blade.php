@@ -55,7 +55,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{route('patient.home')}}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <i class="far fa-chart-bar"></i>
                     <span>Dashboard</span></a>
             </li>
 
@@ -86,7 +86,7 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-prescription-bottle-alt"></i>
+                    <i class="fas fa-heartbeat"></i>
                     <span>Vitals</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -97,15 +97,23 @@
                 </div>
             </li>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree"
+                    aria-expanded="true" aria-controls="collapseThree">
+                    <i class="fas fa-fw fa-file-medical-alt"></i>
+                    <span>Reports</span>
+                </a>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <a class="collapse-item" href="{{route('user.add-reports')}}">Upload Report</a>
+                        <a class="collapse-item" href="{{route('user.reports')}}">View Reports</a>
+                    </div>
+                </div>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-             <!-- Nav Item -->
-             <li class="nav-item">
-                <a class="nav-link" href="{{route('user.reports')}}">
-                    <i class="fas fa-fw fa-file-medical-alt"></i>
-                    <span>Reports</span></a>
-            </li>
 
              <!-- Nav Item -->
              <li class="nav-item">
@@ -136,11 +144,12 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->                  
-                    
+                    <!--Sitemap-->                  
+                    <div>
                         <a class="nav-link" href="{{route('index')}}" >
                             <span class="h5 mr-2 d-none d-lg-inline text-gray-600">Goto Homepage</span>
                         </a>
+                    </div>
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -151,8 +160,11 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset("/images/undraw_profile.svg")}}">
+                        @if (auth()->user()->profile_pic)
+                        <img class="img-profile rounded-circle" src="{{asset(auth()->user()->profile_pic)}}">
+                        @else                            
+                        <img class="img-profile rounded-circle" src="{{asset("/images/undraw_profile.svg")}}">
+                        @endif
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -220,7 +232,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="{{route('logout')}}">Logout</a>
+                    <a class="btn btn-danger" href="{{route('logout')}}">Logout</a>
                 </div>
             </div>
         </div>
@@ -251,11 +263,7 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    {{-- <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script> --}}
     <script src="{{asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    {{-- <script src="{{asset("vendor/jquery-easing/jquery.easing.min.js")}}"></script> --}}
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset("js/sb-admin-2.min.js")}}"></script>
@@ -274,8 +282,8 @@
     <script src="{{asset("js/demo/chart-area-demo.js")}}"></script>
     <script src="{{asset("js/demo/chart-pie-demo.js")}}"></script>
 
-      <!-- Add the Select2 JS -->
-      <script src="{{ asset("js/select2.min.js") }}"></script>
+    <!-- Add the Select2 JS -->
+    <script src="{{ asset("js/select2.min.js") }}"></script>
 
 </body>
 

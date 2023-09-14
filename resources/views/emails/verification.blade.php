@@ -10,8 +10,16 @@
     <h1>Welcom to MedCustodian</h1>
     <h3>This is an auto generated response email for account verification</h3>
     <a href="{{ $verificationMail }}">Follow this link for email verification</a>
+ 
+    <p>For any questions or concerns, feel free to reach out to us. We're here to assist you!</p>
 
-    Thanks,<br>
-{{ config('app.name') }}
+    <br>
+    <br>
+    <br>
+    
+    <h3>Thank You,</h3>
+    <h3>Best Regards,</h3>   
+    <h3>Team {{ config('app.name') }}</h3>
+    <img src="{{asset("/images/logo.png")}}" alt="" width="80px" height="50px" class="img-fluid">
 </body>
 </html>

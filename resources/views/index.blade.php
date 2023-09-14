@@ -622,24 +622,6 @@ Join our growing community of empowered individuals who are taking control of th
           </div>
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
-              <div class="member-img">
-                <img src="images/index/doctors/doctor1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Dr Masroor (Neurologist)</h4>
-                <span><b>Dr Masroor, a distinguished neurologist who is dedicated to the intricate field of neurology. With a profound commitment to understanding and treating neurological disorders, Dr Neurologist brings a wealth of expertise and compassion to every aspect of patient care.</b></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
                 <img src="images/index/doctors/doctor2.jpg" class="img-fluid" alt="">
@@ -727,10 +709,17 @@ Join our growing community of empowered individuals who are taking control of th
               @csrf
               <div class="row">
                 <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                  @if (auth()->user())
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" value="{{auth()->user()->name}}" required>                  
                 </div>
                 <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" value="{{auth()->user()->email}}" required>
+                  @else
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" value="" required>
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" value="" required>
+                  @endif
                 </div>
               </div>
               <div class="form-group mt-3">
@@ -738,11 +727,6 @@ Join our growing community of empowered individuals who are taking control of th
               </div>
               <div class="form-group mt-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
@@ -755,6 +739,26 @@ Join our growing community of empowered individuals who are taking control of th
     </section><!-- End Contact Section -->
 
   </main><!-- End #main -->
+@if (Session::has('msg'))
+   <!-- Logout Modal-->
+   <div class="modal" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   aria-hidden="false">
+   <div class="modal-dialog" role="document">
+       <div class="modal-content">
+           <div class="modal-header">
+               <h5 class="modal-title" id="exampleModalLabel">Message Sent</h5>
+               <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                   <span aria-hidden="true">×</span>
+               </button>
+           </div>
+           <div class="modal-body">Your message has been sent to admin of MedCustodian successfully.</div>
+           <div class="modal-footer">
+               <button class="btn btn-secondary" type="button" data-dismiss="messageModal">Close</button>
+           </div>
+       </div>
+   </div>
+</div>
+@endif
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

@@ -14,7 +14,13 @@
 
     <h3>If you did not request a password reset, no further action is required.</h3>
 
-    Thanks,<br>
-{{ config('app.name') }}
+    <br>
+    <br>
+    <br>
+    
+    <h3>Thank You,</h3>
+    <h3>Best Regards,</h3>   
+    <h3>Team {{ config('app.name') }}</h3>
+    <img src="{{asset("/images/logo.png")}}" alt="" width="80px" height="50px" class="img-fluid">
 </body>
 </html>

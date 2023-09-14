@@ -216,8 +216,11 @@
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
-                            <img class="img-profile rounded-circle"
-                                src="{{asset("/images/undraw_profile.svg")}}">
+                            @if (auth()->user()->profile_pic)
+                            <img class="img-profile rounded-circle" src="{{asset(auth()->user()->profile_pic)}}">
+                            @else                            
+                            <img class="img-profile rounded-circle" src="{{asset("/images/undraw_profile.svg")}}">
+                            @endif
                         </a>
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -313,14 +316,17 @@
     </script>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset("vendor/jquery/jquery.min.js")}}"></script>
     <script src="{{asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="{{asset("vendor/jquery-easing/jquery.easing.min.js")}}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset("js/sb-admin-2.min.js")}}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{asset("vendor/datatables/jquery.dataTables.min.js")}}"></script>
+    <script src="{{asset("vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{asset("/js/demo/datatables-demo.js")}}"></script>
 
     <!-- Page level plugins -->
     <script src="{{asset("vendor/chart.js/Chart.min.js")}}"></script>
@@ -328,6 +334,9 @@
     <!-- Page level custom scripts -->
     <script src="{{asset("js/demo/chart-area-demo.js")}}"></script>
     <script src="{{asset("js/demo/chart-pie-demo.js")}}"></script>
+
+    <!-- Add the Select2 JS -->
+    <script src="{{ asset("js/select2.min.js") }}"></script>
 
 </body>
 

@@ -15,11 +15,12 @@ use App\Models\MedicalCondition;
 use Illuminate\Support\Facades\DB;
 use App\Models\PrescriptionLabTest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Models\PrescriptionMedication;
-use App\Models\PrescriptionMedicalCondition;
 use Illuminate\Validation\Rules\Password;
-
+use App\Models\PrescriptionMedicalCondition;
+use App\Models\SurgicalProcedure;
 
 class PatientController extends Controller
 {
@@ -103,8 +104,10 @@ class PatientController extends Controller
         $tests=LabTest::get();
 
         $medicine=Medication::get();
+
+        $sp=SurgicalProcedure::get();
         
-        return view('patient.prescription',compact('conditions','doctors','tests','medicine'));
+        return view('patient.prescription',compact('conditions','doctors','tests','medicine','sp'));
     }
 
     public function planInfo($id)
@@ -157,10 +160,10 @@ class PatientController extends Controller
         $medicines=$r->input('medicine',[]);
         $frequency=$r->input('frequency',[]);
         $instruction=$r->input('instruction',[]);
-        $meds=array_combine($medicines,$frequency);
-        // dd($meds);
-        if(isset($medicines)){
+        // dd($medicines);
+        if(!empty($medicines)){
             foreach($medicines as $key => $medicine){
+                if ($medicine !== null && $frequency[$key] !== null) {
                 PrescriptionMedication::create([
                 'pm_prescription_id'=>$prescId,
                 'pm_medication_id'=>$medicine,
@@ -168,10 +171,11 @@ class PatientController extends Controller
                 'pm_instructions' => $instruction[$key],   
                 ]);
             }
-        return redirect()->back()->with('msg','Prescription Plan Created without medication details');
+            }
+        return redirect()->back()->with('msg','Prescription Plan Created');
 
         }
-        return redirect()->back()->with('msg','Prescription Plan Created');
+        return redirect()->back()->with('msg','Prescription Plan Created without medication details');
     }
 
     public function profile()
@@ -195,32 +199,32 @@ class PatientController extends Controller
             'email'=>'required|email|unique:users,email,'.$id,
             'image'=>'image|mimes:jpeg,png,jpg,gif|max:5120',
         ]);
-        $imageName=Null;
+        // dd($r->file('image'));
     
         DB::beginTransaction();
     
         try {
             if ($r->hasFile('image')) {
                 $image = $r->file('image');
-                dd($image);
                 $originalFileName = $r->file('image')->getClientOriginalName();
-                dd($originalFileName);
+                // dd($originalFileName);
                 $imageName = time().'.'.$image->getClientOriginalExtension();
                 $path = public_path('files/images');
                 $image->move($path, $imageName);
-            }
-            if($imageName==Null){
-                User::where('id', $id)->update([
-                    'name' => $r->name,
-                    'email' => $r->email,
-                ]);
-            } else{
-                User::where('id', $id)->update([
-                    'name' => $r->name,
-                    'email' => $r->email,
-                    'profile_pic'=>'files/images/'.$imageName,
-                ]);
-            }
+                // dd($image);
+            
+                    User::where('id', $id)->update([
+                        'name' => $r->name,
+                        'email' => $r->email,
+                        'profile_pic'=>'files/images/'.$imageName,
+                    ]);
+                } else{
+                    User::where('id', $id)->update([
+                        'name' => $r->name,
+                        'email' => $r->email,
+                    ]);
+                }
+            
             Patient::where('pat_user_id', $id)->update([
                 'father_name'=>$r->fatherName,
                 'pat_gender'=>$r->gender,
@@ -280,6 +284,7 @@ class PatientController extends Controller
         $reportCount = $user->medicalReports->sum(function ($prescription) {
             return $prescription->medicalReports->count();
         });
+        // dd($reports);
         return view('patient.reports', compact('reports','reportCount'));
     }
 
@@ -311,6 +316,27 @@ class PatientController extends Controller
 
         return redirect()->back()->with('msg','Report uploaded successfully');
     }
+
+    public function deleteReport($id)
+        {
+            $report = MedicalReports::findOrFail($id);
+        
+            $prescription = Prescription::findOrFail($report->mr_prescription_id);
+        
+            if (auth()->user()->id == $prescription->presc_user_id) {
+                if (File::exists($report->mr_report)) {
+                    // Delete the file
+                    File::delete($report->mr_report);
+                }
+                $report->delete();
+        
+                return back()->with(['msg' => 'Report deleted successfully']);
+            }
+        
+            return back()->withErrors(['You are not authorized to delete this report.']);
+        }
+    
+    
 
     public function vital(){
         return view('patient.vitals');

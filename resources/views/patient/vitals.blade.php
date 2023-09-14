@@ -10,7 +10,7 @@
                     <div class="col-auto mb-3">
                         <h1 class="page-header-title">
                             <div class="page-header-icon col-auto icon-circle bg-info">
-                                <i class="fas fa-clipboard-list fa-xs text-white"></i>
+                                <i class="fas fa-heartbeat fa-xs text-white"></i>
                             </div>
                              Vitals
                         </h1>

@@ -7,8 +7,10 @@ use App\Models\User;
 use App\Models\LabTest;
 use App\Models\Patient;
 use App\Models\Medication;
+use App\Models\Messages;
 use App\Models\Prescription;
 use App\Models\SurgicalProcedure;
+use App\Models\Vitals;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
@@ -21,8 +23,10 @@ class AdminController extends Controller
         $userCount = User::whereNull('is_admin')->whereNull('is_doctor')->count();
         $doctorCount = User::whereNull('is_admin')->where('is_doctor',1)->count();
         $presc_count = Prescription::count();
+        $queryCount = Messages::where('created_at', '>', now()->subDays(1))->count();
+
         
-        return view('admin.dashboard',compact('userCount','doctorCount','presc_count'));
+        return view('admin.dashboard',compact('userCount','doctorCount','presc_count','queryCount'));
     }
 
     public function profile()
@@ -108,7 +112,7 @@ class AdminController extends Controller
     public function userdata()
     {    
         $users=User::with('Patient')->join('patients','patients.pat_user_id', '=', 'users.id')
-        ->select('patients.*', 'users.name', 'users.email')->get();
+        ->select('patients.*','users.id', 'users.name', 'users.email','users.email_verified_at','users.is_active')->get();
         $ages = [];
         // dd($users);
         foreach ($users as $user) {
@@ -117,6 +121,30 @@ class AdminController extends Controller
                 }
                 // dd($ages);
             return view('admin.users',compact('users','ages'));
+    }
+
+    public function viewUser($id){
+        $user=User::find($id);
+        $presc_count = Prescription::where('presc_user_id', $id)->count();
+        $vitalsCount=Vitals::where('vital_user_id',$id)->count();
+        $reportCount = $user->medicalReports->sum(function ($prescription) {
+            return $prescription->medicalReports->count();
+        });
+        return view('admin.userinfo',compact('user','presc_count','reportCount','vitalsCount'));
+    }
+
+    public function enable($id){
+        $user=User::find($id);
+        $user->is_active=1;
+        $user->update();
+        return redirect()->back()->with('success','User activated.');
+    }
+
+    public function disable($id){
+        $user=User::find($id);
+        $user->is_active=0;
+        $user->update();
+        return redirect()->back()->with('success','User deactivated.');
     }
 
     public function docData()
@@ -151,6 +179,18 @@ class AdminController extends Controller
         }
 
         return view('admin.search', compact('matchingViews', 'query'));
+    }
+
+    public function queries(){
+        $queries=Messages::all();
+        $queriesCount=Messages::count();
+        return view('admin.queries',compact('queries','queriesCount'));
+    }
+
+    public function msg($id){
+        $message=Messages::find($id);
+
+    return view('admin.message',compact('message'));
     }
     
 }

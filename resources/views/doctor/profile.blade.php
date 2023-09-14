@@ -54,7 +54,11 @@
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" src="{{asset('images/undraw_profile.svg')}}" alt="">
+                        @if (auth()->user()->profile_pic)
+                        <img class="img-account-profile rounded-circle mb-2" src="{{asset(auth()->user()->profile_pic)}}" alt="" style="height:15em">                            
+                        @else
+                        <img class="img-account-profile rounded-circle mb-2" src="{{asset('images/undraw_profile.svg')}}" alt="">                            
+                        @endif
                         <!-- Profile picture help block-->
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button-->

@@ -53,17 +53,22 @@
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
+                        @if (auth()->user()->profile_pic)
+                        <img class="img-account-profile rounded-circle mb-2" src="{{asset(auth()->user()->profile_pic)}}" alt="" style="height:15em">
+                            
+                        @else
+
                         <img class="img-account-profile rounded-circle mb-2" src="{{asset('images/undraw_profile.svg')}}" alt="">
+                            
+                        @endif
                         <!-- Profile picture help block-->
                         <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
                         <!-- Profile picture upload button-->
                         <div class="custom-file">
-                            <input type="file" id="fileInput" style="display: none;" accept=".jpg,.jpeg,.png">
+                            <input type="file" id="fileInput" name="image" style="display: none;" accept=".jpg,.jpeg,.png">
                             <button type="button" id="customButton" class="btn btn-primary">Upload File</button>
                             <span id="fileName"></span>
                         </div>
-                        {{-- <input type="file" class="btn btn-primary form-control" name="" id=""> --}}
-                        {{-- <button class="btn btn-primary" type="button">Upload new image</button> --}}
                     </div>
                 </div>
             </div>

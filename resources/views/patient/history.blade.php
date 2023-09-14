@@ -20,8 +20,8 @@
                         <thead>
                             <tr>
                                 <th>Plan</th>
-                                <th>Consultant</th>
-                                <th>Consultant</th>
+                                <th>MedCustodian Dr</th>
+                                <th>Self mentioned Dr</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>
@@ -30,8 +30,8 @@
                         <tfoot>
                             <tr>
                                 <th>Plan</th>
-                                <th>Consultant</th>
-                                <th>Consultant</th>
+                                <th>MedCustodian Dr</th>
+                                <th>Self mentioned Dr</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>

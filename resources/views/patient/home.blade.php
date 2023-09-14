@@ -51,7 +51,7 @@
                                 @endif
                         </div>
                         <div class="col-auto icon-circle bg-info">
-                            <i class="fas fa-wave-square fa-lg text-white"></i>
+                            <i class="fas fa-heartbeat fa-lg text-white"></i>
                         </div>
                     </div>
                 </div>

@@ -42,5 +42,8 @@ class Prescription extends Model
 
         return $this->belongsTo(Doctor::class, 'presc_doctor_id', 'doctor_id');
     }
-    
+    public function medicalReports()
+    {
+        return $this->hasMany(MedicalReports::class, 'mr_prescription_id', 'presc_id');
+    }
 }

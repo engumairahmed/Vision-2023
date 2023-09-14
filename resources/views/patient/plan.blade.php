@@ -28,23 +28,6 @@
                     <td>{{$prescription->start_date}}</td>
                     <td>{{$prescription->end_date}}</td>
                 </tr>
-                {{-- <tr>
-                    <th>Medical Condition</th>                    
-                    <th>Medications</th>                    
-                </tr>
-                
-                @foreach ($medicalConditions as $item)
-                @foreach ($medications as $item2)
-                    <tr>
-                        <td class="table-info">{{$item->condition_name}}</td>
-                        <td class="table-info">{{$item2->medicine}}</td>
-                    </tr>
-                @endforeach
-                @endforeach --}}
-                
-                
-
-                {{-- @endforeach --}}
                
             </tbody>
         </table>

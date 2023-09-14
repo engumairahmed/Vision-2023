@@ -171,23 +171,7 @@ class AuthController extends Controller
         return redirect()->back()->with('error', 'Invalid reset link. Please try again.');
     }
     
-    // public function resetPass(Request $r){
-    //     $id = $r->query('id');
-    //     $hash = $r->query('hash');
-    //     $r->validate([
-    //         'password' => [ 'required',
-    //                         Password::min(8)
-    //                                 ->letters()
-    //                                 ->numbers()],
-    //         'confirmpass' => 'same:password',
-    //     ]);
-    //     $user = User::find($id);
-
-    //     if ($user && sha1($user->getEmailForVerification()) === $hash) {
-    //         User::where('id', $id)->update([
-    //             'password'=>Hash::make($r->password)                
-    //         ]);
-    //         return redirect()->back()->with('success','Password updated successfully');
-    //     }
-    // }
+    public function activation(){
+        return view('auth.activation');
+    }
 }
