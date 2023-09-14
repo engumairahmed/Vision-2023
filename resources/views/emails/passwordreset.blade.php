@@ -8,8 +8,11 @@
 </head>
 <body>
     <h1>Welcom to MedCustodian</h1>
-    <h3>This is an auto generated response email for account verification</h3>
-    <a href="{{ $verificationMail }}">Follow this link for email verification</a>
+    <h3>Hi</h3>
+    <h3>You are receiving this email because we received a password reset request for your account.</h3>
+    <a href="{{ $PasswordReset }}">Follow this link to reset your account password</a>
+
+    <h3>If you did not request a password reset, no further action is required.</h3>
 
     Thanks,<br>
 {{ config('app.name') }}

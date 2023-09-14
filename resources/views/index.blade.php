@@ -622,6 +622,24 @@ Join our growing community of empowered individuals who are taking control of th
           </div>
 
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member" data-aos="fade-up" data-aos-delay="200">
+              <div class="member-img">
+                <img src="images/index/doctors/doctor1.jpg" class="img-fluid" alt="">
+                <div class="social">
+                  <a href=""><i class="bi bi-twitter"></i></a>
+                  <a href=""><i class="bi bi-facebook"></i></a>
+                  <a href=""><i class="bi bi-instagram"></i></a>
+                  <a href=""><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>Dr Masroor (Neurologist)</h4>
+                <span><b>Dr Masroor, a distinguished neurologist who is dedicated to the intricate field of neurology. With a profound commitment to understanding and treating neurological disorders, Dr Neurologist brings a wealth of expertise and compassion to every aspect of patient care.</b></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
             <div class="member" data-aos="fade-up" data-aos-delay="300">
               <div class="member-img">
                 <img src="images/index/doctors/doctor2.jpg" class="img-fluid" alt="">

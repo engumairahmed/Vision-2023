@@ -20,6 +20,14 @@
     <!-- Custom styles for this template-->
     <link href="{{asset("/css/sb-admin-2.min.css")}}" rel="stylesheet">
 
+    <!-- Downloaded jQuery-->
+
+    <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
+    <!-- CDN jQuery UI-->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 </head>
 
 <body id="page-top">
@@ -31,7 +39,7 @@
         <ul class="navbar-nav bg-white sidebar sidebar-light accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('clinic')}}">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('doctor.home')}}">
                 <div class="sidebar-brand-icon mt-3 ml-3">
                     <img src="{{asset("/images/logo.png")}}" width="115" height="81">
                     {{-- <i class="fas fa-laugh-wink"></i> --}}
@@ -43,7 +51,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('clinic')}}">
+                <a class="nav-link" href="{{route('doctor.home')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -203,36 +211,28 @@
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{{asset('/images/undraw_profile.svg')}}">
+                       <!-- Nav Item - User Information -->
+                       <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ auth()->user()->name }}</span>
+                            <img class="img-profile rounded-circle"
+                                src="{{asset("/images/undraw_profile.svg")}}">
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                            aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="{{route('doctor.profile')}}">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Profile
                             </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div>
-                        </li>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Logout
+                            </a>
+                        </div>
+                    </li>
 
                     </ul>
 
@@ -285,7 +285,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-danger" href="{{route('logout')}}">Logout</a>
                 </div>
             </div>
         </div>
@@ -294,6 +294,17 @@
     @stack('script')
     
     <script>
+        $(document).ready(function() {
+            
+            // initializeSelect2()
+            
+        $('.date').datepicker({ 
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true,
+             }).val();
+            
+        });
          document.addEventListener('DOMContentLoaded', function () {
             setTimeout(function() {
                 document.querySelector('.alert').classList.add('d-none');

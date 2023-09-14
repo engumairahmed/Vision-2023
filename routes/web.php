@@ -44,9 +44,10 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::post('/login','store');
     Route::get('/register','registerPage')->name('register');
     Route::post('/register','register');
-    Route::get('/forgot-password','forgot')->name('forgot');
-    Route::post('/forgot-password','forgotPass');
-    Route::post('/profile','updateInfo');
+    Route::get('/password/forgot','forgot')->name('forgot');
+    Route::post('/password/forgot','resetLink');
+    Route::get('/password/reset','resetForm')->name('reset.link');
+    Route::post('/password/reset','resetPass');
     Route::get('/email/verify', 'verifyEmail')->name('verify.email');
     Route::get('/email/resend','resend')->name('resend.verification');
     Route::get('/email/notice','notice')->name('verification.notice');
@@ -59,38 +60,41 @@ Route::middleware(['auth','patient','verified'])->group(function(){
 
         Route::get('/patient','home')->name('patient.home');
 
-        Route::get('/prescriptions','prescription')->name('prescriptions');
-
-        Route::post('/prescriptions','newPlan');
-
-        Route::get('profile','profile')->name('patient.profile');
         
-
-        Route::get('security','security')->name('patient.security');
-
-        Route::get('/history','history')->name('history');
-       
         Route::prefix('patient/')->group(function(){
+            
+            Route::get('/prescriptions','prescription')->name('prescriptions');
+    
+            Route::post('/prescriptions','newPlan');
+    
+            Route::get('/account/profile','profile')->name('patient.profile');
+            Route::post('/account/profile','updateInfo');        
+    
+            Route::get('/account/security','security')->name('patient.security');
+            Route::post('/account/security','updatePass');
+            Route::get('/history','history')->name('history');
 
+            Route::get('/medicines','medication')->name('user.medicines');
+            
+            Route::get('/vitals','vital')->name('patient.vital');
+            Route::post('/vitals','vitalCreate')->name('patient.vital');
+            Route::get('/vitals/history','vitalHistory')->name('patient.vitalhistory');
+            
+            
+            Route::get('/plan/{id}','planInfo')->name('user.plan');
 
+            Route::get('/reports','allReports')->name('user.reports');
+            
+            Route::get('/upload-reports','reports')->name('user.add-reports');
+            Route::post('/upload-reports','addReport');
+            
             // Route::post('/','add_user2');
             // Route::get('/show','show_user')->name('show');
             // Route::get('/delete/{id}','delete_std');
             // Route::get('/update/{id}','update_std');
             // Route::post('/update/{id}','update_std2');
-            
         });
 
-        Route::get('/vitals','vital')->name('patient.vital');
-        Route::post('/vitals','vitalCreate')->name('patient.vital');
-        Route::get('/vitals/history','vitalHistory')->name('patient.vitalhistory');
-
-        Route::get('/medicines','medication')->name('user.medicines');
-
-        Route::get('/plan/{id}','planInfo')->name('user.plan');
-
-        Route::get('/upload-reports','reports')->name('user.add-reports');
-        Route::post('/upload-reports','addReport');
 
 
 
@@ -102,6 +106,7 @@ Route::middleware(['auth','doctor','verified'])->group(function(){
 
         Route::get('/doctor','home')->name('doctor.home');
             Route::prefix('doctor/')->group(function(){
+                Route::get('/profile','profile')->name('doctor.profile');
 
             // Route::post('/','add_user2');
             // Route::get('/show','show_user')->name('show');

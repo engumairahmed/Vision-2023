@@ -13,6 +13,7 @@ class Doctor extends Model
 
     protected $fillable = [
         'doc_user_id',
+        'doc_contact',
         'specialization',
         'qualification',
         'housejob_start_date',

@@ -29,36 +29,29 @@
         </div>
 
         <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-6 col-md-6 mb-4">
+        <div class="col-xl-8 col-md-6 mb-4">
             <div class="card border border-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Last Vitals</div>
-                            <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}} | Temperature: {{$vital->body_temperature}} °F | Weight: {{$vital->body_weight}}</div>
-                            <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}}</div>
+                                Latest Vitals</div>
+                                @if ($vital!==Null)
+                                <div class=" mb-0 font-weight-bold text-gray-800">
+                                    BP: {{$vital->blood_pressure}} | 
+                                    Temperature: {{$vital->body_temperature}} °F | 
+                                    Weight: {{$vital->body_weight}} | 
+                                    
+                                </div>
+                                <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}}</div>
+                                @else
+
+                                <div class=" mb-0 font-weight-bold text-gray-800">Your last recorded Vitals will show here</div>
+                                    
+                                @endif
                         </div>
                         <div class="col-auto icon-circle bg-info">
                             <i class="fas fa-wave-square fa-lg text-white"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Active Medications -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-primary border-right shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Active Medication Plans</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$count}}</div>
-                        </div>
-                        <div class="col-auto icon-circle bg-primary">
-                            <i class="fas fa-capsules fa-lg text-white"></i>
                         </div>
                     </div>
                 </div>

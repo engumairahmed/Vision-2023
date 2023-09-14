@@ -17,7 +17,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Total Prescriptions Written</div>
+                                Total Prescriptions Provided</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$count}}</div>
                         </div>
                         <div class="col-auto icon-circle bg-warning">
@@ -35,9 +35,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Last Vitals</div>
-                            <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}} | Temperature: {{$vital->body_temperature}} °F | Weight: {{$vital->body_weight}}</div>
-                            <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}}</div>
+                                Last Vitals</div>                            
+                            <div class=" mb-0 font-weight-bold text-gray-800">BP: </div>
                         </div>
                         <div class="col-auto icon-circle bg-info">
                             <i class="fas fa-wave-square fa-lg text-white"></i>
@@ -68,8 +67,8 @@
     <!-- Begin Page Content -->
  <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Medical History</h1>
-    <p class="mb-4">Below, you'll find a comprehensive list of all medication plans.</p>
+    <h1 class="h3 mb-2 text-gray-800">Patients</h1>
+    <p class="mb-4">Below, you'll find a comprehensive list of all the patients for whom you've provided prescriptions..</p>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -99,7 +98,7 @@
                         </tfoot>
                         <tbody>
                             {{-- {{dd($doctor)}} --}}
-                            @foreach ($result as $item)
+                            @foreach ($patients as $item)
                                 
                             <tr>
                                 <td>{{$item->plan_name}}</td>

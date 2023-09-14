@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PasswordReset;
 use App\Models\User;
 use App\Models\Patient;
 use Illuminate\Support\Str;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Password as PasswordFacade;
 
 class AuthController extends Controller
 {
@@ -80,65 +82,24 @@ class AuthController extends Controller
 
     public function resend(Request $r)
     {
-        
-        $user = $r->user();
+        if($r->user()!==Null){
+            $user = $r->user();
 
-        if ($user->hasVerifiedEmail()) {
-            return redirect()->route('login')->with('msg', 'Your account is already verified.');
-        }
-
-        $verificationMail= route('verify.email', [
-            'id' => $user->getKey(),
-            'hash' => sha1($user->getEmailForVerification()),
-        ]);
-        
-        Mail::to($user->email)->send(new VerificationMail($verificationMail));
-
-        return back()->with('msg', 'Verification email sent. Please check your email.');
-    }
-
-
-    public function updateInfo(Request $r){
-        $id = auth()->user()->id;
-    
-        $r->validate([
-            'name'=>'required|min:3',
-            'email'=>'required|email|unique:users,email,'.$id,
-            'image'=>'image|mimes:jpeg,png,jpg,gif|max:5120',
-        ]);
-    
-        DB::beginTransaction();
-    
-        try {
-            
-            if ($r->hasFile('image')) {
-                $image = $r->file('image');
-                $imageName = time().'.'.$image->getClientOriginalExtension();
-                $path = public_path('files/images');
-                $image->move($path, $imageName);
+            if ($user->hasVerifiedEmail()) {
+                return redirect()->route('login')->with('msg', 'Your account is already verified.');
             }
 
-            User::where('id', $id)->update([
-                'name' => $r->name,
-                'email' => $r->email,
-                'profile_pic'=>'files/images/'.$imageName,
+            $verificationMail= route('verify.email', [
+                'id' => $user->getKey(),
+                'hash' => sha1($user->getEmailForVerification()),
             ]);
-            Patient::where('pat_user_id', $id)->update([
-                'father_name'=>$r->fatherName,
-                'pat_gender'=>$r->gender,
-                'pat_contact'=>$r->contact,
-                'pat_address'=>$r->address,
-                'pat_DOB'=>$r->dob,
-                'blood_group'=>$r->bloodGroup
-            ]);
-    
-            DB::commit();
-        } catch (\Exception $e) {
-            DB::rollback();
-            return back()->withErrors(['error' => 'An error occurred while updating the information.']);
+            
+            Mail::to($user->email)->send(new VerificationMail($verificationMail));
+
+            return back()->with('msg', 'The verification email has been sent to your registed email address . Please check your inbox.');
+        } else{
+            return back()->with('msg','Please log in to resend the account verification email.');
         }
-    
-        return redirect()->back()->with('msg', 'Information updated successfully.');
     }
 
     public function login(){
@@ -163,7 +124,70 @@ class AuthController extends Controller
         return view('auth.forgot-pass');
     }
     
-    public function resetPass(){
+    public function resetLink(Request $r){
+        $r->validate([
+            'email'=>'exists:users,email',
+        ]);
 
+        $email=$r->email;
+        $user = User::where('email', $email)->first();
+        $token = PasswordFacade::createToken($user);
+        $PasswordReset= route('reset.link', [
+            'email' => $email,
+            'token' => $token,
+        ]);
+        
+        Mail::to($user->email)->send(new PasswordReset($PasswordReset));
+        return redirect()->back()->with('msg','A link to reset your pass has been sent to your registered email. Please check your Inbox.');
     }
+    public function resetForm(){
+        return view('auth.reset-pass');
+    }
+
+    public function resetPass(Request $r){
+        $email = $r->query('email');
+        $token = $r->query('token');
+    
+        $r->validate([
+            'password' => [ 
+                'required',
+                Password::min(8)
+                    ->letters()
+                    ->numbers()
+            ],
+            'confirmpass' => 'same:password',
+        ]);
+    
+        // $user = User::find($id);
+        $user = User::where('email', $email)->first();
+    
+        if ($user && PasswordFacade::tokenExists($user, $token)) {
+            $user->update([
+                'password' => Hash::make($r->password)                
+            ]);
+            return redirect()->back()->with('success', 'Password updated successfully');
+        }
+    
+        return redirect()->back()->with('error', 'Invalid reset link. Please try again.');
+    }
+    
+    // public function resetPass(Request $r){
+    //     $id = $r->query('id');
+    //     $hash = $r->query('hash');
+    //     $r->validate([
+    //         'password' => [ 'required',
+    //                         Password::min(8)
+    //                                 ->letters()
+    //                                 ->numbers()],
+    //         'confirmpass' => 'same:password',
+    //     ]);
+    //     $user = User::find($id);
+
+    //     if ($user && sha1($user->getEmailForVerification()) === $hash) {
+    //         User::where('id', $id)->update([
+    //             'password'=>Hash::make($r->password)                
+    //         ]);
+    //         return redirect()->back()->with('success','Password updated successfully');
+    //     }
+    // }
 }

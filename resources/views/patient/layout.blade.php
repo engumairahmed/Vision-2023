@@ -19,11 +19,11 @@
 
     <!-- Downloaded jQuery-->
 
-        <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
-<!-- CDN jQuery UI-->
-        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
+    <!-- CDN jQuery UI-->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
-        <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
     <!-- Custom styles for this template-->
     <link href="{{asset("/css/sb-admin-2.min.css")}}" rel="stylesheet">
@@ -102,6 +102,13 @@
 
              <!-- Nav Item -->
              <li class="nav-item">
+                <a class="nav-link" href="{{route('user.reports')}}">
+                    <i class="fas fa-fw fa-file-medical-alt"></i>
+                    <span>Reports</span></a>
+            </li>
+
+             <!-- Nav Item -->
+             <li class="nav-item">
                 <a class="nav-link" href="{{route('user.medicines')}}">
                     <i class="fas fa-fw fa-pills"></i>
                     <span>Medicines</span></a>
@@ -129,8 +136,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                   
+                    <!-- Topbar Search -->                  
                     
                         <a class="nav-link" href="{{route('index')}}" >
                             <span class="h5 mr-2 d-none d-lg-inline text-gray-600">Goto Homepage</span>

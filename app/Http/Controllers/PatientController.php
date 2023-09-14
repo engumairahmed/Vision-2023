@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Doctor;
+use App\Models\Vitals;
 use App\Models\LabTest;
 use App\Models\Patient;
 use App\Models\Medication;
@@ -14,12 +15,16 @@ use App\Models\MedicalCondition;
 use Illuminate\Support\Facades\DB;
 use App\Models\PrescriptionLabTest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\PrescriptionMedication;
 use App\Models\PrescriptionMedicalCondition;
-use App\Models\Vitals;
+use Illuminate\Validation\Rules\Password;
+
 
 class PatientController extends Controller
 {
+
+    
     public function home()
     {
         $user_id = auth()->user()->id;
@@ -104,7 +109,7 @@ class PatientController extends Controller
 
     public function planInfo($id)
     {
-        $user = Auth::user();
+        $user = auth()->user();
         $plan=Prescription::find($id);        
             
         $prescription = Prescription::with(['medications', 'medicalConditions', 'labTests', 'doctor'])
@@ -171,16 +176,92 @@ class PatientController extends Controller
 
     public function profile()
     {
-        $user_id=auth()->user()->id;
-        $userId=auth()->user();
+        
+        $user = auth()->user();
 
-        if ($userId->patient) {
-            $user = $userId->patient;
+        if ($user->patient) {
+            $user = $user->patient;
         } else {
             $user = null;
         }
         // dd($user);
         return view('patient.profile',compact('user'));
+    }
+    public function updateInfo(Request $r){
+        $id = auth()->user()->id;
+    
+        $r->validate([
+            'name'=>'required|min:3',
+            'email'=>'required|email|unique:users,email,'.$id,
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:5120',
+        ]);
+        $imageName=Null;
+    
+        DB::beginTransaction();
+    
+        try {
+            if ($r->hasFile('image')) {
+                $image = $r->file('image');
+                dd($image);
+                $originalFileName = $r->file('image')->getClientOriginalName();
+                dd($originalFileName);
+                $imageName = time().'.'.$image->getClientOriginalExtension();
+                $path = public_path('files/images');
+                $image->move($path, $imageName);
+            }
+            if($imageName==Null){
+                User::where('id', $id)->update([
+                    'name' => $r->name,
+                    'email' => $r->email,
+                ]);
+            } else{
+                User::where('id', $id)->update([
+                    'name' => $r->name,
+                    'email' => $r->email,
+                    'profile_pic'=>'files/images/'.$imageName,
+                ]);
+            }
+            Patient::where('pat_user_id', $id)->update([
+                'father_name'=>$r->fatherName,
+                'pat_gender'=>$r->gender,
+                'pat_contact'=>$r->contact,
+                'pat_address'=>$r->address,
+                'pat_DOB'=>$r->dob,
+                'blood_group'=>$r->bloodGroup
+            ]);
+    
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(['error' => 'An error occurred while updating the information.']);
+        }
+    
+        return redirect()->back()->with('msg', 'Information updated successfully.');
+    }
+    public function security(){
+        return view('patient.security');
+    }
+    public function updatePass(Request $r){
+        $user = auth()->user();
+        
+
+        if (Hash::check($r->oldpass, $user->password)) {
+            $r->validate([
+                'pass' => [ 'required',
+                            Password::min(8)
+                                    ->letters()
+                                    ->numbers()],
+                'cpass' => 'same:pass',
+            ]);
+            $pass = Hash::make($r->pass);
+            User::where('id', $user->id)->update([
+                'password' => $pass
+            ]);           
+    
+            return redirect()->back()->with('success', 'Password updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Invalid old password.');
+        }
     }
     public function medication(){
         $medicines = Medication::all();
@@ -188,17 +269,31 @@ class PatientController extends Controller
         return view('patient.medicine', compact('medicines','medicineCount'));
     }
 
+    public function allReports(){
+        $user_id = auth()->user()->id;
+        // $reports = MedicalReports::where('mr_created_by', $user_id)
+        // ->get();
+
+        $user = User::find($user_id);
+        $reports = $user->medicalReports;
+        
+        $reportCount = $user->medicalReports->sum(function ($prescription) {
+            return $prescription->medicalReports->count();
+        });
+        return view('patient.reports', compact('reports','reportCount'));
+    }
+
     public function reports(){
 
-        $userId = auth()->user()->id;
+        $user_id = auth()->user()->id;
 
-        $prescription=Prescription::where('presc_user_id', $userId)->get();
+        $prescription=Prescription::where('presc_user_id', $user_id)->get();
 
         return view('patient.add-report',compact('prescription'));
     }
     public function addReport(Request $r){
-        $userId = auth()->user()->id;
-        // dd($userId);
+        $user_id = auth()->user()->id;
+        // dd($user_id);
         $r->validate([
             'report'=>'file|mimes:jpeg,png,jpg,pdf,doc,docx|max:5120',
         ]);
@@ -211,7 +306,7 @@ class PatientController extends Controller
             'mr_prescription_id' => $r->prescription,
             'mr_report' => $path,
             'mr_name'=>$originalFileName,
-            'mr_created_by'=>$userId,
+            'mr_created_by'=>$user_id,
         ]);
 
         return redirect()->back()->with('msg','Report uploaded successfully');
@@ -222,7 +317,7 @@ class PatientController extends Controller
     }
 
     public function vitalCreate(Request $r){
-        $userId=auth()->user()->id;
+        $user_id=auth()->user()->id;
         $r->validate([
             'systolic'=>'numeric',
             'diastolic'=>'numeric',
@@ -234,7 +329,7 @@ class PatientController extends Controller
         ]);
         $bp=$r->systolic."/".$r->diastolic;
         Vitals::create([
-        'vital_user_id'=>$userId,
+        'vital_user_id'=>$user_id,
         'blood_pressure'=>$bp,
         'body_temperature'=>$r->body_temp."°F",
         'body_weight'=>$r->body_weight."KG",
@@ -242,17 +337,17 @@ class PatientController extends Controller
         'respiratory_rate'=>$r->respiratory_rate,
         'oxygen_saturation'=>$r->spo2."%",
         'blood_glucose_levels'=>$r->blood_glucose."mg/dL",
-        'vital_created_by'=>$userId,
+        'vital_created_by'=>$user_id,
         ]);
 
         return redirect()->back()->with('msg','Vitals added successfully');
     }
     public function vitalHistory(){
-        $userId=auth()->user()->id;
+        $user_id=auth()->user()->id;
 
-        // $vitals = Vitals::where('vital_user_id', $userId)->get();
+        // $vitals = Vitals::where('vital_user_id', $user_id)->get();
 
-        $vitals = Vitals::where('vital_user_id', $userId)->with('createdByUser')->get();
+        $vitals = Vitals::where('vital_user_id', $user_id)->with('createdByUser')->get();
 
 
         return view('patient.vital-history',compact('vitals'));

@@ -21,15 +21,39 @@
                             background-size: cover;"></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
+                                    <div class="text-center">                                        
+                                    @if ($errors->any())
+                                        <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>         
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    @endif
+                                    @if (Session::has('msg'))
+                                        <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+                                            {{Session::get('msg')}} 
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <form class="user">
+                                            <a href="{{route('login')}}" class="btn btn-info btn-user btn-block font-weight-bolder">Login</a>                                                               
+                                        </form>
+                                    @else
+                                    <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1>
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
-                                            and we'll send you a link to reset your password!</p>
+                                            and we'll send you a link to reset your password!</p>                                                                 
+                                       
                                     </div>
                                     <form class="user" method="post">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
+                                            <input type="email" name="email" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
@@ -43,6 +67,7 @@
                                     <div class="text-center">
                                         <a class="small" href="{{route('login')}}">Already have an account? Login!</a>
                                     </div>
+                                    @endif 
                                 </div>
                             </div>
                         </div>
