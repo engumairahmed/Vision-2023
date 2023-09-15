@@ -34,9 +34,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
+                            @if ($vital!==Null)
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
                                 Latest Vitals recorded on: {{$vital->created_at}}</div>
-                                @if ($vital!==Null)
                                 <div class=" mb-0 font-weight-bold text-gray-800">
                                     BP: {{$vital->blood_pressure}} | 
                                     Temperature: {{$vital->body_temperature}} °F | 
@@ -51,7 +51,8 @@
 
                                 </div>
                                 @else
-
+                                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                    Latest Recorded Vitals</div>
                                 <div class=" mb-0 font-weight-bold text-gray-800">Your last recorded Vitals will show here</div>
                                     
                                 @endif
