@@ -170,6 +170,7 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
             Route::post('/account/security','updatePass');
 
             Route::get('/doctors','docData')->name('admin.doctors');
+            Route::get('/doctors/id/{id}','viewDoc')->name('view.doctors');
 
             // Route::post('/','add_user2');
             // Route::get('/show','show_user')->name('show');

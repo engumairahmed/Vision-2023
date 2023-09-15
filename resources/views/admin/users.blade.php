@@ -72,7 +72,7 @@
                                 <td>Disabled</td>                                
                                 <td><a href="{{ route('enable.user', ['id' => $user->id]) }}" class="btn btn-success btn-sm">Activate</a></td>
                                 @endif
-                                <td><a href="{{ route('view.user', ['id' => $user->id]) }}" class="btn btn-success btn-sm">View</a></td>
+                                <td><a href="{{ route('view.user', ['id' => $user->id]) }}" class="btn btn-info btn-sm">View</a></td>
                                 
                             </tr>
 

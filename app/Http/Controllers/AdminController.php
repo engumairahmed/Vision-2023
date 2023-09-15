@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Doctor;
 use App\Models\Vitals;
 use App\Models\LabTest;
 use App\Models\Patient;
@@ -152,10 +153,13 @@ class AdminController extends Controller
         $user=User::find($id);
         $presc_count = Prescription::where('presc_user_id', $id)->count();
         $vitalsCount=Vitals::where('vital_user_id',$id)->count();
+        $patientData = $user->patient;
+        // dd($patientData->contact);
         $reportCount = $user->medicalReports->sum(function ($prescription) {
             return $prescription->medicalReports->count();
         });
-        return view('admin.userinfo',compact('user','presc_count','reportCount','vitalsCount'));
+
+        return view('admin.userinfo',compact('user','presc_count','reportCount','vitalsCount','patientData'));
     }
 
     public function enable($id){
@@ -175,7 +179,7 @@ class AdminController extends Controller
     public function docData()
     {    
         $users=User::with('Doctor')->join('doctors','users.id', '=', 'doctors.doc_user_id')
-        ->select('doctors.*', 'users.name', 'users.email')->get();
+        ->select('doctors.*', 'users.name', 'users.email','users.id','users.email_verified_at','users.is_active')->get();
         $ages = [];
         // dd($users);
         foreach ($users as $user) {
@@ -184,6 +188,16 @@ class AdminController extends Controller
                 }
                 // dd($ages);
             return view('admin.doctors',compact('users','ages'));
+    }
+    public function viewDoc($id){
+
+        $user=User::find($id);
+
+        $doctor = Doctor::where('doc_user_id', $user->id)->first();
+
+        $presc_count = Prescription::where('presc_doctor_id', $id)->count();
+        
+        return view('admin.doctorinfo',compact('user','presc_count','doctor'));
     }
 
      public function search(Request $request)

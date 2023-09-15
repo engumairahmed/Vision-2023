@@ -3,11 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use App\Models\Doctor;
 use App\Models\Patient;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -54,6 +55,15 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected $dates = ['created_at', 'updated_at'];
+
+    public function getCreatedAtAttribute($value)
+    {
+        $createdAt = Carbon::parse($value);
+
+        return $createdAt->format('d F Y | h:i A');
+    }
 
     public function patient(){
 
