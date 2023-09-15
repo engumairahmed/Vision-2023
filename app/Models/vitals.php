@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vitals extends Model
 {
@@ -23,6 +24,15 @@ class Vitals extends Model
         'vital_created_by'
     ];
     
+    protected $dates = ['created_at', 'updated_at'];
+
+    public function getCreatedAtAttribute($value)
+    {
+        $createdAt = Carbon::parse($value);
+
+        return $createdAt->format('d F Y | h:i A');
+    }
+
     public function createdByUser() {
         return $this->belongsTo(User::class, 'vital_created_by', 'id');
     }

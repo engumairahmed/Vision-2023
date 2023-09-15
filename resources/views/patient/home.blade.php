@@ -35,15 +35,21 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Latest Vitals</div>
+                                Latest Vitals recorded on: {{$vital->created_at}}</div>
                                 @if ($vital!==Null)
                                 <div class=" mb-0 font-weight-bold text-gray-800">
                                     BP: {{$vital->blood_pressure}} | 
                                     Temperature: {{$vital->body_temperature}} °F | 
                                     Weight: {{$vital->body_weight}} | 
+                                    SpO2: {{$vital->oxygen_saturation}}
                                     
                                 </div>
-                                <div class=" mb-0 font-weight-bold text-gray-800">BP: {{$vital->blood_pressure}}</div>
+                                <div class=" mb-0 font-weight-bold text-gray-800">
+                                    Pulse Rate: {{$vital->pulse_rate}} | 
+                                    Respiratory Rate: {{$vital->respiratory_rate}} | 
+                                    Sugar Level: {{$vital->blood_glucose_levels}}
+
+                                </div>
                                 @else
 
                                 <div class=" mb-0 font-weight-bold text-gray-800">Your last recorded Vitals will show here</div>

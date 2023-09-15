@@ -49,7 +49,7 @@ class PatientController extends Controller
             'd.doc_contact',
             'd.specialization'
         )
-        ->where('p.presc_user_id', 2)
+        ->where('p.presc_user_id', $user_id)
         ->get();       
         $vital = Vitals::where('vital_user_id', $user_id)->latest()->first();
 

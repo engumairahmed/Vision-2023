@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('subject');
-            $table->text('message');
+            $table->text('message');            
+            $table->unsignedBigInteger('msg_user_id')->nullable();
+            $table->foreign('msg_user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

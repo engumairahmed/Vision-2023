@@ -4,16 +4,19 @@ namespace App\Http\Controllers;
 
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Vitals;
 use App\Models\LabTest;
 use App\Models\Patient;
-use App\Models\Medication;
 use App\Models\Messages;
+use App\Models\Medication;
 use App\Models\Prescription;
-use App\Models\SurgicalProcedure;
-use App\Models\Vitals;
 use Illuminate\Http\Request;
+use App\Models\SurgicalProcedure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
+
 
 class AdminController extends Controller
 {
@@ -37,6 +40,28 @@ class AdminController extends Controller
     public function security()
     {
         return view('admin.security');
+    }
+    public function updatePass(Request $r){
+        $user = auth()->user();
+        
+
+        if (Hash::check($r->oldpass, $user->password)) {
+            $r->validate([
+                'pass' => [ 'required',
+                            Password::min(8)
+                                    ->letters()
+                                    ->numbers()],
+                'cpass' => 'same:pass',
+            ]);
+            $pass = Hash::make($r->pass);
+            User::where('id', $user->id)->update([
+                'password' => $pass
+            ]);           
+    
+            return redirect()->back()->with('success', 'Password updated successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Invalid old password.');
+        }
     }
 
     public function medication()

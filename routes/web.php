@@ -24,19 +24,18 @@ Route::get('/', function () {
     return view('index');
 })->name('index');
 
-// Auth::routes([
-//     'verify'=>true
-// ]);
-
 Route::post('/',[Controller::class,'message']);
 
-// Google URL
+// Google Autheniticate
+
 Route::controller(GoogleController::class)->group(function(){
     Route::prefix('/google')->group( function(){
         Route::get('/login','loginWithGoogle')->name('google-login');
         Route::any('/callback','callbackFromGoogle')->name('callback');
     });
 });
+
+//  -------Authentication Routes-------
 
 Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::get('/logout','logout')->name('logout');
@@ -55,11 +54,11 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::get('/account-activation','activation')->name('activation.request');
 });
 
+//  -------Patient Routes-------
+
 Route::middleware(['active','auth','patient','verified'])->group(function(){
 
-    Route::controller(PatientController::class)->group(function(){
-
-        
+    Route::controller(PatientController::class)->group(function(){        
         
         Route::prefix('/patient')->group(function(){
 
@@ -80,8 +79,7 @@ Route::middleware(['active','auth','patient','verified'])->group(function(){
             
             Route::get('/vitals','vital')->name('patient.vital');
             Route::post('/vitals','vitalCreate')->name('patient.vital');
-            Route::get('/vitals/history','vitalHistory')->name('patient.vitalhistory');
-            
+            Route::get('/vitals/history','vitalHistory')->name('patient.vitalhistory');            
             
             Route::get('/plan/{id}','planInfo')->name('user.plan');
 
@@ -92,12 +90,11 @@ Route::middleware(['active','auth','patient','verified'])->group(function(){
             Route::post('/upload-reports','addReport');
             
         });
-
-
-
-
     });
 });
+
+//  -------Doctors Routes-------
+
 Route::middleware(['active','auth','doctor','verified'])->group(function(){
 
     Route::controller(DoctorController::class)->group(function(){
@@ -106,17 +103,36 @@ Route::middleware(['active','auth','doctor','verified'])->group(function(){
 
             Route::get('/','home')->name('doctor.home');
             
-            Route::get('/profile','profile')->name('doctor.profile');
+            Route::get('/account/profile','profile')->name('doctor.profile');
+            Route::post('/account/profile','updateInfo');
+            Route::get('/account/security','security')->name('doctor.security');
+            Route::post('/account/security','updatePass');
+
+            Route::get('/prescriptions/new','prescription')->name('new.prescription');    
+            Route::post('/prescriptions/new','newPlan');
+            Route::get('/prescriptions','allPrescriptions')->name('prescriptions');
+
+            Route::get('/medication','medication')->name('doctor.medication');
+            Route::get('/medication/request','medicRequest')->name('medicine.request');
+            Route::post('/medication/request','requestMsg');
+
+            Route::get('/reports','allReports')->name('doctor.reports');
+
+            Route::get('/plan/{id}','planInfo')->name('doctor.plan');
+
+
+
 
         });
 
     });
 });
 
+//  -------Admin Routes-------
+
 Route::middleware(['active','auth','admin','verified'])->group(function(){
 
     Route::controller(AdminController::class)->group(function(){
-
        
         Route::prefix('/admin/management')->group(function(){
 
@@ -135,7 +151,6 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
 
         });
 
-
         Route::prefix('/admin')->group(function(){
 
             Route::get('/','dashboard')->name('admin.dashboard');
@@ -143,14 +158,17 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
             Route::get('/queries','queries')->name('admin.queries');
             Route::get('/queries/message/{id}','msg');
 
+            Route::get('/users','userdata')->name('admin.users');
+            Route::get('/users/id/{id}','viewUser')->name('view.user');
+
             Route::get('/users/activate/{id}','enable')->name('enable.user');
             Route::get('/users/deactivate/{id}','disable')->name('disable.user');
 
-            Route::get('/users/id/{id}','viewUser')->name('view.user');
 
-            Route::get('/profile','profile')->name('admin.profile');
-            Route::get('/security','security')->name('admin.security');
-            Route::get('/users','userdata')->name('admin.users');
+            Route::get('/account/profile','profile')->name('admin.profile');
+            Route::get('/account/security','security')->name('admin.security');
+            Route::post('/account/security','updatePass');
+
             Route::get('/doctors','docData')->name('admin.doctors');
 
             // Route::post('/','add_user2');
@@ -158,8 +176,6 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
             // Route::get('/delete/{id}','delete_std');
             // Route::get('/update/{id}','update_std');
             // Route::post('/update/{id}','update_std2');
-
-
         });
     });
 });

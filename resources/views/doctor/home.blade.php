@@ -2,6 +2,7 @@
 
 @section('title','MedCustodin')
 @section('content')
+
       <!-- Page Heading -->
       <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
@@ -10,7 +11,7 @@
     <!-- Content Row -->
     <div class="row">
 
-        <!-- Active Medications -->
+        <!-- Prescriptions -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border border-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -28,7 +29,7 @@
             </div>
         </div>
 
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- Vitals -->
         <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border border-info shadow h-100 py-2">
                 <div class="card-body">
@@ -64,13 +65,12 @@
             </div>
         </div>
     </div>
-    <!-- Begin Page Content -->
- <div class="container-fluid">
+  
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Patients</h1>
-    <p class="mb-4">Below, you'll find a comprehensive list of all the patients for whom you've provided prescriptions..</p>
+    <p class="mb-4">Below, you'll find a comprehensive list of all the patients for whom you've provided prescriptions.</p>
 
-        <!-- DataTales Example -->
+        <!-- Patients Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Prescription Plans</h6>
@@ -81,7 +81,7 @@
                         <thead>
                             <tr>
                                 <th>Plan</th>
-                                <th>Consultant</th>
+                                <th>Patient</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>
@@ -90,22 +90,21 @@
                         <tfoot>
                             <tr>
                                 <th>Plan</th>
-                                <th>Consultant</th>
+                                <th>Patient</th>
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {{-- {{dd($doctor)}} --}}
                             @foreach ($patients as $item)
                                 
                             <tr>
                                 <td>{{$item->plan_name}}</td>
-                                <td>{{$item->doc_name}}</td>
+                                <td>{{$item->name}}</td>
                                 <td>{{$item->start_date}}</td>
                                 <td>{{$item->end_date}}</td>
-                                <td><a href="{{ route('user.plan', ['id' => $item->presc_id]) }}" class="btn btn-circle btn-sm btn-info"><i class="fas fa-info-circle"></i></a></td>
+                                <td><a href="{{ route('doctor.plan', ['id' => $item->presc_id]) }}" class="btn btn-circle btn-sm btn-info"><i class="fas fa-info-circle"></i></a></td>
                             </tr>
 
                             @endforeach
@@ -115,7 +114,6 @@
                 </div>
             </div>
         </div>
-    </div>
         
     <!-- /.container-fluid -->
 @endsection

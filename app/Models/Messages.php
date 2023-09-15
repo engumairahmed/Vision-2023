@@ -14,7 +14,8 @@ class Messages extends Model
         'name',
         'email',
         'subject',
-        'message'
+        'message',
+        'msg_user_id'
     ];
 
     protected $dates = ['created_at', 'updated_at'];

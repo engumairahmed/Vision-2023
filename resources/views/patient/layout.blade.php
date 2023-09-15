@@ -76,8 +76,8 @@
                 </a>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="{{route('prescriptions')}}">Create Medication Plan</a>
-                        <a class="collapse-item" href="{{route('history')}}">View Medication Plan</a>
+                        <a class="collapse-item" href="{{route('prescriptions')}}">Create Prescription Plan</a>
+                        <a class="collapse-item" href="{{route('history')}}">View Prescriptions</a>
                     </div>
                 </div>
             </li>
