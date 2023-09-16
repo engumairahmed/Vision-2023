@@ -12,7 +12,7 @@
                             <div class="page-header-icon col-auto icon-circle bg-warning">
                                 <i class="fas fa-clipboard-list fa-xs text-white"></i>
                             </div>
-                            Create Medication Plan
+                            Create Medication/Prescription Plan
                         </h1>
                     </div>
                 </div>

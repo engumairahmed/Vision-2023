@@ -60,11 +60,12 @@ Route::middleware(['active','auth','patient','verified'])->group(function(){
 
     Route::controller(PatientController::class)->group(function(){        
         
+        
         Route::prefix('/patient')->group(function(){
             
             Route::get('/','home')->name('patient.home');
             
-            Route::get('/prescriptions/create','prescription')->name('prescriptions');    
+            Route::get('/prescriptions/create','prescription')->name('patient.prescriptions');    
             Route::post('/prescriptions','newPlan');
     
             Route::get('/account/profile','profile')->name('patient.profile');
