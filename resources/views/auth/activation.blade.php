@@ -35,17 +35,17 @@
                                                 placeholder="Enter Email Address...">
                                         </div>
                                         <input type="submit" value="Request Account Activation" class="btn btn-primary btn-user btn-block">                                                           
-                                    </form>
-
-                                </div>
-                                
-                                <hr>
-                                <div class="text-center">
-                                    <a class="small" href="{{route('register')}}">Register</a>
-                                </div>
-                                <div class="text-center">
-                                    <a class="small" href="{{route('login')}}">Goto Login!</a>
-                                </div>
+                                        
+                                    </div>
+                                    
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="{{route('register')}}">Register</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="{{route('login')}}">Goto Login!</a>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

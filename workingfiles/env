@@ -1,4 +1,4 @@
-APP_NAME=Laravel
+APP_NAME=MedCustodian
 APP_ENV=local
 APP_KEY=base64:u22d0NoI43dIra/2PQUoxQ42/75VcdtUkw0tflltc1I=
 APP_DEBUG=true

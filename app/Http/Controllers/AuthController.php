@@ -8,6 +8,7 @@ use App\Models\Patient;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Mail\VerificationMail;
+use App\Models\Doctor;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -29,27 +30,40 @@ class AuthController extends Controller
     }
 
     public function register(Request $obj){
-        
         $obj->validate([
             'firstName'=>'required|min:3|alpha:ascii',
             'lastName'=>'required|min:3|alpha:ascii',
             'email'=>'required|email|unique:users',
             'password' => [ 'required',
-                            Password::min(8)
-                                    ->letters()
-                                    ->numbers()],
+            Password::min(8)
+            ->letters()
+            ->numbers()],
             'confirmpass' => 'same:password',
         ]);
+        
+        if($obj->registerDoctor=="on"){
+            
+            $user=User::create([
+                'name'=>$obj->firstName." ".$obj->lastName,
+                'email'=>$obj->email,
+                'password'=>Hash::make($obj->password)
+            ]);
+            Doctor::create([
+                    'doc_user_id'=>$user->id,
+            ]);
+            
+        } else{
 
-        $user=User::create([
-            'name'=>$obj->firstName." ".$obj->lastName,
-            'email'=>$obj->email,
-            'password'=>Hash::make($obj->password),
-        ]);
-
-        Patient::create([
-            'pat_user_id'=>$user->id,
-        ]);
+            $user=User::create([
+                'name'=>$obj->firstName." ".$obj->lastName,
+                'email'=>$obj->email,
+                'password'=>Hash::make($obj->password),
+                'is_ative'=>1,
+            ]);
+            Patient::create([
+                'pat_user_id'=>$user->id,
+            ]);
+        }
         
         $verificationMail= route('verify.email', [
             'id' => $user->getKey(),

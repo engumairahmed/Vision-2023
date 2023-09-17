@@ -18,8 +18,8 @@
         rel="stylesheet">
 
     <!-- Downloaded jQuery-->
-
     <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
+
     <!-- CDN jQuery UI-->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
@@ -28,8 +28,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset("/css/sb-admin-2.min.css")}}" rel="stylesheet">
 
-        <!-- Add the Select2 CSS -->
-<link href="{{ asset("/css/select2.min.css") }}" rel="stylesheet" />
+    <!-- Add the Select2 CSS -->
+    <link href="{{ asset("/css/select2.min.css") }}" rel="stylesheet" />
 
 </head>
 

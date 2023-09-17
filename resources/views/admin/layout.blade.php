@@ -279,6 +279,9 @@
     <script src="{{asset("js/demo/chart-area-demo.js")}}"></script>
     <script src="{{asset("js/demo/chart-pie-demo.js")}}"></script>
 
+    <!-- Add the Select2 JS -->
+    <script src="{{ asset("js/select2.min.js") }}"></script>
+
 
 </body>
 

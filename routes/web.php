@@ -52,6 +52,7 @@ Route::controller(AuthController::class)->middleware(['web'])->group(function(){
     Route::get('/email/notice','notice')->name('verification.notice');
     Route::get('/email','email')->name('emails.verification');
     Route::get('/account-activation','activation')->name('activation.request');
+    Route::get('/doctor-verification','docVerification')->name('verification.doctor');
 });
 
 //  -------Patient Routes-------
@@ -172,12 +173,7 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
 
             Route::get('/doctors','docData')->name('admin.doctors');
             Route::get('/doctors/id/{id}','viewDoc')->name('view.doctors');
-
-            // Route::post('/','add_user2');
-            // Route::get('/show','show_user')->name('show');
-            // Route::get('/delete/{id}','delete_std');
-            // Route::get('/update/{id}','update_std');
-            // Route::post('/update/{id}','update_std2');
+            
         });
     });
 });

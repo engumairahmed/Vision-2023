@@ -18,8 +18,10 @@ class IsActive
     {
         $user = Auth::user();
 
-        if ($user && !$user->is_active) {
+        if ($user && !$user->is_active && !$user->is_doctor) {
             return redirect()->route('activation.request');
+        } elseif($user && !$user->is_active && $user->is_doctor){
+            return redirect()->route('verification.doctor');
         }
 
         return $next($request);

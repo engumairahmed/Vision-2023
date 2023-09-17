@@ -25,10 +25,13 @@
                                     {{Session::get('msg')}}
                                 </div>
                             </div>
-                            
-                            <a href="{{route('login')}}" class="btn btn-google btn-user btn-block">
-                                <i class="fab fa-google fa-fw"></i> Login
-                            </a>
+                            <form class="user">
+
+                                <a href="{{route('login')}}" class="btn btn-google btn-user btn-block">
+                                    <i class="fas fa-sign-in-alt"></i>Login
+                                    {{-- <i class="fab fa-google fa-fw"></i> Login --}}
+                                </a>
+                            </form>
 
                              @else
 
@@ -68,6 +71,12 @@
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
                                             id="exampleRepeatPassword"  name="confirmpass" placeholder="Repeat Password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox small">
+                                        <input type="checkbox" class="custom-control-input" name="registerDoctor" id="customCheck">
+                                        <label class="custom-control-label" for="customCheck">Register as Doctor</label>
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-warning btn-user btn-block" value="Register Account">

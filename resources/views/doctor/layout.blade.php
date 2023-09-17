@@ -21,12 +21,18 @@
     <link href="{{asset("/css/sb-admin-2.min.css")}}" rel="stylesheet">
 
     <!-- Downloaded jQuery-->
-
     <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
+
     <!-- CDN jQuery UI-->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <!-- Custom styles for this template-->
+    <link href="{{asset("/css/sb-admin-2.min.css")}}" rel="stylesheet">
+
+    <!-- Add the Select2 CSS -->
+    <link href="{{ asset("/css/select2.min.css") }}" rel="stylesheet" />
 
 </head>
 
@@ -241,7 +247,7 @@
          });
     </script>
 
-    <!-- Bootstrap core JavaScript-->
+    <!-- Bootstrap core JavaScript-->    
     <script src="{{asset("vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
 
     <!-- Custom scripts for all pages-->
