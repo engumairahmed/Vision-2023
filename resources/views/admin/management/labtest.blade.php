@@ -9,7 +9,7 @@
             <h1 class="h3 mb-2 text-gray-800">Medical Test</h1>
             <p class="mb-4">Below is a list of all medical tests currently added in system.</p>
         </div>
-         <!-- Earnings (Monthly) Card Example -->
+         <!-- Info Card -->
          <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning border-bottom-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -37,7 +37,7 @@
             </a>
         </div>
 
-        <!-- DataTales Example -->
+        <!-- Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">List</h6>

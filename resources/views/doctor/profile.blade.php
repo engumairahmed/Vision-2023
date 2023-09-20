@@ -60,11 +60,11 @@
                         <img class="img-account-profile rounded-circle mb-2" src="{{asset('images/undraw_profile.svg')}}" alt="">                            
                         @endif
                         <!-- Profile picture help block-->
-                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <div class="small font-italic text-muted mb-4">JPG or PNG, no more than 3 MB, height x width mus be same</div>
                         <!-- Profile picture upload button-->
                         <div class="custom-file">
                             <input type="file" id="fileInput" name="image" style="display: none;" accept=".jpg,.jpeg,.png">
-                            <button type="button" id="customButton" class="btn btn-primary">Upload File</button>
+                            <button type="button" id="customButton" class="btn btn-primary">Select Image</button>
                             <span id="fileName"></span>
                         </div>
                     </div>

@@ -12,7 +12,7 @@
             <h1 class="h3 mb-2 text-gray-800">Medications</h1>
             <p class="mb-4">Below is a list of all medicines currently added in system.</p>
         </div>
-        <!-- Earnings (Monthly) Card Example -->
+        <!-- Info Card -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info border-bottom-info shadow h-100 py-2">
                 <div class="card-body">
@@ -40,7 +40,7 @@
             </div>
         
 
-        <!-- DataTales Example -->
+        <!-- Table -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Medication Tables</h6>

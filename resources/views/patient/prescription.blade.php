@@ -98,8 +98,9 @@
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputSurgicalProcedure">Recommended Surgical Procedure</label>
                                 <select class="form-control select2" id="inputSurgicalProcedure" type="text" placeholder="Select Surgical Procedure" value="" name="surgicalProcedure">
+                                    <option value="">Select Surgical Procedure</option>
                                     @foreach ($sp as $item)
-                                        <option value="{{$item->test_id}}">{{$item->test_name}}</option>
+                                        <option value="{{$item->sp_id}}">{{$item->sp_name}}</option>
                                     @endforeach
                                 </select>
                             </div>

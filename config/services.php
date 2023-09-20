@@ -15,8 +15,8 @@ return [
     */
 
     'google' => [
-        'client_id' => '178008846092-uqlgrr9v926tos9jsdj7olqb8n49vjtv.apps.googleusercontent.com', //USE FROM Google DEVELOPER ACCOUNT
-        'client_secret' => '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', //USE FROM Google DEVELOPER ACCOUNT
+        'client_id' => '', //USE FROM Google DEVELOPER ACCOUNT
+        'client_secret' => '', //USE FROM Google DEVELOPER ACCOUNT
         'redirect' => 'http://127.0.0.1:8000/google/callback'
     ],
 

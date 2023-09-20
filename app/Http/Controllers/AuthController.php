@@ -29,8 +29,8 @@ class AuthController extends Controller
         return view('auth.register');
     }
 
-    public function register(Request $obj){
-        $obj->validate([
+    public function register(Request $r){
+        $r->validate([
             'firstName'=>'required|min:3|alpha:ascii',
             'lastName'=>'required|min:3|alpha:ascii',
             'email'=>'required|email|unique:users',
@@ -41,23 +41,26 @@ class AuthController extends Controller
             'confirmpass' => 'same:password',
         ]);
         
-        if($obj->registerDoctor=="on"){
+        if($r->registerDoctor=="on"){
             
             $user=User::create([
-                'name'=>$obj->firstName." ".$obj->lastName,
-                'email'=>$obj->email,
-                'password'=>Hash::make($obj->password)
+                // dd($r->firstName),
+                'name'=>$r->firstName." ".$r->lastName,
+                'email'=>$r->email,
+                'password'=>Hash::make($r->password),
+                'is_doctor'=>'1',
+                'is_active'=>Null
             ]);
             Doctor::create([
-                    'doc_user_id'=>$user->id,
+                'doc_user_id'=>$user->id,
             ]);
-            
+
         } else{
 
             $user=User::create([
-                'name'=>$obj->firstName." ".$obj->lastName,
-                'email'=>$obj->email,
-                'password'=>Hash::make($obj->password),
+                'name'=>$r->firstName." ".$r->lastName,
+                'email'=>$r->email,
+                'password'=>Hash::make($r->password),
                 'is_ative'=>1,
             ]);
             Patient::create([
@@ -86,12 +89,12 @@ class AuthController extends Controller
 
         $user = User::find($id);
 
-    if ($user && sha1($user->getEmailForVerification()) === $hash) {
-        $user->markEmailAsVerified();
-        return redirect()->intended('login');
-    } else {
-        return view('emails.notice');
-    }
+        if ($user && sha1($user->getEmailForVerification()) === $hash) {
+            $user->markEmailAsVerified();
+            return redirect()->intended('login');
+        } else {
+            return view('emails.notice');
+        }
     }
 
     public function resend(Request $r)
@@ -116,6 +119,10 @@ class AuthController extends Controller
         }
     }
 
+    public function docVerification(){
+        return view('auth.doctor-verification');
+    }
+
     public function login(){
         Auth::logout();
         return view('auth.login');
@@ -124,12 +131,15 @@ class AuthController extends Controller
     public function store(Request $r){
         $remember = $r->has('remember');
         if(Auth::attempt(['email'=>$r->email,'password'=>$r->password],$remember)){
-            // dd(auth()->user());
+            
             return redirect()->route('admin.dashboard');
+
         } else{
+
             $r->validate([
                 'email'=>'exists:users,email',
             ]);
+
             return redirect()->route('login')->withErrors(['fail'=>'Login Failed']);            
         }
     }
@@ -154,6 +164,7 @@ class AuthController extends Controller
         Mail::to($user->email)->send(new PasswordReset($PasswordReset));
         return redirect()->back()->with('msg','A link to reset your pass has been sent to your registered email. Please check your Inbox.');
     }
+
     public function resetForm(){
         return view('auth.reset-pass');
     }
@@ -172,7 +183,6 @@ class AuthController extends Controller
             'confirmpass' => 'same:password',
         ]);
     
-        // $user = User::find($id);
         $user = User::where('email', $email)->first();
     
         if ($user && PasswordFacade::tokenExists($user, $token)) {

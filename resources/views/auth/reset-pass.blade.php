@@ -67,11 +67,11 @@
                                 
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                        id="exampleInputPassword"  name="password" placeholder="Password">
+                                        id="inputPassword"  name="password" placeholder="Password">
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword"  name="confirmpass" placeholder="Repeat Password">
+                                            id="repeatPassword"  name="confirmpass" placeholder="Repeat Password">
                                 </div>
                                 <input type="submit" class="btn btn-warning btn-user btn-block font-weight-bolder" value="Save Changes">
                                 

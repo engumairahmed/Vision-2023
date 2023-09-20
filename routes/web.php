@@ -67,7 +67,7 @@ Route::middleware(['active','auth','patient','verified'])->group(function(){
             Route::get('/','home')->name('patient.home');
             
             Route::get('/prescriptions/create','prescription')->name('patient.prescriptions');    
-            Route::post('/prescriptions','newPlan');
+            Route::post('/prescriptions/create','newPlan');
     
             Route::get('/account/profile','profile')->name('patient.profile');
             Route::post('/account/profile','updateInfo');        
@@ -117,6 +117,7 @@ Route::middleware(['active','auth','doctor','verified'])->group(function(){
             Route::get('/medication','medication')->name('doctor.medication');
             Route::get('/medication/request','medicRequest')->name('medicine.request');
             Route::post('/medication/request','requestMsg');
+            Route::get('/requests','viewRequests')->name('doctor.requests');
 
             Route::get('/reports','allReports')->name('doctor.reports');
 
@@ -173,7 +174,7 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
 
             Route::get('/doctors','docData')->name('admin.doctors');
             Route::get('/doctors/id/{id}','viewDoc')->name('view.doctors');
-            
+
         });
     });
 });

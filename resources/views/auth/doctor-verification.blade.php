@@ -27,7 +27,7 @@
                                     @else
                                     @endif
 
-                                    <form class="user" method="post">
+                                    <form class="user">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" name="email" class="form-control form-control-user"

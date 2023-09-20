@@ -34,9 +34,9 @@
                         <!-- Profile picture image-->
                         <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">
                         <!-- Profile picture help block-->
-                        <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
+                        <div class="small font-italic text-muted mb-4">JPG or PNG, no more than 3 MB, height x width mus be same</div>
                         <!-- Profile picture upload button-->
-                        <button class="btn btn-primary" type="button">Upload new image</button>
+                        <button class="btn btn-primary" type="button">Select Image</button>
                     </div>
                 </div>
             </div>

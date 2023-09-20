@@ -27,31 +27,37 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin Account',
             'email' => 'admin@mail',
             'is_admin'=>1,
+            'is_active'=>1,
             'password' => Hash::make($pass),
         ]);
         User::factory()->create([
             'name' => 'Test User',
+            'is_active'=>1,
             'email' => 'test@mail',
             'password' => Hash::make($pass),
         ]);
         User::factory()->create([
             'name' => 'Test2 User2',
+            'is_active'=>1,
             'email' => 'test2@mail.com',
             'password' => Hash::make($pass),
         ]);
         User::factory()->create([
             'name' => 'Test3 User3',
+            'is_active'=>1,
             'email' => 'test3@mail.com',
             'password' => Hash::make($pass),
         ]);
         User::factory()->create([
             'name' => 'Doctor User',
+            'is_active'=>1,
             'email' => 'doc@mail',
             'password' => Hash::make($pass),
             'is_doctor'=>1,
         ]);
         User::factory()->create([
             'name' => 'Doctor User2',
+            'is_active'=>1,
             'email' => 'doc2@mail',
             'password' => Hash::make($pass),
             'is_doctor'=>1,

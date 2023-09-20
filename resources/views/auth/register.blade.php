@@ -27,9 +27,8 @@
                             </div>
                             <form class="user">
 
-                                <a href="{{route('login')}}" class="btn btn-google btn-user btn-block">
-                                    <i class="fas fa-sign-in-alt"></i>Login
-                                    {{-- <i class="fab fa-google fa-fw"></i> Login --}}
+                                <a href="{{route('login')}}" class="btn btn-warning btn-user btn-block">
+                                    <i class="fas fa-sign-in-alt"></i> Login
                                 </a>
                             </form>
 
@@ -51,32 +50,32 @@
                                 @csrf
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" value="{{ old('firstName') }}" name="firstName" id="exampleFirstName"
+                                        <input type="text" class="form-control form-control-user" value="{{ old('firstName') }}" name="firstName" id="firstName"
                                             placeholder="First Name">
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user"  value="{{ old('lastName') }}" name="lastName" id="exampleLastName"
+                                        <input type="text" class="form-control form-control-user"  value="{{ old('lastName') }}" name="lastName" id="lastName"
                                             placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" value="{{ old('email') }}" name="email" id="exampleInputEmail"
+                                    <input type="email" class="form-control form-control-user" value="{{ old('email') }}" name="email" id="inputEmail"
                                         placeholder="Email Address">
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleInputPassword"  name="password" placeholder="Password">
+                                            id="inputPassword"  name="password" placeholder="Password">
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="password" class="form-control form-control-user"
-                                            id="exampleRepeatPassword"  name="confirmpass" placeholder="Repeat Password">
+                                            id="repeatPassword"  name="confirmpass" placeholder="Repeat Password">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="custom-control custom-checkbox small">
                                         <input type="checkbox" class="custom-control-input" name="registerDoctor" id="customCheck">
-                                        <label class="custom-control-label" for="customCheck">Register as Doctor</label>
+                                        <label class="custom-control-label" for="customCheck">Register as Doctor(Further Verifications required)</label>
                                     </div>
                                 </div>
                                 <input type="submit" class="btn btn-warning btn-user btn-block" value="Register Account">

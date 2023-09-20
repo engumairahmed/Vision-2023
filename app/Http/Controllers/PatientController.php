@@ -98,6 +98,7 @@ class PatientController extends Controller
 
         $doctors=User::with('doctor')
             ->join('doctors','doctors.doc_user_id', '=', 'users.id')
+            ->where('users.is_active',True)
             ->select('doctors.*', 'users.name', 'users.email')
             ->get();
             
@@ -129,9 +130,10 @@ class PatientController extends Controller
         return view('patient.plan',compact('prescription','medications','medicalConditions','labTests','medicalReports'));
     }
 
-    public function newPlan(Request $r)
-    {
+    public function newPlan(Request $r){
+
         $user = auth()->user();
+
         $presc=Prescription::create([
             'presc_user_id' => $user->id,
             'plan_name' => $r->plan_name,
@@ -141,15 +143,19 @@ class PatientController extends Controller
             'doctor_name' => $r->doctor_name,
             'presc_created_by' => $user->id,
         ]);
+
         $prescId=$presc->presc_id;
         $medicalConditions=$r->input('medicalCondition',[]);
+
         foreach($medicalConditions as $item){
-            $MedicalCondition=PrescriptionMedicalCondition::create([
+            PrescriptionMedicalCondition::create([
                 'pmc_prescription_id'=>$prescId,
                 'pmc_medical_condition_id'=>$item,   
             ]);
         }
+
         $tests=$r->input('test',[]);
+
         foreach($tests as $item){
             PrescriptionLabTest::create([
                 'pl_prescription_id'=>$prescId,
@@ -160,26 +166,24 @@ class PatientController extends Controller
         $medicines=$r->input('medicine',[]);
         $frequency=$r->input('frequency',[]);
         $instruction=$r->input('instruction',[]);
-        // dd($medicines);
+        
         if(!empty($medicines)){
             foreach($medicines as $key => $medicine){
                 if ($medicine !== null && $frequency[$key] !== null) {
-                PrescriptionMedication::create([
-                'pm_prescription_id'=>$prescId,
-                'pm_medication_id'=>$medicine,
-                'pm_frequency' => $frequency[$key],
-                'pm_instructions' => $instruction[$key],   
-                ]);
+                    PrescriptionMedication::create([
+                        'pm_prescription_id'=>$prescId,
+                        'pm_medication_id'=>$medicine,
+                        'pm_frequency' => $frequency[$key],
+                        'pm_instructions' => $instruction[$key],   
+                    ]);
+                }
             }
-            }
-        return redirect()->back()->with('msg','Prescription Plan Created');
-
+            return redirect()->back()->with('msg','Prescription Plan Created');
         }
         return redirect()->back()->with('msg','Prescription Plan Created without medication details');
     }
 
-    public function profile()
-    {
+    public function profile(){
         
         $user = auth()->user();
 
@@ -188,30 +192,30 @@ class PatientController extends Controller
         } else {
             $user = null;
         }
-        // dd($user);
+        
         return view('patient.profile',compact('user'));
     }
+
     public function updateInfo(Request $r){
+
         $id = auth()->user()->id;
     
         $r->validate([
             'name'=>'required|min:3',
             'email'=>'required|email|unique:users,email,'.$id,
-            'image'=>'image|mimes:jpeg,png,jpg,gif|max:5120',
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:3072|dimensions:min_width=400,min_height=400,max_width=1000,max_height=1000',
         ]);
-        // dd($r->file('image'));
+        
     
         DB::beginTransaction();
     
         try {
             if ($r->hasFile('image')) {
-                $image = $r->file('image');
-                $originalFileName = $r->file('image')->getClientOriginalName();
-                // dd($originalFileName);
+                $image = $r->file('image');                
                 $imageName = time().'.'.$image->getClientOriginalExtension();
                 $path = public_path('files/images');
                 $image->move($path, $imageName);
-                // dd($image);
+                
             
                     User::where('id', $id)->update([
                         'name' => $r->name,
@@ -242,12 +246,14 @@ class PatientController extends Controller
     
         return redirect()->back()->with('msg', 'Information updated successfully.');
     }
+
     public function security(){
         return view('patient.security');
     }
+
     public function updatePass(Request $r){
-        $user = auth()->user();
-        
+
+        $user = auth()->user();        
 
         if (Hash::check($r->oldpass, $user->password)) {
             $r->validate([
@@ -257,16 +263,21 @@ class PatientController extends Controller
                                     ->numbers()],
                 'cpass' => 'same:pass',
             ]);
+
             $pass = Hash::make($r->pass);
+
             User::where('id', $user->id)->update([
                 'password' => $pass
             ]);           
     
             return redirect()->back()->with('success', 'Password updated successfully.');
+
         } else {
+
             return redirect()->back()->with('error', 'Invalid old password.');
         }
     }
+
     public function medication(){
         $medicines = Medication::all();
         $medicineCount = Medication::count();
@@ -274,17 +285,15 @@ class PatientController extends Controller
     }
 
     public function allReports(){
-        $user_id = auth()->user()->id;
-        // $reports = MedicalReports::where('mr_created_by', $user_id)
-        // ->get();
 
+        $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $reports = $user->medicalReports;
         
         $reportCount = $user->medicalReports->sum(function ($prescription) {
             return $prescription->medicalReports->count();
         });
-        // dd($reports);
+        
         return view('patient.reports', compact('reports','reportCount'));
     }
 
@@ -297,17 +306,19 @@ class PatientController extends Controller
         return view('patient.add-report',compact('prescription'));
     }
     public function addReport(Request $r){
+
         $user_id = auth()->user()->id;
-        // dd($user_id);
+        
         $r->validate([
             'report'=>'file|mimes:jpeg,png,jpg,pdf,doc,docx|max:5120',
         ]);
+
         $originalFileName = $r->file('report')->getClientOriginalName();
         $file_name=time().$originalFileName.'.'.$r->report->extension();
         $path='files/'.$file_name;
         $r->report->move(public_path('files/'),$file_name);
 
-        $report=MedicalReports::create([
+        MedicalReports::create([
             'mr_prescription_id' => $r->prescription,
             'mr_report' => $path,
             'mr_name'=>$originalFileName,
@@ -317,33 +328,35 @@ class PatientController extends Controller
         return redirect()->back()->with('msg','Report uploaded successfully');
     }
 
-    public function deleteReport($id)
-        {
-            $report = MedicalReports::findOrFail($id);
-        
-            $prescription = Prescription::findOrFail($report->mr_prescription_id);
-        
-            if (auth()->user()->id == $prescription->presc_user_id) {
-                if (File::exists($report->mr_report)) {
-                    // Delete the file
-                    File::delete($report->mr_report);
-                }
-                $report->delete();
-        
-                return back()->with(['msg' => 'Report deleted successfully']);
+    public function deleteReport($id){
+
+        $report = MedicalReports::findOrFail($id);
+    
+        $prescription = Prescription::findOrFail($report->mr_prescription_id);
+    
+        if (auth()->user()->id == $prescription->presc_user_id) {
+            
+            if (File::exists($report->mr_report)) {
+                
+                File::delete($report->mr_report);
             }
-        
-            return back()->withErrors(['You are not authorized to delete this report.']);
+
+            $report->delete();
+    
+            return back()->with(['msg' => 'Report deleted successfully']);
         }
     
-    
+        return back()->withErrors(['You are not authorized to delete this report.']);
+    }    
 
     public function vital(){
         return view('patient.vitals');
     }
 
     public function vitalCreate(Request $r){
+
         $user_id=auth()->user()->id;
+
         $r->validate([
             'systolic'=>'numeric',
             'diastolic'=>'numeric',
@@ -353,28 +366,29 @@ class PatientController extends Controller
             'spo2'=>'numeric',
             'blood_glucose'=>'numeric'
         ]);
+
         $bp=$r->systolic."/".$r->diastolic;
+
         Vitals::create([
-        'vital_user_id'=>$user_id,
-        'blood_pressure'=>$bp,
-        'body_temperature'=>$r->body_temp."°F",
-        'body_weight'=>$r->body_weight."KG",
-        'pulse_rate'=>$r->pulse_rate."BPM",
-        'respiratory_rate'=>$r->respiratory_rate,
-        'oxygen_saturation'=>$r->spo2."%",
-        'blood_glucose_levels'=>$r->blood_glucose."mg/dL",
-        'vital_created_by'=>$user_id,
-        ]);
+            'vital_user_id'=>$user_id,
+            'blood_pressure'=>$bp,
+            'body_temperature'=>$r->body_temp."°F",
+            'body_weight'=>$r->body_weight."KG",
+            'pulse_rate'=>$r->pulse_rate."BPM",
+            'respiratory_rate'=>$r->respiratory_rate,
+            'oxygen_saturation'=>$r->spo2."%",
+            'blood_glucose_levels'=>$r->blood_glucose."mg/dL",
+            'vital_created_by'=>$user_id,
+            ]);
 
         return redirect()->back()->with('msg','Vitals added successfully');
     }
+
     public function vitalHistory(){
+
         $user_id=auth()->user()->id;
 
-        // $vitals = Vitals::where('vital_user_id', $user_id)->get();
-
         $vitals = Vitals::where('vital_user_id', $user_id)->with('createdByUser')->get();
-
 
         return view('patient.vital-history',compact('vitals'));
     }

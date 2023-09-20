@@ -16,9 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('doc_user_id');
             $table->foreign('doc_user_id')->references('id')->on('users');
             $table->string('doc_contact')->nullable();
-            $table->string('specialization');
-            $table->string('qualification');
-            $table->date('housejob_start_date');
+            $table->string('specialization')->nullable();
+            $table->string('qualification')->nullable();
+            $table->date('housejob_start_date')->nullable();
             $table->string('experience')->nullable();
             $table->integer('charges')->nullable();
             $table->string('working_days')->nullable();

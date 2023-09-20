@@ -70,7 +70,7 @@ class DoctorController extends Controller
         $r->validate([
             'name'=>'required|min:3',
             'email'=>'required|email|unique:users,email,'.$id,
-            'image'=>'image|mimes:jpeg,png,jpg,gif|max:5120',
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:3072|dimensions:min_width=400,min_height=400,max_width=1000,max_height=1000',
             'contact'=>'numeric:min(11):max(11)',
             'charges'=>'numeric',
 
@@ -163,33 +163,43 @@ class DoctorController extends Controller
             'name'=>$user->name,
             'email'=>$user->email,
             'subject'=>'Medicine Add Request',
-            'message'=>'Medicine Name:'.$r->medic_name.'Medicine Dosage:'.$r->dosage.'Medicine Description:'.$r->message,
+            'message'=>'Medicine Name:'.$r->medic_name.'  |  Medicine Dosage:'.$r->dosage.'  |  Medicine Description:'.$r->message,
+            'msg_user_id'=>$user->id
         ]);
 
         return redirect()->back()->with('msg','Request submitted successfully');
     }
-    public function allReports()
-{
-    $user_id = auth()->user()->id;
-    $doctorId = Doctor::where('doc_user_id', $user_id)->value('doctor_id');
-    $prescriptions = Prescription::where('presc_doctor_id', $doctorId)->get();
-    $medicalReportsWithUsers = [];
 
-    foreach ($prescriptions as $prescription) {
-        $user = $prescription->user;
-        $medicalReports = MedicalReports::where('mr_prescription_id', $prescription->presc_id)->get();
-
-        foreach ($medicalReports as $report) {
-            $medicalReportsWithUsers[] = [
-                'plan_name' => $prescription->plan_name,
-                'report' => $report,
-                'user' => $user
-            ];
-        }
+    public function viewRequests()
+    {
+        $user=auth()->user();
+        $requests=Messages::where('msg_user_id',$user->id)->get();
+        $reqCount=Messages::where('msg_user_id',$user->id)->count();
+        return view('doctor.viewrequests',compact('requests','reqCount'));
     }
 
-    return view('doctor.reports', compact('prescriptions', 'medicalReportsWithUsers'));
-}
+    public function allReports()
+    {
+        $user_id = auth()->user()->id;
+        $doctorId = Doctor::where('doc_user_id', $user_id)->value('doctor_id');
+        $prescriptions = Prescription::where('presc_doctor_id', $doctorId)->get();
+        $medicalReportsWithUsers = [];
+
+        foreach ($prescriptions as $prescription) {
+            $user = $prescription->user;
+            $medicalReports = MedicalReports::where('mr_prescription_id', $prescription->presc_id)->get();
+
+            foreach ($medicalReports as $report) {
+                $medicalReportsWithUsers[] = [
+                    'plan_name' => $prescription->plan_name,
+                    'report' => $report,
+                    'user' => $user
+                ];
+            }
+        }
+
+        return view('doctor.reports', compact('prescriptions', 'medicalReportsWithUsers'));
+    }
 
     public function prescription()
     {
@@ -224,7 +234,6 @@ class DoctorController extends Controller
         $user = auth()->user();
         $doctorId = Doctor::where('doc_user_id', auth()->user()->id)->value('doctor_id');
 
-        // dd($doctorId);
         $presc=Prescription::create([
             'presc_user_id' => $r->patient_id,
             'plan_name' => $r->plan_name,
@@ -233,6 +242,7 @@ class DoctorController extends Controller
             'presc_doctor_id' => $doctorId,
             'presc_created_by' => $user->id,
         ]);
+
         $prescId=$presc->presc_id;
         $medicalConditions=$r->input('medicalCondition',[]);
         foreach($medicalConditions as $item){
@@ -241,6 +251,7 @@ class DoctorController extends Controller
                 'pmc_medical_condition_id'=>$item,   
             ]);
         }
+
         $tests=$r->input('test',[]);
         foreach($tests as $item){
             PrescriptionLabTest::create([
@@ -252,21 +263,22 @@ class DoctorController extends Controller
         $medicines=$r->input('medicine',[]);
         $frequency=$r->input('frequency',[]);
         $instruction=$r->input('instruction',[]);
-        // dd($medicines);
+        
         if(!empty($medicines)){
             foreach($medicines as $key => $medicine){
                 if ($medicine !== null && $frequency[$key] !== null) {
-                PrescriptionMedication::create([
-                'pm_prescription_id'=>$prescId,
-                'pm_medication_id'=>$medicine,
-                'pm_frequency' => $frequency[$key],
-                'pm_instructions' => $instruction[$key],   
-                ]);
-            }
+                    PrescriptionMedication::create([
+                    'pm_prescription_id'=>$prescId,
+                    'pm_medication_id'=>$medicine,
+                    'pm_frequency' => $frequency[$key],
+                    'pm_instructions' => $instruction[$key],   
+                    ]);
+                }   
             }
         return redirect()->back()->with('msg','Prescription Plan Created');
 
         }
+
         return redirect()->back()->with('msg','Prescription Plan Created without medication details');
     }
 }
