@@ -63,7 +63,7 @@
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->email}}</td>
                                 <td>{{$item->created_at}}</td>
-                                <td><a href="/admin/queries/message/{{$item->id}}" class="btn btn-circle btn-sm btn-warning"><i class="far fa-envelope-open"></i></a></td>
+                                <td><a href="{{ route('admin.msg', ['id' => $item->id]) }}" class="btn btn-circle btn-sm btn-warning"><i class="far fa-envelope-open"></i></a></td>
                             </tr>
 
                             @endforeach

@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Doctor::create([
             'doc_user_id'=>5,
-            'specialization' => 'Paeds',
+            'specialization' => 'Pediatrician ',
             'qualification' => 'MBBS',
             'housejob_start_date' => '2002-11-09',
             'experience'=>'20 Years',

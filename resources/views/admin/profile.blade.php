@@ -25,6 +25,28 @@
             <a class="nav-link" href="{{route('admin.security')}}">Security</a>
         </nav>
         <hr class="mt-0 mb-4">
+        @if (Session::has('msg'))
+        <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+            {{Session::get('msg')}} 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>         
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
+        <form method="post" enctype="multipart/form-data">
+            @csrf
         <div class="row">
             <div class="col-xl-4">
                 <!-- Profile picture card-->
@@ -32,11 +54,19 @@
                     <div class="card-header">Profile Picture</div>
                     <div class="card-body text-center">
                         <!-- Profile picture image-->
-                        <img class="img-account-profile rounded-circle mb-2" src="assets/img/illustrations/profiles/profile-1.png" alt="">
+                        @if (auth()->user()->profile_pic)
+                        <img class="img-account-profile rounded-circle mb-2" src="{{asset(auth()->user()->profile_pic)}}" alt="" style="height:15em">                            
+                        @else
+                        <img class="img-account-profile rounded-circle mb-2" src="{{asset('images/undraw_profile.svg')}}" alt="">                            
+                        @endif
                         <!-- Profile picture help block-->
-                        <div class="small font-italic text-muted mb-4">JPG or PNG, no more than 3 MB, height x width mus be same</div>
+                        <div class="small font-italic text-muted mb-4">JPG or PNG, Less than 3 MB, height x width must be same, and 1000x1000 max.</div>
                         <!-- Profile picture upload button-->
-                        <button class="btn btn-primary" type="button">Select Image</button>
+                        <div class="custom-file">
+                            <input type="file" id="fileInput" name="image" style="display: none;" accept=".jpg,.jpeg,.png">
+                            <button type="button" id="customButton" class="btn btn-primary">Select Image</button>
+                            <span id="fileName"></span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,58 +75,18 @@
                 <div class="card mb-4">
                     <div class="card-header">Account Details</div>
                     <div class="card-body">
-                        <form>
                             <!-- Form Group (username)-->
                             <div class="mb-3">
-                                <label class="small mb-1" for="inputUsername">Username (how your name will appear to other users on the site)</label>
-                                <input class="form-control" id="inputUsername" type="text" placeholder="Enter your username" value="username">
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (first name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputFirstName">First name</label>
-                                    <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name" value="Valerie">
-                                </div>
-                                <!-- Form Group (last name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLastName">Last name</label>
-                                    <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name" value="Luna">
-                                </div>
-                            </div>
-                            <!-- Form Row        -->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (organization name)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputOrgName">Organization name</label>
-                                    <input class="form-control" id="inputOrgName" type="text" placeholder="Enter your organization name" value="Start Bootstrap">
-                                </div>
-                                <!-- Form Group (location)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputLocation">Location</label>
-                                    <input class="form-control" id="inputLocation" type="text" placeholder="Enter your location" value="San Francisco, CA">
-                                </div>
+                                <label class="small mb-1" for="inputName">Full Name (how your name will appear to other users on the site)</label>
+                                <input class="form-control" id="inputName" type="text" placeholder="Enter your Full Name" name="name" value="{{$user->name}}">
                             </div>
                             <!-- Form Group (email address)-->
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address" value="name@example.com">
-                            </div>
-                            <!-- Form Row-->
-                            <div class="row gx-3 mb-3">
-                                <!-- Form Group (phone number)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputPhone">Phone number</label>
-                                    <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number" value="555-123-4567">
-                                </div>
-                                <!-- Form Group (birthday)-->
-                                <div class="col-md-6">
-                                    <label class="small mb-1" for="inputBirthday">Birthday</label>
-                                    <input class="form-control" id="inputBirthday" type="text" name="birthday" placeholder="Enter your birthday" value="06/10/1988">
-                                </div>
+                                <input class="form-control" id="inputEmailAddress" type="email" name="email" placeholder="Enter your email address" value="{{$user->email}}">
                             </div>
                             <!-- Save changes button-->
-                            <button class="btn btn-primary" type="button">Save changes</button>
+                            <button class="btn btn-primary" type="submit">Save changes</button>
                         </form>
                     </div>
                 </div>
@@ -104,5 +94,18 @@
         </div>
     </div>
 </main>
+
+@push('script')
+    <script>
+        document.getElementById('customButton').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var fileName = this.value.split("\\").pop();
+            document.getElementById('fileName').textContent = fileName;
+        });
+    </script>
+@endpush
 
 @endsection

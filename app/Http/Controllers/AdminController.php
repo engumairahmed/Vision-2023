@@ -16,6 +16,7 @@ use App\Models\SurgicalProcedure;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 
 
@@ -35,7 +36,52 @@ class AdminController extends Controller
 
     public function profile()
     {
-        return view('admin.profile');
+        $user=User::Find(auth()->user()->id);
+        return view('admin.profile',compact('user'));
+    }
+
+    public function updateInfo(Request $r){
+        $id = auth()->user()->id;
+    
+        $r->validate([
+            'name'=>'required|min:3',
+            'email'=>'required|email|unique:users,email,'.$id,
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:3072|dimensions:min_width=200,min_height=200,max_width=1000,max_height=1000,ratio=1/1'
+        ]);
+    
+        DB::beginTransaction();
+    
+        try {
+            if ($r->hasFile('image')) {
+                $oldImage = User::where('id', $id)->value('profile_pic');
+                if($oldImage){
+                if (Storage::exists($oldImage)) {                
+                    Storage::delete($oldImage);
+                }}
+                $image = $r->file('image');
+                $imageName = time().'.'.$image->getClientOriginalExtension();
+                $path = public_path('files/images');
+                $image->move($path, $imageName);
+            
+                    User::where('id', $id)->update([
+                        'name' => $r->name,
+                        'email' => $r->email,
+                        'profile_pic'=>'files/images/'.$imageName,
+                    ]);
+                } else{
+                    User::where('id', $id)->update([
+                        'name' => $r->name,
+                        'email' => $r->email,
+                    ]);
+                }
+    
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->withErrors(['error' => 'An error occurred while updating the information.']);
+        }
+    
+        return redirect()->back()->with('msg', 'Information updated successfully.');
     }
 
     public function security()
@@ -130,7 +176,7 @@ class AdminController extends Controller
     }
 
 
-    public function showSp()
+    public function showSp($id)
     {
 
     }
@@ -140,12 +186,10 @@ class AdminController extends Controller
         $users=User::with('Patient')->join('patients','patients.pat_user_id', '=', 'users.id')
         ->select('patients.*','users.id', 'users.name', 'users.email','users.email_verified_at','users.is_active')->get();
         $ages = [];
-        // dd($users);
         foreach ($users as $user) {
                 $age = Carbon::parse($user->pat_DOB)->age;
                 $ages[$user->patient_id] = $age;
                 }
-                // dd($ages);
             return view('admin.users',compact('users','ages'));
     }
 
@@ -154,7 +198,6 @@ class AdminController extends Controller
         $presc_count = Prescription::where('presc_user_id', $id)->count();
         $vitalsCount=Vitals::where('vital_user_id',$id)->count();
         $patientData = $user->patient;
-        // dd($patientData->contact);
         $reportCount = $user->medicalReports->sum(function ($prescription) {
             return $prescription->medicalReports->count();
         });
@@ -181,12 +224,10 @@ class AdminController extends Controller
         $users=User::with('Doctor')->join('doctors','users.id', '=', 'doctors.doc_user_id')
         ->select('doctors.*', 'users.name', 'users.email','users.id','users.email_verified_at','users.is_active')->get();
         $ages = [];
-        // dd($users);
         foreach ($users as $user) {
                 $age = Carbon::parse($user->doc_DOB)->age;
                 $ages[$user->doctor_id] = $age;
                 }
-                // dd($ages);
             return view('admin.doctors',compact('users','ages'));
     }
     public function viewDoc($id){

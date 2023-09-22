@@ -12,15 +12,16 @@ use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Models\MedicalReports;
 use App\Models\MedicalCondition;
+use App\Models\SurgicalProcedure;
 use Illuminate\Support\Facades\DB;
 use App\Models\PrescriptionLabTest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use App\Models\PrescriptionMedication;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use App\Models\PrescriptionMedicalCondition;
-use App\Models\SurgicalProcedure;
 
 class PatientController extends Controller
 {
@@ -203,14 +204,17 @@ class PatientController extends Controller
         $r->validate([
             'name'=>'required|min:3',
             'email'=>'required|email|unique:users,email,'.$id,
-            'image'=>'image|mimes:jpeg,png,jpg,gif|max:3072|dimensions:min_width=400,min_height=400,max_width=1000,max_height=1000',
-        ]);
-        
+            'image'=>'image|mimes:jpeg,png,jpg,gif|max:3072|dimensions:min_width=400,min_height=400,max_width=1000,max_height=1000,ratio=1/1',
+        ]);        
     
         DB::beginTransaction();
     
         try {
             if ($r->hasFile('image')) {
+                $oldImage = User::where('id', $id)->value('profile_pic');
+                if (Storage::exists($oldImage)) {                
+                    Storage::delete($oldImage);
+                }
                 $image = $r->file('image');                
                 $imageName = time().'.'.$image->getClientOriginalExtension();
                 $path = public_path('files/images');

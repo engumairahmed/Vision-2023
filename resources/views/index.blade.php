@@ -27,6 +27,9 @@
   <!-- Template Main CSS File -->
   <link href="{{asset("css/style.css")}}" rel="stylesheet">
 
+      <!-- Downloaded jQuery-->
+      <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
+
    <!-- font awesome link-->
    <link rel="stylesheet" 
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
@@ -243,9 +246,9 @@ Join our growing community of empowered individuals who are taking control of th
       <div class="container" data-aos="zoom-in">
 
         <div class="text-center">
-          <h3>Call To Action</h3>
-          <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <a class="cta-btn" href="#">Call To Action</a>
+          <h3>Doctors Are Welcom to register</h3>
+          <p>We welcome you to our platform dedicated to providing exceptional healthcare services. Your expertise and compassion can make a significant impact on the lives of patients. To ensure the highest quality of care, we require all doctors to go through a verification process. Once verified, you'll have access to a wide range of features and be part of a network committed to excellence in healthcare.</p>
+          <a class="cta-btn" href="{{route('register')}}">Join Now</a>
         </div>
 
       </div>
@@ -499,12 +502,12 @@ Join our growing community of empowered individuals who are taking control of th
 
             <div class="swiper-slide">
               <div class="testimonial-item">
-                <img src="images/index/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
+                <img src="images/umair.jpg" class="testimonial-img" alt="">
+                <h3>Umair Ahmed</h3>
+                <h4>Developer &amp; Entrepreneur</h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                  Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+                  "As a skilled web developer, I developed this project using Laravel, showcasing my expertise in creating dynamic and user-friendly applications.
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
@@ -575,6 +578,9 @@ Join our growing community of empowered individuals who are taking control of th
     <!-- End Testimonials Section -->
 
     <!-- ======= Team Section ======= -->
+
+
+
     <section id="team" class="team">
       <div class="container" data-aos="fade-up">
 
@@ -583,81 +589,71 @@ Join our growing community of empowered individuals who are taking control of th
           <p>Meet our Expert Doctors</p>
         </div>
 
-        <div class="row">
+  <div class="row">
+    <!--CodePen Card carousal-->
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="100">
+    <div id="myCarousel" class="carousel slide container" data-bs-ride="carousel" data-bs-theme="dark">
+      <div class="carousel-inner w-100 row">
+        
+        
+        <div class="carousel-item active">
+          <div class="m-1 col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
               <div class="member-img">
                 <img src="images/index/doctors/doctor.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
               </div>
               <div class="member-info">
-                <h4>Dr Zehra (Eye Specialist)</h4>
-                <span><b>Dr Zehra is a highly skilled and dedicated ophthalmologist with a passion for providing exceptional eye care. Dr Zehra is a trusted specialist in diagnosing, treating, and managing a wide range of eye conditions. </b></span>
+                <h4>{{$doctor->name}} ({{$doctor->specialization}})</h4>
+                <span><b>Dr Areeba is a highly skilled and dedicated ophthalmologist with a passion for providing exceptional eye care. Dr Zehra is a trusted specialist in diagnosing, treating, and managing a wide range of eye conditions. </b></span>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="200">
+        </div>  
+        
+        <div class="carousel-item">
+          <div class="m-1 col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
               <div class="member-img">
-                <img src="images/index/doctors/doctor1.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
+                <img src="images/index/doctors/doctor.jpg" class="img-fluid" alt="">
               </div>
               <div class="member-info">
-                <h4>Dr Masroor (Neurologist)</h4>
+                <h4>{{$doctor->name}} ({{$doctor->specialization}})</h4>
+                <span><b>Dr {{$doctor->user->name}} is a highly skilled and dedicated {{$doctor->specialization}} with a passion for providing exceptional Srevice. Dr {{$doctor->user->name}} has {{$doctor->carbon_experience}} years of experience. </b></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        @foreach ($doctors as $doctor)       
+        <div class="carousel-item">
+          <div class="m-1 col-lg-3 col-md-6 d-flex align-items-stretch">
+            <div class="member">
+              <div class="member-img">
+                <img src="images/index/doctors/doctor1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="member-info">
+                <h4>{{$doctor->user->name}} ({{$doctor->specialization}})</h4>
                 <span><b>Dr Masroor, a distinguished neurologist who is dedicated to the intricate field of neurology. With a profound commitment to understanding and treating neurological disorders, Dr Neurologist brings a wealth of expertise and compassion to every aspect of patient care.</b></span>
               </div>
             </div>
           </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="300">
-              <div class="member-img">
-                <img src="images/index/doctors/doctor2.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Dr Shakeel (Orthopedic)</h4>
-                <span><b>Dr Shakeel a distinguished orthopedic surgeon who is dedicated to providing exceptional care in the realm of orthopedics. With a strong foundation in medical expertise and a commitment to improving musculoskeletal health, Dr Shakeel stands as a trusted specialist in diagnosing, treating, and rehabilitating a wide range of orthopedic conditions.</b></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
-            <div class="member" data-aos="fade-up" data-aos-delay="400">
-              <div class="member-img">
-                <img src="images/index/doctors/doctor5.jpg" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Dr Iqra (Cardiologist)</h4>
-                <span><b>Dr Iqra, an esteemed cardiologist who is dedicated to promoting cardiovascular health and wellness. With a profound commitment to patient care and a wealth of expertise in the field of cardiology, Dr iqra is a trusted specialist in diagnosing, treating, and managing a wide spectrum of heart-related conditions.</b></span>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        @endforeach
+        
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <!--Carousal End-->
+
 
       </div>
     </section><!-- End Team Section -->
@@ -773,14 +769,14 @@ Join our growing community of empowered individuals who are taking control of th
              <strong>Address:</strong> D - 4 Block H North Nazimabad Town, Karachi, Karachi City, Sindh 74700, Pakistan 
                 <br><br>
                 <strong>Phone:</strong> +92 321 2782593<br><br>
-                <strong>Email:</strong> medcustodian@mail.com<br>
+                <strong>Email:</strong> eng.umair.a@gmail.com<br>
               </p>
               <div class="social-links mt-3">
-                <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://twitter.com/EngUmairAhmed" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/eng.umair.ahmed" class="facebook"><i class="bx bxl-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://join.skype.com/invite/wcbgsB679b45" class="google-plus"><i class="bx bxl-skype"></i></a>
+                <a href="https://www.linkedin.com/in/umair-ahmed-077ba7268/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
               </div>
             </div>
           </div>
@@ -810,7 +806,7 @@ Join our growing community of empowered individuals who are taking control of th
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Our Newsletter</h4>
             <p>you will get an email from us</p>
-            <form action="" method="post">
+            <form>
               <input type="email" name="email"><input type="submit" value="Subscribe">
             </form>
 
@@ -836,7 +832,35 @@ Join our growing community of empowered individuals who are taking control of th
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
+<script>
+ 
+$(document).ready(function(){
+    // var myCarousel = document.querySelector('#myCarousel')
+// var carousel = new bootstrap.Carousel(myCarousel, {
+//   interval: 100000
+// })
 
+$('.carousel .carousel-item').each(function(){
+    var minPerSlide = 4;
+    var next = $(this).next();
+    if (!next.length) {
+    next = $(this).siblings(':first');
+    }
+    next.children(':first-child').clone().appendTo($(this));
+    
+    for (var i=0;i<minPerSlide;i++) {
+        next=next.next();
+        if (!next.length) {
+        	next = $(this).siblings(':first');
+      	}
+        
+        next.children(':first-child').clone().appendTo($(this));
+      }
+});
+
+});
+
+</script>
 
   <!-- Vendor JS Files -->
   <script src="{{asset("vendor/index/aos/aos.js")}}"></script>

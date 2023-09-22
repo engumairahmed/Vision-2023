@@ -60,7 +60,7 @@
                         <img class="img-account-profile rounded-circle mb-2" src="{{asset('images/undraw_profile.svg')}}" alt="">                            
                         @endif
                         <!-- Profile picture help block-->
-                        <div class="small font-italic text-muted mb-4">JPG or PNG, no more than 3 MB, height x width mus be same</div>
+                        <div class="small font-italic text-muted mb-4">JPG or PNG, Less than 3 MB, height x width must be same, and 1000x1000 max.</div>
                         <!-- Profile picture upload button-->
                         <div class="custom-file">
                             <input type="file" id="fileInput" name="image" style="display: none;" accept=".jpg,.jpeg,.png">
@@ -170,7 +170,7 @@
                                 </div>
                                 <!-- Form Group (Blood Group)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputBirthday">Birthday</label>
+                                    <label class="small mb-1" for="inputBirthday">Date of Birth</label>
                                     <input class="form-control date" id="inputBirthday" type="text" name="dob" placeholder="Enter your birthday" value="{{$user->doc_DOB}}">
                                 </div>
                             </div>
@@ -192,13 +192,13 @@
 @push('script')
     <script>
         document.getElementById('customButton').addEventListener('click', function() {
-    document.getElementById('fileInput').click();
-});
+            document.getElementById('fileInput').click();
+        });
 
-document.getElementById('fileInput').addEventListener('change', function() {
-    var fileName = this.value.split("\\").pop();
-    document.getElementById('fileName').textContent = fileName;
-});
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var fileName = this.value.split("\\").pop();
+            document.getElementById('fileName').textContent = fileName;
+        });
     </script>
 @endpush
 

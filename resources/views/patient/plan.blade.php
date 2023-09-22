@@ -47,6 +47,9 @@
       <button class="nav-link" id="tests-tab" data-toggle="tab" data-target="#tests" type="button" role="tab" aria-controls="tests" aria-selected="false">Medical Tests</button>
     </li>
     <li class="nav-item m-2" role="presentation">
+      <button class="nav-link" id="surgeries-tab" data-toggle="tab" data-target="#surgeries" type="button" role="tab" aria-controls="surgeries" aria-selected="false">Surgeries</button>
+    </li>
+    <li class="nav-item m-2" role="presentation">
         <button class="nav-link" id="reports-tab" data-toggle="tab" data-target="#reports" type="button" role="tab" aria-controls="reports" aria-selected="false">Medical Reports</button>
       </li>
   </ul>
@@ -66,6 +69,11 @@
     <div class="tab-pane mt-3" id="tests" role="tabpanel" aria-labelledby="tests-tab">
         @foreach ($labTests as $item)
             <p>Medical Test Name : {{$item->test_name}}</p>
+        @endforeach
+    </div>
+    <div class="tab-pane mt-3" id="surgeries" role="tabpanel" aria-labelledby="surgeries-tab">
+        @foreach ($labTests as $item)
+            <p>Surgical Procedure : {{$item->test_name}}</p>
         @endforeach
     </div>
     <div class="tab-pane mt-3" id="reports" role="tabpanel" aria-labelledby="reports-tab">

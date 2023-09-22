@@ -82,7 +82,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputName">Full Name (how your name will appear to Doctor or Admin on the site)</label>
-                                <input class="form-control" id="inputName" type="text" name="name" placeholder="Enter your username" value="{{ auth()->user()->name }}">
+                                <input class="form-control" id="inputName" type="text" name="name" placeholder="Enter your name" value="{{ auth()->user()->name }}">
                             </div>
                             <!-- Form Row        -->
                             <div class="row gx-3 mb-3">
@@ -116,7 +116,7 @@
                                 </div>
                                 <!-- Form Group (birthday)-->
                                 <div class="col-md-6">
-                                    <label class="small mb-1" for="inputBirthday">Birthday</label>
+                                    <label class="small mb-1" for="inputBirthday">Date of Birth</label>
                                     <input class="form-control date" id="inputBirthday" type="text" name="dob" placeholder="Enter your birthday" value="{{$user->pat_DOB}}">
                                 </div>
                             </div>
@@ -166,13 +166,13 @@
 @push('script')
     <script>
         document.getElementById('customButton').addEventListener('click', function() {
-    document.getElementById('fileInput').click();
-});
+            document.getElementById('fileInput').click();
+        });
 
-document.getElementById('fileInput').addEventListener('change', function() {
-    var fileName = this.value.split("\\").pop();
-    document.getElementById('fileName').textContent = fileName;
-});
+        document.getElementById('fileInput').addEventListener('change', function() {
+            var fileName = this.value.split("\\").pop();
+            document.getElementById('fileName').textContent = fileName;
+        });
     </script>
 @endpush
 

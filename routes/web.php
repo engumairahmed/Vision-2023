@@ -20,13 +20,11 @@ use App\Http\Controllers\PatientController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+Route::get('/',[Controller::class,'index'])->name('index');
 
 Route::post('/',[Controller::class,'message']);
 
-// Google Autheniticate
+// ------Google Autheniticate--------
 
 Route::controller(GoogleController::class)->group(function(){
     Route::prefix('/google')->group( function(){
@@ -118,6 +116,7 @@ Route::middleware(['active','auth','doctor','verified'])->group(function(){
             Route::get('/medication/request','medicRequest')->name('medicine.request');
             Route::post('/medication/request','requestMsg');
             Route::get('/requests','viewRequests')->name('doctor.requests');
+            Route::get('/requests/{id}','requestInfo')->name('doctor.requestInfo');
 
             Route::get('/reports','allReports')->name('doctor.reports');
 
@@ -151,6 +150,7 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
             Route::get('/add-procedures','addSpForm')->name('admin.add-sp');
             Route::post('/add-procedures','addSp');
             Route::get('/surgical-procedure/{id}','showSp')->name('admin.showSp');
+            Route::get('/surgical-procedure/delete/{id}','deleteSp')->name('admin.deleteSp');
 
         });
 
@@ -159,7 +159,7 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
             Route::get('/','dashboard')->name('admin.dashboard');
 
             Route::get('/queries','queries')->name('admin.queries');
-            Route::get('/queries/message/{id}','msg');
+            Route::get('/queries/message/{id}','msg')->name('admin.msg');
 
             Route::get('/users','userdata')->name('admin.users');
             Route::get('/users/id/{id}','viewUser')->name('view.user');
@@ -169,6 +169,7 @@ Route::middleware(['active','auth','admin','verified'])->group(function(){
 
 
             Route::get('/account/profile','profile')->name('admin.profile');
+            Route::post('/account/profile','updateInfo');
             Route::get('/account/security','security')->name('admin.security');
             Route::post('/account/security','updatePass');
 

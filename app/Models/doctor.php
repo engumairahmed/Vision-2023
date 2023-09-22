@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Doctor extends Model
 {
@@ -25,6 +26,15 @@ class Doctor extends Model
         'doc_address',
         'doc_DOB'
     ];
+
+    public function getCarbonExperienceAttribute()
+    {
+        if ($this->housejob_start_date) {
+            return Carbon::parse($this->housejob_start_date)->diffInYears(Carbon::now());
+        }
+        
+        return null; // Handle the case where housejob_start_date is not set
+    }
 
     public function user(){
 
