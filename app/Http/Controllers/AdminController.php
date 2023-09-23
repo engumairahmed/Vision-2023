@@ -178,7 +178,16 @@ class AdminController extends Controller
 
     public function showSp($id)
     {
+        $sp=SurgicalProcedure::find($id);
+        return view('doctor.sp-details',compact('sp'));
+    }
 
+    public function deleteSp($id)
+    {
+        $sp=SurgicalProcedure::find($id);
+        // dd($sp);
+        $sp->delete();
+        return redirect()->back()->with('msg','Procedure Deleted Successfully');
     }
 
     public function userdata()

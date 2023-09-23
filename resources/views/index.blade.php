@@ -27,8 +27,8 @@
   <!-- Template Main CSS File -->
   <link href="{{asset("css/style.css")}}" rel="stylesheet">
 
-      <!-- Downloaded jQuery-->
-      <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
+  <!-- Downloaded jQuery-->
+  <script src="{{asset("/js/jQuery/jQuery.js")}}"></script>
 
    <!-- font awesome link-->
    <link rel="stylesheet" 
@@ -686,7 +686,7 @@ Join our growing community of empowered individuals who are taking control of th
               <div class="email">
                 <i class="bi bi-envelope"></i>
                 <h4>Email:</h4>
-                <p>medcustodian@mail.com</p>
+                <p>eng.umair.a@gmail.com</p>
               </div>
 
               <div class="phone">

@@ -135,10 +135,18 @@
                         <i class="fa fa-bars"></i>
                     </button>   
 
-                    <div>@yield('sitemap')</div>
+                    <!--Back Button-->
+                    <div class="m-4">
+                        <a href="{{ URL::previous() }}" class="btn btn-warning btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-step-backward"></i>
+                            </span>
+                            <span class="text">Go Back</span>
+                        </a>
+                    </div>
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto">                   
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 

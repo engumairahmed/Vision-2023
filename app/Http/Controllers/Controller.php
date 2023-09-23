@@ -41,4 +41,5 @@ class Controller extends BaseController
         ]);
         return redirect()->back()->with('msg','You message has been sent.');
     }
+
 }

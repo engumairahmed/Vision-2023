@@ -30,14 +30,25 @@
             </div>
         </div>
     </div>
-            <div class="m-4">
-                <a href="{{route('admin.add-sp')}}" class="btn btn-danger btn-icon-split">
-                    <span class="icon text-white-50">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                    <span class="text">Add Procedure</span>
-                </a>
-            </div>
+
+    <!--Session Messages-->
+    @if (Session::has('msg'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{Session::get('msg')}} 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    @endif
+
+    <div class="m-4">
+        <a href="{{route('admin.add-sp')}}" class="btn btn-danger btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Add Procedure</span>
+        </a>
+    </div>
         
 
         <!-- Table -->
