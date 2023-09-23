@@ -30,7 +30,7 @@
         </div>
 
         <!-- Vitals -->
-        <div class="col-xl-6 col-md-6 mb-4">
+        {{-- <div class="col-xl-6 col-md-6 mb-4">
             <div class="card border border-info shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
 
         <!-- Active Medications -->
         <div class="col-xl-3 col-md-6 mb-4">

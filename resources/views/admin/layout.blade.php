@@ -141,7 +141,7 @@
                             <span class="icon text-white-50">
                                 <i class="fas fa-step-backward"></i>
                             </span>
-                            <span class="text">Go Back</span>
+                            <span class="text">Previous Page</span>
                         </a>
                     </div>
 

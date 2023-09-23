@@ -12,6 +12,7 @@ use App\Models\Prescription;
 use Illuminate\Http\Request;
 use App\Models\MedicalReports;
 use App\Models\MedicalCondition;
+use App\Models\Patient;
 use App\Models\SurgicalProcedure;
 use Illuminate\Support\Facades\DB;
 use App\Models\PrescriptionLabTest;
@@ -21,6 +22,7 @@ use App\Models\PrescriptionMedication;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Password;
 use App\Models\PrescriptionMedicalCondition;
+use Twilio\Rest\Client;
 
 class DoctorController extends Controller
 {
@@ -41,17 +43,21 @@ class DoctorController extends Controller
         $user = auth()->user();
         $plan=Prescription::find($id);        
             
-        $prescription = Prescription::with(['medications', 'medicalConditions', 'labTests', 'doctor'])
+        $prescription = Prescription::with(['medications', 'medicalConditions', 'labTests', 'doctor','surgicalProcedure'])
         ->find($id);
 
         $medicalReports = MedicalReports::where('mr_prescription_id', $id)
         ->get();
+
+        // $sp = SurgicalProcedure::where('psp_prescription_id', $id)
+        // ->get();
         
         $medications = $prescription->medications;
         $medicalConditions = $prescription->medicalConditions;
         $labTests = $prescription->labTests;
         $user = $prescription->user;
-        return view('doctor.plan',compact('prescription','medications','medicalConditions','labTests','medicalReports','user'));
+        $sp = $prescription->surgicalProcedure;
+        return view('doctor.plan',compact('prescription','medications','medicalConditions','labTests','medicalReports','user','sp'));
     }
 
     public function profile(){
@@ -289,5 +295,51 @@ class DoctorController extends Controller
         }
 
         return redirect()->back()->with('msg','Prescription Plan Created without medication details');
+    }
+
+    public function sendWhatsAppMessage($id,$pId)
+    {
+        // $user=Patient::where('pat_user_id',$id)->get();
+        $user=Patient::where('pat_user_id',$id)->first();
+        // dd($user);
+        $contact=$user->pat_contact;
+        // dd($contact);
+        if($user->pat_contact){
+        $str = substr($contact, 1);
+        $recipientNumber = 'whatsapp:+92'.$str;
+        // dd($recipientContactNumber);
+        $twilioSid = env('TWILIO_SID');
+        $twilioToken = env('TWILIO_AUTH_TOKEN');
+        // $twilioWhatsAppNumber ='whatsapp:'.+12568587406;
+        $twilioWhatsAppNumber ='whatsapp:'.+14155238886;
+        // $twilioWhatsAppNumber =env('TWILIO_WHATSAPP_NUMBER');
+        // $recipientNumber = $recipientContactNumber; // Replace with the recipient's phone number in WhatsApp format (e.g., "whatsapp:+1234567890")
+        $message = "Hello from Twilio WhatsApp API in Laravel! 🚀";
+        $presc=Prescription::where('presc_id',$pId)->first();
+
+
+        $twilio = new Client($twilioSid, $twilioToken);
+
+        // dd('WhatsApp');
+
+        try {
+            $twilio->messages->create(
+                $recipientNumber,
+                [
+                    "from" => $twilioWhatsAppNumber,
+                    "body" => $message,
+                ]
+            );
+
+            // return response()->json(['message' => 'WhatsApp message sent successfully']);
+            return redirect()->back()->with('success','WhatsApp message sent successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error',$e->getMessage());
+
+            // return response()->json(['error' => $e->getMessage()], 500);
+        }
+        } else{
+            return redirect()->back()->with('msg','Contact number not available');
+        }
     }
 }

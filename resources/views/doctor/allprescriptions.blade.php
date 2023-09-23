@@ -28,6 +28,36 @@
                 </div>
             </div>
         </div>
+
+        <!--Success Session Message-->
+        @if (Session::has('success'))
+        <div class="alert alert-success shadow-sm alert-dismissible fade show" role="alert">
+            {{Session::get('success')}} 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+
+        <!--warning Session Message-->
+        @if (Session::has('error'))
+        <div class="alert alert-danger shadow-sm alert-dismissible fade show" role="alert">
+            {{Session::get('error')}} 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
+
+        <!--Error Session Message-->
+        @if (Session::has('msg'))
+        <div class="alert alert-warning shadow-sm alert-dismissible fade show" role="alert">
+            {{Session::get('msg')}} 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @endif
     
         <!-- Patients Table -->
         <div class="card shadow mb-4">
@@ -44,6 +74,7 @@
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>
+                                <th>Send</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -53,6 +84,7 @@
                                 <th>Start Date</th>
                                 <th>End Date</th>
                                 <th>View Details</th>
+                                <th>Send</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -64,6 +96,7 @@
                                 <td>{{$item->start_date}}</td>
                                 <td>{{$item->end_date}}</td>
                                 <td><a href="{{ route('doctor.plan', ['id' => $item->presc_id]) }}" class="btn btn-circle btn-sm btn-info"><i class="fas fa-info-circle"></i></a></td>
+                                <td><a href="{{ route('send.whatsapp', ['id' => $item->presc_user_id,'pId'=>$item->presc_id]) }}" class="btn btn-circle btn-sm btn-success"><i class="fab fa-whatsapp"></i></a></td>
                             </tr>
 
                             @endforeach

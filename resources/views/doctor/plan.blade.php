@@ -68,8 +68,8 @@
         @endforeach
     </div>    
     <div class="tab-pane mt-3" id="surgeries" role="tabpanel" aria-labelledby="surgeries-tab">
-        @foreach ($labTests as $item)
-            <p>Surgical Procedure : {{$item->test_name}}</p>
+        @foreach ($sp as $item)
+            <p>Surgical Procedure : {{$item->sp_name}}</p>
         @endforeach
     </div>
     <div class="tab-pane mt-3" id="reports" role="tabpanel" aria-labelledby="reports-tab">

@@ -11,7 +11,8 @@
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.8",
-        "nesbot/carbon": "^2.68"
+        "nesbot/carbon": "^2.68",
+        "twilio/sdk": "^7.9"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

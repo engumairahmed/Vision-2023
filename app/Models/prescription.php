@@ -37,6 +37,11 @@ class Prescription extends Model
 
         return $this->belongsToMany(LabTest::class, 'prescription_lab_tests', 'pl_prescription_id', 'pl_lab_test_id');
     }
+
+    public function surgicalProcedure(){
+
+        return $this->belongsToMany(SurgicalProcedure::class, 'prescription_surgical_procedures', 'psp_prescription_id', 'psp_procedure_id');
+    }
     
     public function doctor(){
 

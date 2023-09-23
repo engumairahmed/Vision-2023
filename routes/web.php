@@ -111,6 +111,7 @@ Route::middleware(['active','auth','doctor','verified'])->group(function(){
             Route::get('/prescriptions/new','prescription')->name('new.prescription');    
             Route::post('/prescriptions/new','newPlan');
             Route::get('/prescriptions','allPrescriptions')->name('prescriptions');
+            Route::get('/prescriptions/send/{id}','sendWhatsAppMessage')->name('send.whatsapp');
 
             Route::get('/medication','medication')->name('doctor.medication');
             Route::get('/medication/request','medicRequest')->name('medicine.request');

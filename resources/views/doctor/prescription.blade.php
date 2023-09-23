@@ -60,7 +60,7 @@
                                 <div class="col-md-6">
                                     <label class="small mb-1" for="selectDoctorName">Select Patient from list</label>
                                     <select class="js-example-responsive form-control select2" id="selectDoctorName" type="text" name="patient_id">
-                                        <option value="">Select Doctor Name</option>
+                                        <option value="">Select Patient's Name</option>
                                         @foreach ($users as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach                                        
@@ -93,6 +93,7 @@
                             <div class="mb-3">
                                 <label class="small mb-1" for="inputSurgicalProcedure">Recommended Surgical Procedure</label>
                                 <select class="form-control select2" id="inputSurgicalProcedure" type="text" placeholder="Select Surgical Procedure" value="" name="surgicalProcedure">
+                                    <option value="">Select Patient's Name</option>
                                     @foreach ($sp as $item)
                                         <option value="{{$item->sp_id}}">{{$item->sp_name}}</option>
                                     @endforeach
